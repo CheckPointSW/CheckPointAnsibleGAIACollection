@@ -86,39 +86,39 @@ EXPECTED_RESULT_ALL = {
 }
 
 EXPECTED_RESULT_SINGLE = {
-        "auto-negotiation": True,
-        "comments": "",
-        "duplex": "Not-Configured",
-        "enabled": True,
-        "ipv4-address": "172.23.21.136",
-        "ipv4-mask-length": "24",
-        "ipv6-address": "Not-Configured",
-        "ipv6-autoconfig": "Not configured",
-        "ipv6-local-link-address": "Not Configured",
-        "ipv6-mask-length": "Not-Configured",
-        "mac-addr": "00:50:56:9e:a8:2c",
-        "monitor-mode": "Not configured",
-        "mtu": "1500",
-        "name": "eth0",
-        "rx-ringsize": "256",
-        "speed": "Not-Configured",
-        "status": {
-            "duplex": "full",
-            "link-state": True,
-            "rx-bytes": "4015337823",
-            "rx-packets": "3484429",
-            "speed": "1000M",
-            "tx-bytes": "58981342",
-            "tx-packets": "370170"
-        },
-        "tx-ringsize": "1024"
-    }
+    "auto-negotiation": True,
+    "comments": "",
+    "duplex": "Not-Configured",
+    "enabled": True,
+    "ipv4-address": "172.23.21.136",
+    "ipv4-mask-length": "24",
+    "ipv6-address": "Not-Configured",
+    "ipv6-autoconfig": "Not configured",
+    "ipv6-local-link-address": "Not Configured",
+    "ipv6-mask-length": "Not-Configured",
+    "mac-addr": "00:50:56:9e:a8:2c",
+    "monitor-mode": "Not configured",
+    "mtu": "1500",
+    "name": "eth0",
+    "rx-ringsize": "256",
+    "speed": "Not-Configured",
+    "status": {
+        "duplex": "full",
+        "link-state": True,
+        "rx-bytes": "4015337823",
+        "rx-packets": "3484429",
+        "speed": "1000M",
+        "tx-bytes": "58981342",
+        "tx-packets": "370170"
+    },
+    "tx-ringsize": "1024"
+}
 
 PAYLOAD = {
     "name": "eth0"
 }
 
-function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_physical_interfaces_facts.api_call'
+function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_physical_interfaces_facts.facts_api_call'
 
 
 class TestCheckpointPhysicalInterfacesFacts(object):
@@ -135,7 +135,79 @@ class TestCheckpointPhysicalInterfacesFacts(object):
 
     def test_show_all(self, mocker, connection_mock):
         api_call_response = {
-            "objects": [
+            "ansible_facts":
+                {
+                    "objects": [
+                        {
+                            "auto-negotiation": True,
+                            "comments": "",
+                            "duplex": "Not-Configured",
+                            "enabled": True,
+                            "ipv4-address": "172.23.21.136",
+                            "ipv4-mask-length": "24",
+                            "ipv6-address": "Not-Configured",
+                            "ipv6-autoconfig": "Not configured",
+                            "ipv6-local-link-address": "Not Configured",
+                            "ipv6-mask-length": "Not-Configured",
+                            "mac-addr": "00:50:56:9e:a8:2c",
+                            "monitor-mode": "Not configured",
+                            "mtu": "1500",
+                            "name": "eth0",
+                            "rx-ringsize": "256",
+                            "speed": "Not-Configured",
+                            "status": {
+                                "duplex": "full",
+                                "link-state": True,
+                                "rx-bytes": "4015323875",
+                                "rx-packets": "3484339",
+                                "speed": "1000M",
+                                "tx-bytes": "58977236",
+                                "tx-packets": "370140"
+                            },
+                            "tx-ringsize": "1024"
+                        },
+                        {
+                            "auto-negotiation": "Not configured",
+                            "comments": "",
+                            "duplex": "Not-Configured",
+                            "enabled": False,
+                            "ipv4-address": "Not-Configured",
+                            "ipv4-mask-length": "Not-Configured",
+                            "ipv6-address": "Not-Configured",
+                            "ipv6-autoconfig": "Not configured",
+                            "ipv6-local-link-address": "Not Configured",
+                            "ipv6-mask-length": "Not-Configured",
+                            "mac-addr": "00:50:56:9e:dd:09",
+                            "monitor-mode": "Not configured",
+                            "mtu": "1500",
+                            "name": "eth1",
+                            "rx-ringsize": "256",
+                            "speed": "Not-Configured",
+                            "status": {
+                                "duplex": "full",
+                                "link-state": False,
+                                "rx-bytes": "0",
+                                "rx-packets": "0",
+                                "speed": "1000M",
+                                "tx-bytes": "0",
+                                "tx-packets": "0"
+                            },
+                            "tx-ringsize": "1024"
+                        }
+                    ]
+                },
+            "changed": False
+        }
+
+        mock_function = mocker.patch(function_path)
+        mock_function.side_effect = [api_call_response]
+        result = self._run_module(PAYLOAD)
+        assert not result['changed']
+        assert EXPECTED_RESULT_ALL.items() == result['ansible_facts'].items()
+
+    def test_show_single(self, mocker, connection_mock):
+        api_call_response = {
+            "ansible_facts":
                 {
                     "auto-negotiation": True,
                     "comments": "",
@@ -156,80 +228,15 @@ class TestCheckpointPhysicalInterfacesFacts(object):
                     "status": {
                         "duplex": "full",
                         "link-state": True,
-                        "rx-bytes": "4015323875",
-                        "rx-packets": "3484339",
+                        "rx-bytes": "4015337823",
+                        "rx-packets": "3484429",
                         "speed": "1000M",
-                        "tx-bytes": "58977236",
-                        "tx-packets": "370140"
+                        "tx-bytes": "58981342",
+                        "tx-packets": "370170"
                     },
                     "tx-ringsize": "1024"
                 },
-                {
-                    "auto-negotiation": "Not configured",
-                    "comments": "",
-                    "duplex": "Not-Configured",
-                    "enabled": False,
-                    "ipv4-address": "Not-Configured",
-                    "ipv4-mask-length": "Not-Configured",
-                    "ipv6-address": "Not-Configured",
-                    "ipv6-autoconfig": "Not configured",
-                    "ipv6-local-link-address": "Not Configured",
-                    "ipv6-mask-length": "Not-Configured",
-                    "mac-addr": "00:50:56:9e:dd:09",
-                    "monitor-mode": "Not configured",
-                    "mtu": "1500",
-                    "name": "eth1",
-                    "rx-ringsize": "256",
-                    "speed": "Not-Configured",
-                    "status": {
-                        "duplex": "full",
-                        "link-state": False,
-                        "rx-bytes": "0",
-                        "rx-packets": "0",
-                        "speed": "1000M",
-                        "tx-bytes": "0",
-                        "tx-packets": "0"
-                    },
-                    "tx-ringsize": "1024"
-                }
-            ]
-        }
-
-        mock_function = mocker.patch(function_path)
-        mock_function.side_effect = [api_call_response]
-        result = self._run_module(PAYLOAD)
-        assert not result['changed']
-        assert EXPECTED_RESULT_ALL.items() == result['ansible_facts'].items()
-
-
-    def test_show_single(self, mocker, connection_mock):
-        api_call_response = {
-            "auto-negotiation": True,
-            "comments": "",
-            "duplex": "Not-Configured",
-            "enabled": True,
-            "ipv4-address": "172.23.21.136",
-            "ipv4-mask-length": "24",
-            "ipv6-address": "Not-Configured",
-            "ipv6-autoconfig": "Not configured",
-            "ipv6-local-link-address": "Not Configured",
-            "ipv6-mask-length": "Not-Configured",
-            "mac-addr": "00:50:56:9e:a8:2c",
-            "monitor-mode": "Not configured",
-            "mtu": "1500",
-            "name": "eth0",
-            "rx-ringsize": "256",
-            "speed": "Not-Configured",
-            "status": {
-                "duplex": "full",
-                "link-state": True,
-                "rx-bytes": "4015337823",
-                "rx-packets": "3484429",
-                "speed": "1000M",
-                "tx-bytes": "58981342",
-                "tx-packets": "370170"
-            },
-            "tx-ringsize": "1024"
+            "changed": False
         }
 
         mock_function = mocker.patch(function_path)
@@ -237,7 +244,6 @@ class TestCheckpointPhysicalInterfacesFacts(object):
         result = self._run_module(PAYLOAD)
         assert not result['changed']
         assert EXPECTED_RESULT_SINGLE.items() == result['ansible_facts'].items()
-
 
     def _run_module(self, module_args):
         set_module_args(module_args)

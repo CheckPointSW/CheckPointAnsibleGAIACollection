@@ -140,16 +140,45 @@ def get_version(module):
     return ('v' + module.params['version'] + '/') if module.params.get('version') else ''
 
 
+def idempotent_api_call(module, api_call_object, ignore, keys):
+    modules_params_original = module.params
+    module_params_show = dict((k, v) for k, v in module.params.items() if k in keys and v is not None)
+    module.params = module_params_show
+    before = api_call(module=module, api_call_object="show-{}".format(api_call_object))
+    [before.pop(key) for key in ignore]
+
+    # Run the command:
+    module.params = modules_params_original
+    res = api_call(module=module, api_call_object="set-{}".format(api_call_object))
+    module.params = module_params_show
+    after = res.copy()
+    [after.pop(key) for key in ignore]
+
+    changed = False if before == after else True
+
+    return {
+        api_call_object.replace('-', '_'): res,
+        "changed": changed
+    }
+
+
+def facts_api_call(module, api_call_object, keys):
+    module_key_params = dict((k, v) for k, v in module.params.items() if k in keys and v is not None)
+
+    if len(module_key_params) > 0:
+        res = api_call(module=module, api_call_object="show-{}".format(api_call_object))
+    else:
+        res = api_call(module=module, api_call_object="show-{}s".format(api_call_object))
+    return {
+        "ansible_facts": res
+    }
+
+
 # handle api call
 def api_call(module, api_call_object):
     payload = get_payload_from_parameters(module.params)
     connection = Connection(module._socket_path)
     version = get_version(module)
-
-    result = {'changed': False}
-    # if module.check_mode:
-    #     return result
-
     code, response = send_request(connection, version, api_call_object, payload)
     if code != 200:
         module.fail_json(msg=parse_fail_message(code, response))

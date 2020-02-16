@@ -36,7 +36,7 @@ CHANGED_PAYLOAD = {
     "name": "host1"
 }
 
-function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_hostname.api_call'
+function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_hostname.idempotent_api_call'
 api_call_object = 'hostname'
 
 
@@ -54,14 +54,26 @@ class TestCheckpointHostname(object):
 
     def test_idempotent(self, mocker, connection_mock):
         mock_function = mocker.patch(function_path)
-        mock_function.side_effect = [{"name": "host1"}, {"name": "host1"}]
+        mock_function.side_effect = [{
+            "changed": False,
+            "hostname": {
+                "name": "host1"
+            }
+        }
+        ]
         result = self._run_module(NOT_CHANGED_PAYLOAD)
         assert not result['changed']
         assert EXPECTED_RESULT.items() == result[api_call_object].items()
 
     def test_changed(self, mocker, connection_mock):
         mock_function = mocker.patch(function_path)
-        mock_function.side_effect = [{"name": "host_before_change"}, {"name": "host1"}]
+        mock_function.side_effect = [{
+            "changed": True,
+            "hostname": {
+                "name": "host1"
+            }
+        }
+        ]
         result = self._run_module(CHANGED_PAYLOAD)
         assert result['changed']
         assert EXPECTED_RESULT.items() == result[api_call_object].items()

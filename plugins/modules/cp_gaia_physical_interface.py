@@ -117,7 +117,7 @@ physical_interface:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import idempotent_api_call
 
 
 def main():
@@ -141,25 +141,12 @@ def main():
         ipv6_mask_length=dict(required=False, type="int")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
+    api_call_object = 'physical-interface'
     ignore = ["status"]
+    keys = ["name"]
 
-    modules_params_original = module.params
-
-    module_params_show = dict((k, v) for k, v in module.params.items() if k in ["name"] and v is not None)
-
-    module.params = module_params_show
-    before = api_call(module=module, api_call_object="show-physical-interface")
-    [before.pop(key) for key in ignore]
-
-    # Run the command:
-    module.params = modules_params_original
-    res = api_call(module=module, api_call_object="set-physical-interface")
-    module.params = module_params_show
-    after = res.copy()
-    [after.pop(key) for key in ignore]
-
-    was_changed = False if before == after else True
-    module.exit_json(physical_interface=res, changed=was_changed)
+    res = idempotent_api_call(module, api_call_object, ignore, keys)
+    module.exit_json(**res)
 
 
 if __name__ == "__main__":

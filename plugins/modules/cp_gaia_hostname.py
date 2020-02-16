@@ -26,7 +26,7 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'supported_by': 'community'}
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import idempotent_api_call
 
 DOCUMENTATION = """
 author: Yuval Feiger (@chkp-yuvalfe)
@@ -65,25 +65,12 @@ def main():
         name=dict(type='str', required=True)
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
+    api_call_object = 'hostname'
     ignore = []
+    keys = []
 
-    modules_params_original = module.params
-
-    module_params_show = dict((k, v) for k, v in module.params.items() if k in [] and v is not None)
-
-    module.params = module_params_show
-    before = api_call(module=module, api_call_object="show-hostname")
-    [before.pop(key) for key in ignore]
-
-    # Run the command:
-    module.params = modules_params_original
-    res = api_call(module=module, api_call_object="set-hostname")
-    module.params = module_params_show
-    after = res.copy()
-    [after.pop(key) for key in ignore]
-
-    was_changed = False if before == after else True
-    module.exit_json(hostname=res, changed=was_changed)
+    res = idempotent_api_call(module, api_call_object, ignore, keys)
+    module.exit_json(**res)
 
 
 if __name__ == "__main__":

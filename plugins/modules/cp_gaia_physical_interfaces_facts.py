@@ -58,7 +58,7 @@ ansible_facts:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import facts_api_call
 
 
 def main():
@@ -67,13 +67,10 @@ def main():
         name=dict(required=False, type="str")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    module_key_params = dict((k, v) for k, v in module.params.items() if k in ["name"] and v is not None)
-
-    if len(module_key_params) > 0:
-        res = api_call(module=module, api_call_object="show-physical-interface")
-    else:
-        res = api_call(module=module, api_call_object="show-physical-interfaces")
-    module.exit_json(ansible_facts=res)
+    api_call_object = "physical-interface"
+    keys = ["name"]
+    res = facts_api_call(module, api_call_object, keys)
+    module.exit_json(**res)
 
 
 if __name__ == "__main__":
