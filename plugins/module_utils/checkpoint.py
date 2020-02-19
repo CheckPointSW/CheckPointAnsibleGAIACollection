@@ -144,12 +144,12 @@ def idempotent_api_call(module, api_call_object, ignore, keys):
     modules_params_original = module.params
     module_params_show = dict((k, v) for k, v in module.params.items() if k in keys and v is not None)
     module.params = module_params_show
-    before = api_call(module=module, api_call_object="show-{}".format(api_call_object))
+    before = api_call(module=module, api_call_object="show-{0}".format(api_call_object))
     [before.pop(key) for key in ignore]
 
     # Run the command:
     module.params = modules_params_original
-    res = api_call(module=module, api_call_object="set-{}".format(api_call_object))
+    res = api_call(module=module, api_call_object="set-{0}".format(api_call_object))
     module.params = module_params_show
     after = res.copy()
     [after.pop(key) for key in ignore]
@@ -166,9 +166,9 @@ def facts_api_call(module, api_call_object, keys):
     module_key_params = dict((k, v) for k, v in module.params.items() if k in keys and v is not None)
 
     if len(module_key_params) > 0:
-        res = api_call(module=module, api_call_object="show-{}".format(api_call_object))
+        res = api_call(module=module, api_call_object="show-{0}".format(api_call_object))
     else:
-        res = api_call(module=module, api_call_object="show-{}s".format(api_call_object))
+        res = api_call(module=module, api_call_object="show-{0}s".format(api_call_object))
     return {
         "ansible_facts": res
     }
