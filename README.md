@@ -11,7 +11,7 @@ Run `ansible-galaxy collection install check_point.gaia`
 Requirements
 ------------
 * Ansible 2.9+ is required.
-* The Check Point server should have Gaia API engine installed on.
+* The Check Point server should have Gaia API engine installed on. More information can be found at [Gaia REST API SK](https://supportcenter.checkpoint.com/supportcenter/portal?action=portlets.SearchResultMainAction&eventSubmit_doGoviewsolutiondetails=&solutionid=sk143612).
 
 Usage
 -----
