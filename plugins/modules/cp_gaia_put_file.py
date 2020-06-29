@@ -44,9 +44,9 @@ options:
     type: str
   override:
     description:
-      - If the file already exists, indicates whether to overwrite it.
-      - Recommended value: true.
-      - Note: When the value is false, if the file already exists in the system from an previous execution, it will fail.
+      If the file already exists, indicates whether to overwrite it.
+      Recommended value is true.
+      Note When the value is false, if the file already exists in the system from an previous execution, it will fail.
     required: true
     type: bool
 short_description: Add a new file to a Check Point machine.

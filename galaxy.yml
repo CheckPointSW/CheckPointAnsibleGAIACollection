@@ -19,7 +19,6 @@ readme: README.md
 authors:
 - Yuval Feiger <yuvalfe@checkpoint.com>
 
-
 ### OPTIONAL but strongly recommended
 
 # A short summary description of the collection
@@ -52,4 +51,3 @@ documentation: http://docs.example.com
 
 # The URL to the homepage of the collection/project
 homepage: https://sc1.checkpoint.com/documents/latest/GaiaAPIs/index.html
-
