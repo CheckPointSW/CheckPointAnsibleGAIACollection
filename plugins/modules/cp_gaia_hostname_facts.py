@@ -33,7 +33,6 @@ author: Yuval Feiger (@chkp-yuvalfe)
 description:
 - Show hostname settings
 module: cp_gaia_hostname_facts
-options:
 short_description: Show hostname settings
 version_added: '2.9'
 
