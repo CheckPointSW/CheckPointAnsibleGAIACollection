@@ -39,7 +39,7 @@ Example playbook:
   connection: httpapi
   tasks:
     - name: task to have network
-      check_point.mgmt.cp_gaia_hostname:
+      check_point.gaia.cp_gaia_hostname:
         name: "newhost"
 ```
 Modules
