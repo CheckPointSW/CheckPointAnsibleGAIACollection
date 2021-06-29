@@ -33,6 +33,7 @@ from ansible.module_utils.connection import ConnectionError
 
 BASE_HEADERS = {
     'Content-Type': 'application/json',
+    'Orchestrator': 'Ansible'
 }
 
 
