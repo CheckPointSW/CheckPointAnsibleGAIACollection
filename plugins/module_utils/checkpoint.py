@@ -67,7 +67,6 @@ def send_request(connection, version, url, payload=None):
 # get the payload from the user parameters
 def is_checkpoint_param(parameter):
     if parameter == 'auto_publish_session' or \
-            parameter == 'state' or \
             parameter == 'wait_for_task' or \
             parameter == 'version':
         return False
