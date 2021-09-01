@@ -67,7 +67,6 @@ def send_request(connection, version, url, payload=None):
 # get the payload from the user parameters
 def is_checkpoint_param(parameter):
     if parameter == 'auto_publish_session' or \
-            parameter == 'state' or \
             parameter == 'wait_for_task' or \
             parameter == 'version':
         return False
@@ -180,6 +179,32 @@ def api_call(module, api_call_object):
     connection = Connection(module._socket_path)
     version = get_version(module)
     code, response = send_request(connection, version, api_call_object, payload)
+    if code != 200:
+        module.fail_json(msg=parse_fail_message(code, response))
+
+    return response
+
+
+def chkp_facts_api_call(module, api_call_object, is_multible, target_version):
+    if is_multible == True:
+        module_key_params = dict((k, v) for k, v in module.params.items() if v is not None)
+        if len(module_key_params) > 0:
+            res = chkp_api_call(module=module, api_call_object="{0}".format(api_call_object), target_version=target_version)
+        else:
+            res = chkp_api_call(module=module, api_call_object="{0}s".format(api_call_object), target_version=target_version)
+    else:
+        res = chkp_api_call(module=module, api_call_object="{0}".format(api_call_object), target_version=target_version)
+
+    return {
+        "ansible_facts": res
+    }
+
+
+# handle api call
+def chkp_api_call(module, api_call_object, target_version):
+    payload = get_payload_from_parameters(module.params)
+    connection = Connection(module._socket_path)
+    code, response = send_request(connection, target_version, api_call_object, payload)
     if code != 200:
         module.fail_json(msg=parse_fail_message(code, response))
 
