@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
@@ -22,9 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import *
-
 
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
@@ -32,26 +28,25 @@ description:
 - Enables/Disables IPv6 support in the machine's operating system
 module: cp_gaia_ipv6
 short_description: Enables/Disables IPv6 support in the machine's operating system
-version_added: '2.9'
+version_added: '2.0.0'
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
-	enabled:
-		description: No Documentation available
-		required: False
-		type: bool
+
+    enabled:
+        description: No Documentation available
+        required: False
+        type: bool
 
 """
-
 
 
 EXAMPLES = """
 - name: Set IPv6 status
   cp_gaia_ipv6:
-	"enabled": true
+    "enabled": true
 
 """
-
 
 
 RETURN = """
@@ -62,10 +57,14 @@ ipv6:
 """
 
 
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+
+
 def main():
     # arguments for the module:
     fields = dict(
-		enabled=dict(type="bool")
+        enabled=dict(type="bool")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'set-ipv6'

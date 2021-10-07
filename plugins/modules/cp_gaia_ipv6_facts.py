@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
@@ -22,9 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import *
-
 
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
@@ -32,22 +28,20 @@ description:
 - Check IPv6 support in the machine's operating system
 module: cp_gaia_ipv6_facts
 short_description: Check IPv6 support in the machine's operating system
-version_added: '2.9'
+version_added: '2.0.0'
 requirements:
 - supported starting from gaia_api >= 1.7
-options:
+
 
 """
-
 
 
 EXAMPLES = """
 - name: Show IPv6 status
   cp_gaia_ipv6_facts:
-	
+
 
 """
-
 
 
 RETURN = """
@@ -56,6 +50,10 @@ ansible_facts:
   returned: always.
   type: dict
 """
+
+
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call
 
 
 def main():

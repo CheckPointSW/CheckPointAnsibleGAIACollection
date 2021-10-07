@@ -25,8 +25,6 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'status': ['preview'],
                     'supported_by': 'community'}
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
 
 DOCUMENTATION = """
 author: Yuval Feiger (@chkp-yuvalfe)
@@ -50,7 +48,7 @@ options:
     required: true
     type: bool
 short_description: Add a new file to a Check Point machine.
-version_added: '2.9'
+version_added: '1.0.0'
 
 """
 
@@ -70,6 +68,9 @@ put_file:
   returned: always.
   type: dict
 """
+
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
 
 
 def main():

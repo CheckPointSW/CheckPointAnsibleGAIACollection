@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
@@ -22,9 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import *
-
 
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
@@ -32,41 +28,40 @@ description:
 - Setting DNS configuration
 module: cp_gaia_dns
 short_description: Setting DNS configuration
-version_added: '2.9'
+version_added: '2.0.0'
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
-	suffix:
-		description: Use empty-string in order to remove the setting
-		required: False
-		type: str
-	primary:
-		description: Use empty-string in order to remove the setting
-		required: False
-		type: str
-	tertiary:
-		description: Use empty-string in order to remove the setting
-		required: False
-		type: str
-	secondary:
-		description: Use empty-string in order to remove the setting
-		required: False
-		type: str
+
+    suffix:
+        description: Use empty-string in order to remove the setting
+        required: False
+        type: str
+    primary:
+        description: Use empty-string in order to remove the setting
+        required: False
+        type: str
+    tertiary:
+        description: Use empty-string in order to remove the setting
+        required: False
+        type: str
+    secondary:
+        description: Use empty-string in order to remove the setting
+        required: False
+        type: str
 
 """
-
 
 
 EXAMPLES = """
 - name: Setting dns servers for the system
   cp_gaia_dns:
-	"suffix": "checkpoint.com"
-	"primary": "1.2.3.4"
-	"tertiary": "3.4.5.6"
-	"secondary": "2.3.4.5"
+    "suffix": "checkpoint.com"
+    "primary": "1.2.3.4"
+    "tertiary": "3.4.5.6"
+    "secondary": "2.3.4.5"
 
 """
-
 
 
 RETURN = """
@@ -77,13 +72,17 @@ dns:
 """
 
 
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+
+
 def main():
     # arguments for the module:
     fields = dict(
-		suffix=dict(type="str"), 
-		primary=dict(type="str"), 
-		tertiary=dict(type="str"), 
-		secondary=dict(type="str")
+        suffix=dict(type="str"),
+        primary=dict(type="str"),
+        tertiary=dict(type="str"),
+        secondary=dict(type="str")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'set-dns'

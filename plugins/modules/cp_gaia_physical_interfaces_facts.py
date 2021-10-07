@@ -31,7 +31,7 @@ author: Yuval Feiger (@chkp-yuvalfe)
 description:
 - Show Physical interfaces
 short_description: Show Physical interface/s
-version_added: '2.9'
+version_added: '1.0.0'
 options:
   name:
     description: interface name to show. If not specified, all physical interfaces information is returned.
