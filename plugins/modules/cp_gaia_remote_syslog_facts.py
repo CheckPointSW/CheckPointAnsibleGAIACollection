@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
@@ -22,9 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import *
-
 
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
@@ -32,26 +28,25 @@ description:
 - Show remote system log server configuration
 module: cp_gaia_remote_syslog_facts
 short_description: Show remote system log server configuration
-version_added: '2.9'
+version_added: '2.0.0'
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
-	server_ip:
-		description: No Documentation available
-		required: False
-		type: str
+
+    server_ip:
+        description: No Documentation available
+        required: False
+        type: str
 
 """
-
 
 
 EXAMPLES = """
 - name: Show remote syslog log server by specifying it IP
   cp_gaia_remote_syslog_facts:
-	"server_ip": "10.11.2.130"
+    "server_ip": "10.11.2.130"
 
 """
-
 
 
 RETURN = """
@@ -62,10 +57,14 @@ ansible_facts:
 """
 
 
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call
+
+
 def main():
     # arguments for the module:
     fields = dict(
-		server_ip=dict(type="str")
+        server_ip=dict(type="str")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'show-remote-syslog'

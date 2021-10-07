@@ -31,7 +31,7 @@ author: Yuval Feiger (@chkp-yuvalfe)
 description:
 - Set Physical interface
 short_description: Set Physical interface
-version_added: '2.9'
+version_added: '1.0.0'
 options:
   auto_negotiation:
     description: Activating Auto-Negotiation will skip the speed and duplex configuration

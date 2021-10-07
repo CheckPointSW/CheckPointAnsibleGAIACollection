@@ -25,16 +25,13 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'status': ['preview'],
                     'supported_by': 'community'}
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
-
 DOCUMENTATION = """
 author: Yuval Feiger (@chkp-yuvalfe)
 description:
 - Show hostname settings
 module: cp_gaia_hostname_facts
 short_description: Show hostname settings
-version_added: '2.9'
+version_added: '1.0.0'
 
 """
 
@@ -50,6 +47,9 @@ ansible_facts:
   returned: always.
   type: dict
 """
+
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
 
 
 def main():

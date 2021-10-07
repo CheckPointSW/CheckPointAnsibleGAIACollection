@@ -186,7 +186,7 @@ def api_call(module, api_call_object):
 
 
 def chkp_facts_api_call(module, api_call_object, is_multible, target_version):
-    if is_multible == True:
+    if is_multible is True:
         module_key_params = dict((k, v) for k, v in module.params.items() if v is not None)
         if len(module_key_params) > 0:
             res = chkp_api_call(module=module, api_call_object="{0}".format(api_call_object), target_version=target_version)
