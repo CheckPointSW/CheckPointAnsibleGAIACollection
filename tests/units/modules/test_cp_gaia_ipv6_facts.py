@@ -23,13 +23,11 @@ from ansible.module_utils import basic
 from ansible_collections.check_point.gaia.plugins.modules import cp_gaia_ipv6_facts
 
 EXPECTED_RESULT = {
-		"reboot-required": False,
-		"enabled": True
-	}
+    "reboot-required": False,
+    "enabled": True
+}
 
-PAYLOAD = {
-		
-	}
+PAYLOAD = {}
 
 function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_ipv6_facts.chkp_facts_api_call'
 api_call_object = 'ipv6'
@@ -47,7 +45,6 @@ class TestCheckpointIpv6Facts(object):
         connection_class_mock = mocker.patch('ansible.module_utils.network.checkpoint.checkpoint.Connection')
         return connection_class_mock.return_value
 
-    
     def test_facts(self, mocker, connection_mock):
         mock_function = mocker.patch(function_path)
         mock_function.side_effect = [{
@@ -59,10 +56,8 @@ class TestCheckpointIpv6Facts(object):
         assert not result['changed']
         assert EXPECTED_RESULT.items() == result[api_call_object].items()
 
-
     def _run_module(self, module_args):
         set_module_args(module_args)
         with pytest.raises(AnsibleExitJson) as ex:
             self.module.main()
         return ex.value.args[0]
-

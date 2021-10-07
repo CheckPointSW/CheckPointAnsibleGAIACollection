@@ -23,16 +23,16 @@ from ansible.module_utils import basic
 from ansible_collections.check_point.gaia.plugins.modules import cp_gaia_remote_syslog
 
 EXPECTED_RESULT = {
-		"server-ip": "10.11.2.130",
-		"protocol": "udp",
-		"port": "667",
-		"level": "debug"
-	}
+    "server-ip": "10.11.2.130",
+    "protocol": "udp",
+    "port": "667",
+    "level": "debug"
+}
 
 PAYLOAD = {
-		"server_ip": "10.11.2.130",
-		"level": "debug"
-	}
+    "server_ip": "10.11.2.130",
+    "level": "debug"
+}
 
 function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_remote_syslog.chkp_api_call'
 api_call_object = 'remote_syslog'
@@ -50,7 +50,6 @@ class TestCheckpointRemoteSyslog(object):
         connection_class_mock = mocker.patch('ansible.module_utils.network.checkpoint.checkpoint.Connection')
         return connection_class_mock.return_value
 
-    
     def run_wrapper(self, mocker, connection_mock, changed):
         mock_function = mocker.patch(function_path)
         mock_function.side_effect = [{
@@ -68,10 +67,8 @@ class TestCheckpointRemoteSyslog(object):
     def test_changed(self, mocker, connection_mock):
         self.run_wrapper(mocker, connection_mock, True)
 
-
     def _run_module(self, module_args):
         set_module_args(module_args)
         with pytest.raises(AnsibleExitJson) as ex:
             self.module.main()
         return ex.value.args[0]
-
