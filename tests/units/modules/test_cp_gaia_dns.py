@@ -23,18 +23,18 @@ from ansible.module_utils import basic
 from ansible_collections.check_point.gaia.plugins.modules import cp_gaia_dns
 
 EXPECTED_RESULT = {
-		"suffix": "checkpoint.com",
-		"primary": "1.2.3.4",
-		"tertiary": "3.4.5.6",
-		"secondary": "2.3.4.5"
-	}
+    "suffix": "checkpoint.com",
+    "primary": "1.2.3.4",
+    "tertiary": "3.4.5.6",
+    "secondary": "2.3.4.5"
+}
 
 PAYLOAD = {
-		"suffix": "checkpoint.com",
-		"primary": "1.2.3.4",
-		"tertiary": "3.4.5.6",
-		"secondary": "2.3.4.5"
-	}
+    "suffix": "checkpoint.com",
+    "primary": "1.2.3.4",
+    "tertiary": "3.4.5.6",
+    "secondary": "2.3.4.5"
+}
 
 function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_dns.chkp_api_call'
 api_call_object = 'dns'
@@ -52,7 +52,6 @@ class TestCheckpointDns(object):
         connection_class_mock = mocker.patch('ansible.module_utils.network.checkpoint.checkpoint.Connection')
         return connection_class_mock.return_value
 
-    
     def run_wrapper(self, mocker, connection_mock, changed):
         mock_function = mocker.patch(function_path)
         mock_function.side_effect = [{
@@ -70,10 +69,8 @@ class TestCheckpointDns(object):
     def test_changed(self, mocker, connection_mock):
         self.run_wrapper(mocker, connection_mock, True)
 
-
     def _run_module(self, module_args):
         set_module_args(module_args)
         with pytest.raises(AnsibleExitJson) as ex:
             self.module.main()
         return ex.value.args[0]
-
