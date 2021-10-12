@@ -49,3 +49,11 @@ Modules
 * `cp_gaia_physical_interface` – Manage physical interface of a Check Point machine over Web Services API.
 * `cp_gaia_physical_interfaces_facts` – Get information about physical interfaces of a Check Point machine over Web Services API.
 * `cp_gaia_put_file` – Add a new file to a Check Point machine over Web Services API.
+* `cp_gaia_dns` - Manage the dns of a Check Point machine over Web Services API.
+* `cp_gaia_dns_facts` - Get the dns of a Check Point machine over Web Services API.
+* `cp_gaia_ipv6` - Manage the ipv6 of a Check Point machine over Web Services API.
+* `cp_gaia_ipv6_facts` - Get the ipv6 of a Check Point machine over Web Services API.
+* `cp_gaia_remote_syslog` - Manage the remote syslog of a Check Point machine over Web Services API.
+* `cp_gaia_remote_syslog_facts` - Get the remote syslog of a Check Point machine over Web Services API.
+* `cp_gaia_syslog` - Manage the syslog of a Check Point machine over Web Services API.
+* `cp_gaia_syslog_facts` - Get the syslog of a Check Point machine over Web Services API.
