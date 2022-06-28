@@ -9,7 +9,7 @@ namespace: check_point
 name: gaia
 
 # The version of the collection. Must be compatible with semantic versioning
-version: 2.0.0
+version: 3.0.0
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
@@ -18,6 +18,7 @@ readme: README.md
 # @nicks:irc/im.site#channel'
 authors:
 - Majd Sharkia <majds@checkpoint.com>
+- Ameer Asli <ameera@checkpoint.com>
 
 ### OPTIONAL but strongly recommended
 
@@ -47,7 +48,10 @@ dependencies: {}
 repository: https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection
 
 # The URL to any online docs
-documentation: http://docs.example.com
+documentation: https://docs.ansible.com/ansible/latest/collections/check_point/gaia/index.html
 
 # The URL to the homepage of the collection/project
-homepage: https://sc1.checkpoint.com/documents/latest/GaiaAPIs/index.html
+homepage: https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection
+
+# The URL to the collection issue tracker
+issues: https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection/issues
