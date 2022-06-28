@@ -45,8 +45,9 @@ options:
       If the file already exists, indicates whether to overwrite it.
       Recommended value is true.
       Note When the value is false, if the file already exists in the system from an previous execution, it will fail.
-    required: true
+    required: False
     type: bool
+    default: False
 short_description: Add a new file to a Check Point machine.
 version_added: '1.0.0'
 
@@ -70,7 +71,7 @@ put_file:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation
 
 
 def main():
@@ -78,15 +79,16 @@ def main():
     fields = dict(
         file_name=dict(type='str', required=True),
         text_content=dict(type='str', required=True),
-        override=dict(type='bool', required=True),
+        override=dict(type='bool', default=False),
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
+    api_call_object = 'put-file'
+    gaia_api_version = 'v1.6/'
 
     # Run the command:
-    res = api_call(module=module, api_call_object="put-file")
+    res = chkp_api_operation(module, gaia_api_version, api_call_object)
 
-    was_changed = True
-    module.exit_json(put_file=res, changed=was_changed)
+    module.exit_json(**res)
 
 
 if __name__ == "__main__":

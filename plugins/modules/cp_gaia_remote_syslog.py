@@ -30,12 +30,12 @@ module: cp_gaia_remote_syslog
 short_description: Modify remote system log server configuration
 version_added: '2.0.0'
 requirements:
-- supported starting from gaia_api >= 1.7
+- supported starting from gaia_api >= 1.6
 options:
 
     server_ip:
         description: No Documentation available
-        required: False
+        required: True
         type: str
     state:
         description: Ansible state which can be present/absent
@@ -82,17 +82,24 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        server_ip=dict(type="str"),
+        server_ip=dict(type="str", required=True),
         state=dict(type="str", default="present"),
         protocol=dict(type="str"),
         port=dict(type="str"),
         level=dict(type="str")
     )
-    module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'set-remote-syslog'
-    ansible_release_version = 'v1.6/'
+    module = AnsibleModule(
+        argument_spec=fields,
+        required_if=[
+            ('state', 'present', ('level',)),
+        ],
+        supports_check_mode=True
+    )
+    api_call_object = 'remote-syslog'
+    gaia_api_version = 'v1.6/'
+    show_params = ["server_ip"]
 
-    res = chkp_api_call(module, api_call_object, ansible_release_version)
+    res = chkp_api_call(module, gaia_api_version, api_call_object, True, show_params=show_params)
     module.exit_json(**res)
 
 

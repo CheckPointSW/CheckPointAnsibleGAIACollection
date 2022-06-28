@@ -30,7 +30,7 @@ module: cp_gaia_syslog
 short_description: Setting system logging configuration
 version_added: '2.0.0'
 requirements:
-- supported starting from gaia_api >= 1.7
+- supported starting from gaia_api >= 1.6
 options:
 
     send_to_mgmt:
@@ -85,10 +85,10 @@ def main():
         filename=dict(type="str")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'set-syslog'
-    ansible_release_version = 'v1.6/'
+    api_call_object = 'syslog'
+    gaia_api_version = 'v1.6/'
 
-    res = chkp_api_call(module, api_call_object, ansible_release_version)
+    res = chkp_api_call(module, gaia_api_version, api_call_object, False)
     module.exit_json(**res)
 
 
