@@ -30,7 +30,7 @@ module: cp_gaia_ipv6
 short_description: Enables/Disables IPv6 support in the machine's operating system
 version_added: '2.0.0'
 requirements:
-- supported starting from gaia_api >= 1.7
+- supported starting from gaia_api >= 1.6
 options:
 
     enabled:
@@ -67,10 +67,10 @@ def main():
         enabled=dict(type="bool")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'set-ipv6'
-    ansible_release_version = 'v1.6/'
+    api_call_object = 'ipv6'
+    gaia_api_version = 'v1.6/'
 
-    res = chkp_api_call(module, api_call_object, ansible_release_version)
+    res = chkp_api_call(module, gaia_api_version, api_call_object, False)
     module.exit_json(**res)
 
 

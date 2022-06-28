@@ -30,7 +30,7 @@ module: cp_gaia_remote_syslog_facts
 short_description: Show remote system log server configuration
 version_added: '2.0.0'
 requirements:
-- supported starting from gaia_api >= 1.7
+- supported starting from gaia_api >= 1.6
 options:
 
     server_ip:
@@ -67,10 +67,10 @@ def main():
         server_ip=dict(type="str")
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'show-remote-syslog'
-    ansible_release_version = 'v1.6/'
+    api_call_object = 'remote-syslog'
+    gaia_api_version = 'v1.6/'
 
-    res = chkp_facts_api_call(module, api_call_object, True, ansible_release_version)
+    res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
     module.exit_json(**res)
 
 
