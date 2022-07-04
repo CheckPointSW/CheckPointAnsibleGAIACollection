@@ -25,16 +25,17 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Enables/Disables IPv6 support in the machine's operating system
+- Enables/Disables IPv6 support in the machine's operating system.
 module: cp_gaia_ipv6
-short_description: Enables/Disables IPv6 support in the machine's operating system
+short_description: Enables/Disables IPv6 support in the machine's operating system.
 version_added: '2.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
 
     enabled:
-        description: No Documentation available
+        description: No Documentation available.
         required: False
         type: bool
 
@@ -43,7 +44,7 @@ options:
 
 EXAMPLES = """
 - name: Set IPv6 status
-  cp_gaia_ipv6:
+  M(cp_gaia_ipv6):
     "enabled": true
 
 """

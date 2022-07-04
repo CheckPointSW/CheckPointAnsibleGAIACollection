@@ -25,28 +25,29 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Setting DNS configuration
+- Setting DNS configuration.
 module: cp_gaia_dns
-short_description: Setting DNS configuration
+short_description: Setting DNS configuration.
 version_added: '2.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
 
     suffix:
-        description: Use empty-string in order to remove the setting
+        description: Use empty-string in order to remove the setting.
         required: False
         type: str
     primary:
-        description: Use empty-string in order to remove the setting
+        description: Use empty-string in order to remove the setting.
         required: False
         type: str
     tertiary:
-        description: Use empty-string in order to remove the setting
+        description: Use empty-string in order to remove the setting.
         required: False
         type: str
     secondary:
-        description: Use empty-string in order to remove the setting
+        description: Use empty-string in order to remove the setting.
         required: False
         type: str
 
@@ -55,7 +56,7 @@ options:
 
 EXAMPLES = """
 - name: Setting dns servers for the system
-  cp_gaia_dns:
+  M(cp_gaia_dns):
     "suffix": "checkpoint.com"
     "primary": "1.2.3.4"
     "tertiary": "3.4.5.6"

@@ -21,23 +21,19 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- run script on Check Point machine.
+- Run script on Check Point machine.
 module: cp_gaia_run_script
 options:
   script:
-    description: Script body. Limited by 1300000 characters
+    description: Script body. Limited by 1300000 characters.
     required: True
     type: str
   description:
-    description: Script description
+    description: Script description.
     required: False
     type: str
   args:
@@ -51,27 +47,28 @@ options:
       elements: dict
       suboptions:
         name:
-          description: Variable's name
+          description: Variable's name.
           required: False
           type: str
         value:
-          description: Variable's value
+          description: Variable's value.
           required: False
           type: str
   wait_for_task:
-    description: wait for task or return immediately
+    description: Wait for task or return immediately.
     required: False
     default: True
     type: bool
-short_description: run script Check Point machine.
+short_description: Run script Check Point machine.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
-- name: run script
-  cp_gaia_run_script:
+- name: Run script
+  M(cp_gaia_run_script):
     script: "ls -la"
     environment_variables: [{"name": "VAR_NAME", "value": "VAR_VALUE"}]
 """

@@ -21,29 +21,26 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Setting the hostname on login page message
+- Setting the hostname on login page message.
 module: cp_gaia_hostname_on_login_page
 options:
   enabled:
-    description: Hostname on WebUI login page enabled (True/False)
+    description: Hostname on WebUI login page enabled.
     required: false
     type: bool
     default: False
-short_description: enable/disable the hostname on login page message
+short_description: Enable/disable the hostname on login page message.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - hostname_on_login_page: Changing the banner message
-  cp_gaia_hostname_on_login_page:
+  M(cp_gaia_hostname_on_login_page):
     enabled: True
 
 """

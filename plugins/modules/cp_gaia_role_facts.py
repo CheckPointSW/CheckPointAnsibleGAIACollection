@@ -21,22 +21,19 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_role_facts
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show role information
-short_description: Show role/s information
+- Show role information.
+short_description: Show role/s information.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
   name:
-    description: role name to show. If not specified, all roles information is returned.
+    description: Role name to show. If not specified, all roles information is returned.
     required: false
     type: str
 
@@ -44,10 +41,10 @@ options:
 
 EXAMPLES = """
 - name: Show roles
-  cp_gaia_role_facts:
+  M(cp_gaia_role_facts):
 
 - name: Show role by specifying it's name
-  cp_gaia_role_facts:
+  M(cp_gaia_role_facts):
     name: test_role
 
 """
@@ -73,7 +70,7 @@ def main():
     gaia_api_version = 'v1.7/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

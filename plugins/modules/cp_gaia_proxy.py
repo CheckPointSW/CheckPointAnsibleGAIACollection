@@ -25,30 +25,32 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Change proxy setting
+- Change proxy setting.
 module: cp_gaia_proxy
-short_description: Change proxy setting
+short_description: Change proxy setting.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
     state:
-        description: Ansible state which can be present/absent
+        description: Ansible state which can be C(present) or C(absent).
         required: False
         type: str
         default: present
+        choices: [present, absent]
     address:
-        description: IPv4/IPv6 address
+        description: IPv4/IPv6 address.
         required: False
         type: str
     port:
-        description: proxy server port
+        description: Proxy server port.
         required: False
         type: int
 """
 
 
 EXAMPLES = """
-- name: set new static route
-  check_point.gaia.cp_gaia_proxy:
+- name: Set new static route
+  M(check_point.gaia.cp_gaia_proxy):
     state: present
     address: 1.2.125.0
     port: 89

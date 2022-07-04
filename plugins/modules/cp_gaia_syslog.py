@@ -25,28 +25,29 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Setting system logging configuration
+- Setting system logging configuration.
 module: cp_gaia_syslog
-short_description: Setting system logging configuration
+short_description: Setting system logging configuration.
 version_added: '2.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
 
     send_to_mgmt:
-        description: sending logs to Management server
+        description: Sending logs to Management server.
         required: False
         type: bool
     cp_logs:
-        description: syslog auditlog permanent
+        description: Syslog auditlog permanent.
         required: False
         type: bool
     audit_log:
-        description: syslog auditlog permanent
+        description: Syslog auditlog permanent.
         required: False
         type: bool
     filename:
-        description: syslog output filename
+        description: Syslog output filename.
         required: False
         type: str
 
@@ -55,7 +56,7 @@ options:
 
 EXAMPLES = """
 - name: Modify system logging configuration
-  cp_gaia_syslog:
+  M(cp_gaia_syslog):
     "send_to_mgmt": false
     "filename": "/var/log/messages"
     "cp_logs": false

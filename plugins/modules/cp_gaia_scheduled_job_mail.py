@@ -21,29 +21,26 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_scheduled_job_mail
 author: Ameer Asli (@chkp-ameera)
 description:
-- Set which e-mail address the job scheduler sends reports to. Pass empty string to delete the current e-mail address
-short_description: Modify scheduled job mail
+- Set which e-mail address the job scheduler sends reports to. Pass empty string to delete the current e-mail address.
+short_description: Modify scheduled job mail.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
   email_address:
-    description: e-mail address to send reports to
+    description: E-mail address to send reports to.
     required: True
     type: str
 """
 
 EXAMPLES = """
-- name: set scheduled job mail
-  cp_gaia_scheduled_job_mail:
+- name: Set scheduled job mail
+  M(cp_gaia_scheduled_job_mail):
     email_address: "sysadmins@company.com"
 
 """

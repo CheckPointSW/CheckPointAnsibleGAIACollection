@@ -21,20 +21,17 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_physical_interfaces_facts
 author: Yuval Feiger (@chkp-yuvalfe)
 description:
-- Show Physical interfaces
-short_description: Show Physical interface/s
+- Show Physical interfaces.
+short_description: Show Physical interface/s.
 version_added: '1.0.0'
+notes: Supports C(check_mode).
 options:
   name:
-    description: interface name to show. If not specified, all physical interfaces information is returned.
+    description: Interface name to show. If not specified, all physical interfaces information is returned.
     required: false
     type: str
 
@@ -42,10 +39,10 @@ options:
 
 EXAMPLES = """
 - name: Show physical interfaces
-  cp_gaia_physical_interfaces_facts:
+  M(cp_gaia_physical_interfaces_facts):
 
 - name: Show physical interface by specifying it name
-  cp_gaia_physical_interfaces_facts:
+  M(cp_gaia_physical_interfaces_facts):
     name: eth0
 
 """
@@ -70,7 +67,7 @@ def main():
     api_call_object = "physical-interface"
     gaia_api_version = 'v1.6/'
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

@@ -21,40 +21,37 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_ssh_server_settings
 author: Ameer Asli (@chkp-ameera)
 description:
-- Modify ssh server settings
-short_description: Modify ssh server settings
+- Modify ssh server settings.
+short_description: Modify ssh server settings.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
   enabled_ciphers:
-    description: Enabled ssh ciphers
+    description: Enabled ssh ciphers.
     required: False
     type: list
     elements: str
   enabled_mac_algorithms:
-    description: Enabled ssh mac algorithms
+    description: Enabled ssh mac algorithms.
     required: False
     type: list
     elements: str
   enabled_kex_algorithms:
-    description: Enabled ssh kex algorithms
+    description: Enabled ssh kex algorithms.
     required: False
     type: list
     elements: str
 """
 
 EXAMPLES = """
-- name: ssh server settings
-  cp_gaia_ssh_server_settings:
+- name: Set ssh server settings
+  M(cp_gaia_ssh_server_settings):
     enabled_ciphers: ['aes128-ctr', 'aes128-gcm@openssh.com', 'aes192-ctr', 'aes256-ctr',
                       'aes256-gcm@openssh.com', 'chacha20-poly1305@openssh.com']
     enabled_kex_algorithms: ['curve25519-sha256', 'curve25519-sha256@libssh.org',

@@ -25,42 +25,43 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 author: Ameer Asli (@chkp-ameera)
-description: Modify the configuration of allowed clients
+description: Modify the configuration of allowed clients.
 module: cp_gaia_allowed_clients
-short_description: Modify the configuration of allowed clients
+short_description: Modify the configuration of allowed clients.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements: ['supported starting from gaia_api >= 1.6']
 options:
   allowed_networks:
-    description: configure allowed clients as network
+    description: Configure allowed clients as network.
     required: False
     type: list
     elements: dict
     suboptions:
       subnet:
-        description: The network subnet
+        description: The network subnet.
         required: False
         type: str
       mask_length:
-        description: The network mask length
+        description: The network mask length.
         required: False
         type: int
   allowed_hosts:
     description:
-      - configure allowed clients as hosts, valid valuse are IPv4/Ipv6 addresses
+      - Configure allowed clients as hosts, valid valuse are IPv4/Ipv6 addresses.
     required: False
     type: list
     elements: str
   allowed_any_host:
-    description: allowed all hosts
+    description: Allowed all hosts.
     required: False
     type: bool
 '''
 
 
 EXAMPLES = '''
-- name: set allowed clients
-  check_point.gaia.cp_gaia_allowed_clients:
+- name: Set allowed clients
+  M(check_point.gaia.cp_gaia_allowed_clients):
     allowed_networks: [{"subnet": "44.4.44.0", "mask_length": 24}, {"subnet": "55.4.55.0", "mask_length": 24}]
 '''
 

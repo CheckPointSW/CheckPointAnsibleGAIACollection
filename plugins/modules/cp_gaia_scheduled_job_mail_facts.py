@@ -21,17 +21,14 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_scheduled_job_mail_facts
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show scheduled job mail information
-short_description: Show scheduled job mail information
+- Show scheduled job mail information.
+short_description: Show scheduled job mail information.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 
@@ -39,8 +36,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show scheduled job mail
-  cp_gaia_scheduled_job_mail_facts:
-
+  M(cp_gaia_scheduled_job_mail_facts):
 """
 
 RETURN = """
@@ -62,7 +58,7 @@ def main():
     gaia_api_version = 'v1.7/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

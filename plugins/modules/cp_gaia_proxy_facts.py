@@ -25,16 +25,17 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show proxy setting
+- Show proxy setting.
 module: cp_gaia_proxy_facts
-short_description: Show proxy setting
+short_description: Show proxy setting.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 """
 
 
 EXAMPLES = """
 - name: Show proxy setting
-  cp_gaia_proxy_facts:
+  M(cp_gaia_proxy_facts):
 """
 
 
@@ -59,7 +60,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

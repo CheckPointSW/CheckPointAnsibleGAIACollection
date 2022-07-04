@@ -34,7 +34,7 @@ ansible-playbook your_ansible_playbook.yml
 Example playbook:
 ```
 ---
-- name: playbook name
+- name: Playbook name
   hosts: check_point
   connection: httpapi
   tasks:
@@ -118,3 +118,35 @@ Modules
 * `cp_gaia_timezones_facts` –  show time zones in a Check Point machine over Web Services API.
 * `cp_gaia_version_facts` –  show gaia version in a Check Point machine over Web Services API.
 
+
+### Code of Conduct
+This collection follows the Ansible project's
+[Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
+Please read and familiarize yourself with this document.
+
+## Release notes
+
+Release notes are available [here](https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection/blob/master/CHANGELOG.rst).
+
+## Roadmap
+
+We plan to regularly release minor and patch versions, whenever new features are added or bugs fixed. Our collection follows [semantic versioning](https://semver.org/), so breaking changes will only happen in major releases.
+
+## More information
+
+- [Ansible network resources](https://docs.ansible.com/ansible/latest/network/getting_started/network_resources.html)
+- [Ansible Collection overview](https://github.com/ansible-collections/overview)
+- [Ansible User guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
+- [Ansible Developer guide](https://docs.ansible.com/ansible/latest/dev_guide/index.html)
+- [Ansible Community code of conduct](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html)
+
+## Licensing
+
+GNU General Public License v3.0 or later.
+
+See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
+
+
+## Supported Python versions
+
+- Modules and plugins require Python 2.7 or newer

@@ -21,26 +21,24 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_bridge_interface
 author: Ameer Asli (@chkp-ameera)
 description:
-- Modify bridge interface
-short_description: Modify bridge interface
+- Modify bridge interface.
+short_description: Modify bridge interface.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   state:
-      description: Ansible state which can be present/absent
-      required: False
-      type: str
-      default: present
+    description: Ansible state which can be C(present) or C(absent).
+    required: False
+    type: str
+    default: present
+    choices: [present, absent]
   name:
     description:
-      - interface name with format "br<id>", valid values are br1, br2, br3 .. etc
+      - Interface name with format C(br<id>), valid values are br1, br2, br3 .. etc.
     required: true
     type: str
   ipv4_address:
@@ -64,11 +62,11 @@ options:
     required: false
     type: int
   comments:
-    description: interface Comments.
+    description: Interface Comments.
     required: false
     type: str
   enabled:
-    description: interface State.
+    description: Interface State.
     required: false
     type: bool
   dhcp:
@@ -77,14 +75,14 @@ options:
     type: dict
     suboptions:
         enabled:
-            description: Enable DHCP on this interface
+            description: Enable DHCP on this interface.
             required: False
             type: bool
         server_timeout:
             description:
               - Specifies the amount of time, in seconds,
                 that must pass between the time that the interface begins to try to determine its address
-                and the time that it decides that it's not going to be able to contact a server
+                and the time that it decides that it's not going to be able to contact a server.
             required: False
             type: int
             default: 60
@@ -92,21 +90,21 @@ options:
             description:
               - Specifies the time, in seconds,
                 that must pass after the interface has determined
-                that there is no DHCP server present before it tries again to contact a DHCP server
+                that there is no DHCP server present before it tries again to contact a DHCP server.
             required: False
             type: int
             default: 300
         leasetime:
             description:
               - Specifies the lease time, in seconds,
-                when requesting for an IP address. Default value is "default" - according to the server
+                when requesting for an IP address. Default value is C(default) - according to the server.
             required: False
             type: int
         reacquire_timeout:
             description:
               - When trying to reacquire the last ip address,
                 The reacquire-timeout statement sets the time, in seconds,
-                that must elapse after the first try to reacquire the old address before it gives up and tries to discover a new address
+                that must elapse after the first try to reacquire the old address before it gives up and tries to discover a new address.
             required: False
             type: int
             default: 10
@@ -115,15 +113,15 @@ options:
     required: false
     type: int
   members:
-    description: interfaces members of the bridge.
+    description: Interfaces members of the bridge.
     required: false
     type: list
     elements: str
 """
 
 EXAMPLES = """
-- name: add new bridge interface
-  cp_gaia_bridge_interface:
+- name: Add new bridge interface
+  M(cp_gaia_bridge_interface):
     comments: bridge5 interface
     name: br5
     members: ['eth3', 'eth4']

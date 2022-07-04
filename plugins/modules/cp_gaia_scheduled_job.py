@@ -21,94 +21,92 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_scheduled_job
 author: Ameer Asli (@chkp-ameera)
 description:
-- Change the scheduled job's recurrence or command. Scheduled jobs run as admin
-short_description: Modify scheduled job
+- Change the scheduled job's recurrence or command. Scheduled jobs run as admin.
+short_description: Modify scheduled job.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
   state:
-      description: Ansible state which can be present/absent
-      required: False
-      type: str
-      default: present
+    description: Ansible state which can be C(present) or C(absent).
+    required: False
+    type: str
+    default: present
+    choices: [present, absent]
   name:
-    description: scheduled job name.
+    description: Scheduled job name.
     required: True
     type: str
   command:
-    description: command (expert CLI style)
+    description: Command (expert CLI style).
     required: False
     type: str
   recurrence:
-    description: recurrence
+    description: Recurrence.
     required: False
     type: dict
     suboptions:
         type:
-            description: Job recurrence type
+            description: Job recurrence type.
             required: False
             type: str
             choices: ['system-startup', 'interval', 'hourly', 'daily', 'weekly', 'monthly']
         interval:
-            description: Time interval in minutes. Relevant for "interval" recurrence type
+            description: Time interval in minutes. Relevant for "interval" recurrence type.
             required: False
             type: int
         time_of_day:
-            description: Time of day in 24 hour format. Relevant for "daily", "weekly" and "monthly" recurrence types
+            description: Time of day in 24 hour format. Relevant for "daily", "weekly" and "monthly" recurrence types.
             required: False
             type: dict
             suboptions:
                 hour:
-                    description: Time hour
+                    description: Time hour.
                     required: False
                     type: int
                 minute:
-                    description: Time minute
+                    description: Time minute.
                     required: False
                     type: int
         hourly:
-            description: Hours of day in 24 hour format. Can choose multiple hours. Relevant for "hourly" recurrence type
+            description: Hours of day in 24 hour format. Can choose multiple hours. Relevant for "hourly" recurrence type.
             required: False
             type: dict
             suboptions:
                 hours_of_day:
-                    description: Hours of day in 24 hour format
+                    description: Hours of day in 24 hour format.
                     required: False
                     type: list
                     elements: int
                 minute:
-                    description: Time minute
+                    description: Time minute.
                     required: False
                     type: int
         weekdays:
-            description: Days of the week. Relevant for "weekly" recurrence type
+            description: Days of the week. Relevant for "weekly" recurrence type.
             required: False
             type: list
             elements: str
         days:
-            description: Days of the month. Relevant for "monthly" recurrence type
+            description: Days of the month. Relevant for "monthly" recurrence type.
             required: False
             type: list
             elements: int
         months:
-            description: Month numbers. Relevant for "monthly" recurrence type
+            description: Month numbers. Relevant for "monthly" recurrence type.
             required: False
             type: list
             elements: int
 """
 
 EXAMPLES = """
-- name: add new scheduled job
-  cp_gaia_scheduled_job:
+- name: Add new scheduled job
+  M(cp_gaia_scheduled_job):
     name: "startup_job"
     command: "/home/admin/job.sh"
     recurrence: {"type": "system-startup"}

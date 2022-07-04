@@ -21,32 +21,29 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_physical_interface
 author: Yuval Feiger (@chkp-yuvalfe)
 description:
-- Set Physical interface
-short_description: Set Physical interface
+- Set Physical interface.
+short_description: Set Physical interface.
 version_added: '1.0.0'
+notes: Supports C(check_mode).
 options:
   auto_negotiation:
-    description: Activating Auto-Negotiation will skip the speed and duplex configuration
+    description: Activating Auto-Negotiation will skip the speed and duplex configuration.
     required: false
     type: bool
   comments:
-    description: interface Comments.
+    description: Interface Comments.
     required: false
     type: str
   duplex:
-    description: Duplex for the interface. Duplex is not relevant when 'auto-negotiation' is enabled
+    description: Duplex for the interface. Duplex is not relevant when 'auto-negotiation' is enabled.
     required: false
     type: str
   enabled:
-    description: interface State.
+    description: Interface State.
     required: false
     type: bool
   ipv4_address:
@@ -74,15 +71,15 @@ options:
     required: false
     type: str
   monitor_mode:
-    description: set monitor mode for the interface off/on.
+    description: Set monitor mode for the interface off/on.
     required: false
     type: bool
   mtu:
-    description: interface mtu.
+    description: Interface mtu.
     required: false
     type: int
   name:
-    description: interface name.
+    description: Interface name.
     required: true
     type: str
   rx_ringsize:
@@ -90,7 +87,7 @@ options:
     required: false
     type: int
   speed:
-    description: Interface link speed. Speed is not relevant when 'auto-negotiation' is enabled
+    description: Interface link speed. Speed is not relevant when 'auto-negotiation' is enabled.
     required: false
     type: str
   tx_ringsize:
@@ -102,7 +99,7 @@ options:
 
 EXAMPLES = """
 - name: Set comment field of a physical interface
-  cp_gaia_physical_interface:
+  M(cp_gaia_physical_interface):
     comments: eth0 interface
     enabled: true
     name: eth0

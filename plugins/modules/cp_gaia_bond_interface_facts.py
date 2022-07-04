@@ -21,20 +21,17 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_bond_interface_facts
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show bond interface
-short_description: Show bond interface/s
+- Show bond interface.
+short_description: Show bond interface/s.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   name:
-    description: interface name to show. If not specified, all bond interfaces information is returned.
+    description: Interface name to show. If not specified, all bond interfaces information is returned.
     required: false
     type: str
 
@@ -42,7 +39,7 @@ options:
 
 EXAMPLES = """
 - name: Show bond interface
-  cp_gaia_bond_interface_facts:
+  M(cp_gaia_bond_interface_facts):
 
 - name: Show bond interface by specifying it's name
   cp_gaia_bond_interface_facts:
@@ -71,7 +68,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

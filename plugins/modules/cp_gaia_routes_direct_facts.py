@@ -25,25 +25,26 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show active Interface routes
+- Show active Interface routes.
 module: cp_gaia_routes_direct_facts
-short_description: Show active Interface  routes
+short_description: Show active Interface  routes.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
     limit:
-        description: The maximum number of returned results
+        description: The maximum number of returned results.
         required: False
         type: int
         default: 50
     offset:
-        description: The number of results to initially skip
+        description: The number of results to initially skip.
         required: False
         type: int
         default: 0
     order:
-        description: Sorts the routes by either ascending or descending order. Valid values are ASC, DESC
+        description: Sorts the routes by either ascending or descending order. Valid values are C(ASC) C(DESC).
         required: False
         type: str
         choices: ['ASC', 'DESC']
@@ -53,7 +54,7 @@ options:
 
 EXAMPLES = """
 - name: Show active Interface  routes
-  cp_gaia_routes_direct_facts:
+  M(cp_gaia_routes_direct_facts):
 """
 
 
@@ -82,7 +83,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

@@ -21,41 +21,39 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_role
 author: Ameer Asli (@chkp-ameera)
 description:
-- Modify role
-short_description: Modify role
+- Modify role.
+short_description: Modify role.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
   state:
-      description: Ansible state which can be present/absent
-      required: False
-      type: str
-      default: present
+    description: Ansible state which can be C(present) or C(absent).
+    required: False
+    type: str
+    default: present
+    choices: [present, absent]
   name:
-    description: role name.
+    description: Role name.
     required: true
     type: str
   features:
-    description: Specifies which features will be assigned to the role
+    description: Specifies which features will be assigned to the role.
     required: false
     type: list
     elements: dict
     suboptions:
         name:
-            description: Feature name. Valid values are feature name as shown in cp_gaia_features_facts or 'all' to specify all features
+            description: Feature name. Valid values are feature name as shown in cp_gaia_features_facts or C(all) to specify all features.
             required: False
             type: str
         permission:
-            description: Feature permission. Valid values are read-write ,read-only.
+            description: Feature permission. Valid values are C(read-write) C(read-only).
             required: False
             type: str
             choices: ['read-write', 'read-only']
@@ -69,8 +67,8 @@ options:
 """
 
 EXAMPLES = """
-- name: add new role
-  cp_gaia_role:
+- name: Add new role
+  M(cp_gaia_role):
     name: myrole
     extended_commands: ['LSMenabler']
     features: [{"name": "dhcp", "permission": "read-write"},
