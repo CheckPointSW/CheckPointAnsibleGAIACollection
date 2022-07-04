@@ -25,10 +25,11 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show the configuration of allowed clients
+- Show the configuration of allowed clients.
 module: cp_gaia_allowed_clients_facts
-short_description: Show the configuration of allowed clients
+short_description: Show the configuration of allowed clients.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 """
@@ -36,7 +37,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show allowed clients
-  cp_gaia_allowed_clients_facts:
+  M(cp_gaia_allowed_clients_facts):
 """
 
 
@@ -61,7 +62,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

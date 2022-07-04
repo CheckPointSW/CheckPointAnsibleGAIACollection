@@ -21,26 +21,24 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_bond_interface
 author: Ameer Asli (@chkp-ameera)
 description:
-- Modify bond interface
-short_description: Modify bond interface
+- Modify bond interface.
+short_description: Modify bond interface.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   state:
-      description: Ansible state which can be present/absent
-      required: False
-      type: str
-      default: present
+    description: Ansible state which can be C(present) or C(absent).
+    required: False
+    type: str
+    default: present
+    choices: [present, absent]
   name:
     description:
-      - interface name with format "bond<id>", valid values are bond1, bond2, bond3 .. etc
+      - Interface name with format C(bond<id>), valid values are bond1, bond2, bond3 .. etc.
     required: true
     type: str
   ipv4_address:
@@ -64,11 +62,11 @@ options:
     required: false
     type: int
   comments:
-    description: interface Comments.
+    description: Interface Comments.
     required: false
     type: str
   enabled:
-    description: interface State.
+    description: Interface State.
     required: false
     type: bool
   dhcp:
@@ -77,27 +75,27 @@ options:
     type: dict
     suboptions:
         enabled:
-            description: Enable DHCP on this interface
+            description: Enable DHCP on this interface.
             required: False
             type: bool
         server_timeout:
             description:
               - Specifies the amount of time, in seconds,
                 that must pass between the time that the interface begins to try to determine its address and the time that it decides that
-                it's not going to be able to contact a server
+                it's not going to be able to contact a server.
             required: False
             type: int
             default: 60
         retry:
             description: Specifies the time, in seconds,
-                         that must pass after the interface has determined that there is no DHCP server present before it tries again to contact a DHCP server
+                         that must pass after the interface has determined that there is no DHCP server present before it tries again to contact a DHCP server.
             required: False
             type: int
             default: 300
         leasetime:
             description:
               - Specifies the lease time, in seconds,
-                when requesting for an IP address. Default value is "default" - according to the server
+                when requesting for an IP address. Default value is "default" - according to the server.
             required: False
             type: int
         reacquire_timeout:
@@ -113,46 +111,46 @@ options:
     required: false
     type: int
   members:
-    description: interfaces members of the bond.
+    description: Interfaces members of the bond.
     required: false
     type: list
     elements: str
   xmit_hash_policy:
-    description: transmit hash policy.
+    description: Transmit hash policy.
     required: false
     type: str
     choices: ['layer2', 'layer3+4']
   down_delay:
-    description: down delay in milliseconds.
+    description: Down delay in milliseconds.
     required: false
     type: int
   up_delay:
-    description: up delay in milliseconds.
+    description: Up delay in milliseconds.
     required: false
     type: int
   primary:
-    description: Primary member of the bond interface
+    description: Primary member of the bond interface.
     required: false
     type: str
   lacp_rate:
-    description: LACP rate
+    description: LACP rate.
     required: false
     type: str
     choices: ['slow', 'fast']
   mode:
-    description: Primary member of the bond interface
+    description: Primary member of the bond interface.
     required: false
     type: str
     choices: ['round-robin', 'active-backup', 'xor', '8023AD']
   mii_interval:
-    description: Media monitoring interval, Valid values are 1-5000
+    description: Media monitoring interval, Valid values are C(1-5000).
     required: false
     type: int
 """
 
 EXAMPLES = """
 - name: Set comment field of a bond interface
-  cp_gaia_bond_interface:
+  M(cp_gaia_bond_interface):
     comments: bond5 interface
     name: bond5
     mode: xor

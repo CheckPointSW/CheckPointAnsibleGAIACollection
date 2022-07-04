@@ -21,24 +21,21 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_extended_commands_facts
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show available extended commands
-short_description: Show available extended commands
+- Show available extended commands.
+short_description: Show available extended commands.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 """
 
 EXAMPLES = """
 - name: Show extended commands
-  cp_gaia_extended_commands_facts:
+  M(cp_gaia_extended_commands_facts):
 """
 
 RETURN = """
@@ -60,7 +57,7 @@ def main():
     gaia_api_version = 'v1.7/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

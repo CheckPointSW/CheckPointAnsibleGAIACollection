@@ -21,29 +21,26 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 author: Yuval Feiger (@chkp-yuvalfe)
 description:
-- Setting the hostname of a machine
+- Setting the hostname of a machine.
 module: cp_gaia_hostname
 options:
   name:
     description: New hostname to change. Hostname can be a combination of letters and numbers, it cannot
-      be in IP format or start/end with characters such as ''.'' And ''-''
+      be in IP format or start/end with characters such as ''.'' And ''-''.
     required: true
     type: str
-short_description: Setting the hostname of a machine
+short_description: Setting the hostname of a machine.
 version_added: '1.0.0'
+notes: Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - name: Changing a hostname
-  cp_gaia_hostname:
+  M(cp_gaia_hostname):
     name: new-hostname
 
 """

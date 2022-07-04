@@ -25,104 +25,105 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Set scheduled snapshot
+- Set scheduled snapshot.
 module: cp_gaia_scheduled_snapshot
-short_description: Set scheduled snapshot
+short_description: Set scheduled snapshot.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
   description:
-        description: Description of the scheduled snapshot
+        description: Description of the scheduled snapshot.
         required: False
         type: str
   enabled:
-        description: State of the snapshot scheduler
+        description: State of the snapshot scheduler.
         required: False
         type: bool
   retention_policy:
-        description: Retention policy for the snapshot scheduler
+        description: Retention policy for the snapshot scheduler.
         required: False
         type: dict
         suboptions:
             keep_disk_space_above_in_GB:
-                description: Minimum diskspace to keep on the local machine (GB)
+                description: Minimum diskspace to keep on the local machine (GB).
                 required: False
                 type: int
             min_snapshots_to_keep:
-                description: Minimum snapshots to keep
+                description: Minimum snapshots to keep.
                 required: False
                 type: int
             max_snapshots_to_keep:
-                description: Maximum snapshots to keep
+                description: Maximum snapshots to keep.
                 required: False
                 type: int
   recurrence:
-        description: Recurrence of the scheduled snapshot
+        description: Recurrence of the scheduled snapshot.
         required: False
         type: dict
         suboptions:
             time:
-                description: Recurrence time
+                description: Recurrence time.
                 required: False
                 type: dict
                 suboptions:
                     hour:
-                        description: Time hour
+                        description: Time hour.
                         required: False
                         type: int
                     minute:
-                        description: Time minute
+                        description: Time minute.
                         required: False
                         type: int
             pattern:
-                description: Recurrence pattern. choices=['daily', 'monthly', 'weekly']
+                description: Recurrence pattern. choices=['daily', 'monthly', 'weekly'].
                 required: False
                 type: str
                 choices: ['daily', 'monthly', 'weekly']
             months:
-                description: Recurrence months
+                description: Recurrence months.
                 required: False
                 type: list
                 elements: int
             weekdays:
-                description: Recurrence weekdays
+                description: Recurrence weekdays.
                 required: False
                 type: list
                 elements: str
             days:
-                description: Recurrence days
+                description: Recurrence days.
                 required: False
                 type: list
                 elements: int
   name_prefix:
-      description: Prefix for the snapshots name created by the scheduler
+      description: Prefix for the snapshots name created by the scheduler.
       required: False
       type: str
   host:
-      description: Target host for the snapshots creation
+      description: Target host for the snapshots creation.
       required: False
       type: dict
       suboptions:
             username:
-                description: Username for scp/ftp targets
+                description: Username for scp/ftp targets.
                 required: False
                 type: str
             upload_path:
-                description: Upload path for scp/ftp targets
+                description: Upload path for scp/ftp targets.
                 required: False
                 type: str
             password:
-                description: Password for scp/ftp targets
+                description: Password for scp/ftp targets.
                 required: False
                 type: str
             target:
-                description: Host target type. choices=['lvm', 'ftp', 'scp']
+                description: Host target type. choices=['lvm', 'ftp', 'scp'].
                 required: False
                 type: str
                 choices: ['lvm', 'ftp', 'scp']
             ip_address:
-                description: IP_Address of the target
+                description: IP_Address of the target.
                 required: False
                 type: str
 """
@@ -130,7 +131,7 @@ options:
 
 EXAMPLES = """
 - name: Set scheduled snapshot
-  check_point.gaia.cp_gaia_scheduled_snapshot:
+  M(check_point.gaia.cp_gaia_scheduled_snapshot):
     recurrence: {"pattern": "weekly", "weekdays": ["Mon","Wed"], time: {"minute": 30,"hour": 13}}
     name_prefix: "weeklySnap"
     host: {"username": "username","upload_path": "/home/admin/", "password": "secret", "target": "lvm"}

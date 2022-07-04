@@ -25,36 +25,37 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show the configuration of static route
+- Show the configuration of static route.
 module: cp_gaia_static_route_facts
-short_description: Show the configuration of static route
+short_description: Show the configuration of static route.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
     limit:
-        description: The maximum number of returned results. relevant in case facts for all routes
+        description: The maximum number of returned results. relevant in case facts for all routes.
         required: False
         default: 50
         type: int
     offset:
-        description: The number of results to initially skip. relevant in case facts for all routes
+        description: The number of results to initially skip. relevant in case facts for all routes.
         required: False
         default: 0
         type: int
     order:
         description:
-          - Sorts the routes by either ascending or descending order. Valid values are ASC, DESC. relevant in case facts for all routes
+          - Sorts the routes by either ascending or descending order. Valid values are C(ASC) C(DESC). relevant in case facts for all routes.
         required: False
         type: str
         default: ASC
         choices: ['ASC', 'DESC']
     address:
-        description: Existing IPv4 address, required in case fact for single route
+        description: Existing IPv4 address, required in case fact for single route.
         required: False
         type: str
     mask_length:
-        description: Existing mask length address.Valid values are 0-32, required in case fact for single route
+        description: Existing mask length address.Valid values are 0-32, required in case fact for single route.
         required: False
         type: int
 """
@@ -62,7 +63,7 @@ options:
 
 EXAMPLES = """
 - name: Show active static routes
-  cp_gaia_static_route_facts:
+  M(cp_gaia_static_route_facts):
 """
 
 
@@ -93,7 +94,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

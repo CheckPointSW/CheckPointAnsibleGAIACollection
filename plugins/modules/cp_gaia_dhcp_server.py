@@ -25,23 +25,24 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Change DHCP server settings
+- Change DHCP server settings.
 module: cp_gaia_dhcp_server
-short_description: Change DHCP server settings
+short_description: Change DHCP server settings.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   enabled:
-        description: DHCP server status
+        description: DHCP server status.
         required: False
         type: bool
   subnets:
-        description: Subnets
+        description: Subnets.
         required: False
         type: list
         elements: dict
         suboptions:
             subnet:
-                description: IPv4 address for the subnet
+                description: IPv4 address for the subnet.
                 required: False
                 type: str
             max_lease:
@@ -95,7 +96,7 @@ options:
                 type: dict
                 suboptions:
                         domain_name:
-                            description: domain name.
+                            description: Domain name.
                             required: False
                             type: str
                         primary:
@@ -104,12 +105,12 @@ options:
                             type: str
                         secondary:
                             description: The IPv4 address of the Secondary DNS server for the DHCP clients
-                                         (to use if the primary DNS server does not respond)
+                                         (to use if the primary DNS server does not respond).
                             required: False
                             type: str
                         tertiary:
                             description: The IPv4 address of the Tertiary DNS server for the DHCP clients
-                                         (to use if the primary and secondary DNS servers do not respond)
+                                         (to use if the primary and secondary DNS servers do not respond).
                             required: False
                             type: str
 """
@@ -117,7 +118,7 @@ options:
 
 EXAMPLES = """
 - name: Change DHCP server settings
-  check_point.gaia.cp_gaia_dhcp_server:
+  M(check_point.gaia.cp_gaia_dhcp_server):
     enabled: False
     subnets: [
         {"subnet": "4.5.6.0",

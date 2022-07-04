@@ -21,20 +21,17 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_vlan_interface_facts
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show vlan interface
-short_description: Show vlan interface/s
+- Show vlan interface.
+short_description: Show vlan interface/s.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   name:
-    description: interface name to show. If not specified, all vlan interfaces information is returned.
+    description: Interface name to show. If not specified, all vlan interfaces information is returned.
     required: false
     type: str
 
@@ -42,10 +39,10 @@ options:
 
 EXAMPLES = """
 - name: Show vlan interface
-  cp_gaia_vlan_interface_facts:
+  M(cp_gaia_vlan_interface_facts):
 
 - name: Show vlan interface by specifying it's name
-  cp_gaia_vlan_interface_facts:
+  M(cp_gaia_vlan_interface_facts):
     name: eth1.2
 
 """
@@ -71,7 +68,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

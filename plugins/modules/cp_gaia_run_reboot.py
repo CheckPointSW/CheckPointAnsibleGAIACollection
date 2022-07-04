@@ -21,10 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
@@ -33,19 +29,20 @@ description:
 module: cp_gaia_run_reboot
 options:
   wait_for_task:
-    description: wait for task or return immediately
+    description: Wait for task or return immediately.
     required: False
     default: True
     type: bool
-short_description: run reboot on Check Point machine.
+short_description: Run reboot on Check Point machine.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
-- name: run reboot
-  cp_gaia_run_reboot:
+- name: Run reboot
+  M(cp_gaia_run_reboot):
 """
 
 RETURN = """

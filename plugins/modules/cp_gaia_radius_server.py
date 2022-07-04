@@ -25,49 +25,50 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Set radius servers settings
+- Set radius servers settings.
 module: cp_gaia_radius_server
-short_description: Set radius servers settings
+short_description: Set radius servers settings.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   super_user_uid:
-        description: The UID that will be given to a super user
+        description: The UID that will be given to a super user.
         required: False
         type: str
         choices: ['0', '96']
   default_shell:
-        description: Default shell when login
+        description: Default shell when login.
         required: False
         type: str
         choices: ['scp-only', 'tcsh', 'csh', 'sh', 'no-login', 'bash', 'cli']
   nas_ip:
-        description: The NAS IP for the radius client
+        description: The NAS IP for the radius client.
         required: False
         type: str
   servers:
-        description: Radius servers list
+        description: Radius servers list.
         required: False
         type: list
         elements: dict
         suboptions:
             priority:
-                description: Search priority (lower values comes first). Valid values are -999 - 999
+                description: Search priority (lower values comes first). Valid values are -999 - 999.
                 required: False
                 type: int
             secret:
-                description: secret string
+                description: Secret string.
                 required: False
                 type: str
             port:
-                description: UDP port to contact on the RADIUS server
+                description: UDP port to contact on the RADIUS server.
                 required: False
                 type: int
             timeout:
-                description: Valid values are 1-50
+                description: Valid values are 1-50.
                 required: False
                 type: int
             address:
-                description: Server address
+                description: Server address.
                 required: False
                 type: str
 """
@@ -75,7 +76,7 @@ options:
 
 EXAMPLES = """
 - name: Change Radius server settings
-  check_point.gaia.cp_gaia_radius_server:
+  M(check_point.gaia.cp_gaia_radius_server):
     default_shell: cli
     servers: [{"priority": 3, "address": "1.2.1.2", "port": 56, "timeout": 1, "secret": "12345"}]
 """

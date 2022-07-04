@@ -25,40 +25,41 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Set TACACS servers settings
+- Set TACACS servers settings.
 module: cp_gaia_tacacs_server
-short_description: Set TACACS servers settings
+short_description: Set TACACS servers settings.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   super_user_uid:
-        description: The UID that will be given to a TACACS+ user
+        description: The UID that will be given to a TACACS+ user.
         required: False
         type: str
         choices: ['0', '96']
   enabled:
-        description: TACACS-authentication on or off
+        description: TACACS-authentication on or off.
         required: False
         type: bool
   servers:
-        description: TACACS servers list
+        description: TACACS servers list.
         required: False
         type: list
         elements: dict
         suboptions:
             priority:
-                description: Search priority (lower values comes first). Valid values are -999 - 999
+                description: Search priority (lower values comes first). Valid values are -999 - 999.
                 required: False
                 type: int
             secret:
-                description: secret string
+                description: Secret string.
                 required: False
                 type: str
             timeout:
-                description: Valid values are 1-50
+                description: Valid values are 1-50.
                 required: False
                 type: int
             address:
-                description: Server address
+                description: Server address.
                 required: False
                 type: str
 """
@@ -66,7 +67,7 @@ options:
 
 EXAMPLES = """
 - name: Change TACACS server settings
-  check_point.gaia.cp_gaia_tacacs_server:
+  M(check_point.gaia.cp_gaia_tacacs_server):
     enabled: False
     servers: [{"priority": 3, "address": "1.2.1.2", "port": 56, "timeout": 1, "secret": "12345"}]
 """

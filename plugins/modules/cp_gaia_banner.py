@@ -21,33 +21,31 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
 
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Setting the banner message
+- Setting the banner message.
 module: cp_gaia_banner
 options:
   msg:
-    description: Banner message for the web, ssh and serial login. Empty string returns to default
+    description: Banner message for the web, ssh and serial login. Empty string returns to default.
     required: false
     type: str
     default: "This system is for authorized use only."
   enabled:
-    description: Banner message enabled (True/False)
+    description: Banner message enabled.
     required: false
     type: bool
-short_description: Setting the banner message
+short_description: Setting the banner message.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - banner: Changing the banner message
-  cp_gaia_banner:
+  M(cp_gaia_banner):
     msg: new_message
 
 """

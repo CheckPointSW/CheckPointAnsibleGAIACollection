@@ -25,10 +25,11 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show Shows available areas and regions for timezone
+- Shows available areas and regions for timezone.
 module: cp_gaia_timezones_facts
-short_description: Shows available areas and regions for timezone
+short_description: Shows available areas and regions for timezone.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 
@@ -38,7 +39,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show timezones
-  cp_gaia_timezones_facts:
+  M(cp_gaia_timezones_facts):
 
 
 """
@@ -64,7 +65,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

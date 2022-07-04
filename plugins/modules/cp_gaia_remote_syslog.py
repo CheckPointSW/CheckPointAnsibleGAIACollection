@@ -25,33 +25,35 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Modify remote system log server configuration
+- Modify remote system log server configuration.
 module: cp_gaia_remote_syslog
-short_description: Modify remote system log server configuration
+short_description: Modify remote system log server configuration.
 version_added: '2.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
 
     server_ip:
-        description: No Documentation available
+        description: No Documentation available.
         required: True
         type: str
     state:
-        description: Ansible state which can be present/absent
+        description: Ansible state which can be C(present) or C(absent).
         required: False
         type: str
         default: present
+        choices: [present, absent]
     protocol:
-        description: Log protocol, Supported starting from R81.20
+        description: Log protocol, Supported starting from R81.20 .
         required: False
         type: str
     port:
-        description: Log port, Supported starting from R81.20
+        description: Log port, Supported starting from R81.20 .
         required: False
         type: str
     level:
-        description: No Documentation available
+        description: No Documentation available.
         required: False
         type: str
 
@@ -60,7 +62,7 @@ options:
 
 EXAMPLES = """
 - name: Modifying remote syslog messaging level
-  cp_gaia_remote_syslog:
+  M(cp_gaia_remote_syslog):
     "server_ip": "10.11.2.130"
     "level": "debug"
 

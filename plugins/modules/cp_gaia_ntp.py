@@ -25,34 +25,35 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Sets NTP status and servers
+- Sets NTP status and servers.
 module: cp_gaia_ntp
-short_description: Sets NTP status and servers
+short_description: Sets NTP status and servers.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
     enabled:
-        description: NTP active status
+        description: NTP active status.
         required: False
         type: bool
     servers:
-        description: Servers to set. Note there cannot be more than one primary/secondary servers
+        description: Servers to set. Note there cannot be more than one primary/secondary servers.
         required: False
         type: list
         elements: dict
         suboptions:
             version:
-                description: NTP server version. Valid values are 1-4
+                description: NTP server version. Valid values are 1-4.
                 required: False
                 type: int
             type:
-                description: server type
+                description: Server type.
                 required: False
                 type: str
                 choices: ['primary', 'secondary']
             address:
-                description: server address (IPv4/IPv6)
+                description: Server address (IPv4/IPv6).
                 required: False
                 type: str
 """
@@ -60,7 +61,7 @@ options:
 
 EXAMPLES = """
 - name: Setting ntp servers for the system
-  cp_gaia_ntp:
+  M(cp_gaia_ntp):
     enabled: False
     servers: [{"version": 1, "type": "primary", "address": "1.1.1.1"}]
 """

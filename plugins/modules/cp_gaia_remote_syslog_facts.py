@@ -25,16 +25,17 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Show remote system log server configuration
+- Show remote system log server configuration.
 module: cp_gaia_remote_syslog_facts
-short_description: Show remote system log server configuration
+short_description: Show remote system log server configuration.
 version_added: '2.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
 
     server_ip:
-        description: No Documentation available
+        description: No Documentation available.
         required: False
         type: str
 
@@ -43,7 +44,7 @@ options:
 
 EXAMPLES = """
 - name: Show remote syslog log server by specifying it IP
-  cp_gaia_remote_syslog_facts:
+  M(cp_gaia_remote_syslog_facts):
     "server_ip": "10.11.2.130"
 
 """
@@ -71,7 +72,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

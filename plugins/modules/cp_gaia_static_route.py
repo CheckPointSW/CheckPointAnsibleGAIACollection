@@ -25,19 +25,20 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Modify the configuration of static route
+- Modify the configuration of static route.
 module: cp_gaia_static_route
-short_description: Modify the configuration of static route
+short_description: Modify the configuration of static route.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
     address:
-        description: IPv4 address
+        description: IPv4 address.
         required: True
         type: str
     mask_length:
-        description: mask length address.Valid values are 0-32
+        description: Mask length address.Valid values are 0-32.
         required: True
         type: int
     type:
@@ -46,10 +47,11 @@ options:
         type: str
         choices: ['blackhole', 'gateway', 'reject']
     state:
-        description: Ansible state which can be present/absent
+        description: Ansible state which can be C(present) or C(absent).
         required: False
         type: str
         default: present
+        choices: [present, absent]
     next_hop:
         description:
           - Static next_hop. Contains a list of next-hop gateways.
@@ -58,24 +60,24 @@ options:
         elements: dict
         suboptions:
             gateway:
-                description: IP address or logical name for the static next-hop gateway
+                description: IP address or logical name for the static next-hop gateway.
                 required: False
                 type: str
             priority:
                 description:
                   - Priority defines which gateway to select as the next-hop.
                     The lower the priority, the higher the preference.
-                    Possible values are 1-8
+                    Possible values are 1-8.
                 required: False
                 type: int
     comment:
-        description: static route comment
+        description: Static route comment.
         required: False
         type: str
     rank:
         description:
           - Selects a route when there are many routes to a destination that use different routing protocols.
-            The route with the lowest rank value is selected. Possible values are 0-255
+            The route with the lowest rank value is selected. Possible values are 0-255.
         required: False
         type: int
     ping:
@@ -92,8 +94,8 @@ options:
 
 
 EXAMPLES = """
-- name: set new static route
-  check_point.gaia.cp_gaia_static_route:
+- name: Set new static route
+  M(check_point.gaia.cp_gaia_static_route):
     state: present
     address: 1.2.125.0
     mask_length: 24

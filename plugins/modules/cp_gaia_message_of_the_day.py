@@ -21,14 +21,10 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Setting message of the day
+- Setting message of the day.
 module: cp_gaia_message_of_the_day
 options:
   msg:
@@ -36,17 +32,18 @@ options:
     required: false
     type: str
   enabled:
-    description: enable/disable message of the day
+    description: Enable/Disable message of the day.
     required: false
     type: bool
-short_description: Setting the message of the day of a machine
+short_description: Setting the message of the day of a machine.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - message_of_the_day: Changing the message of the day
-  cp_gaia_message_of_the_day:
+  M(cp_gaia_message_of_the_day):
     msg: "Hello today"
 
 """

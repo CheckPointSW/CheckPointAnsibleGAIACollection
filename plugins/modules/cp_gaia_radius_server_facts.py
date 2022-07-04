@@ -29,12 +29,13 @@ description:
 module: cp_gaia_radius_server_facts
 short_description: Show radius servers settings.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 """
 
 
 EXAMPLES = """
 - name: Show radius servers settings.
-  cp_gaia_radius_server_facts:
+  M(cp_gaia_radius_server_facts):
 """
 
 
@@ -59,7 +60,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

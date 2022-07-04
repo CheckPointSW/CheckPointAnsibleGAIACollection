@@ -21,27 +21,24 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_diagnostics_facts
 author: Ameer Asli (@chkp-ameera)
 description:
-- Show diagnostics
-short_description: Show diagnostics
+- Show diagnostics.
+short_description: Show diagnostics.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
     category:
-        description: category
+        description: Category.
         required: True
         type: str
         choices: ['os']
     topic:
-        description: category
+        description: Category.
         required: True
         type: str
         choices: ['memory', 'disk', 'cpu']
@@ -49,7 +46,7 @@ options:
 
 EXAMPLES = """
 - name: Show diagnostics
-  cp_gaia_diagnostics_facts:
+  M(cp_gaia_diagnostics_facts):
     category: "os"
     topic: "memory"
 """
@@ -76,7 +73,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

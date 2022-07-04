@@ -21,23 +21,20 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 author: Yuval Feiger (@chkp-yuvalfe)
 description:
-- Show hostname settings
+- Show hostname settings.
 module: cp_gaia_hostname_facts
-short_description: Show hostname settings
+short_description: Show hostname settings.
 version_added: '1.0.0'
+notes: Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - name: Show current hostname
-  cp_gaia_hostname_facts:
+  M(cp_gaia_hostname_facts):
 
 """
 
@@ -60,7 +57,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(ansible_facts=res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":

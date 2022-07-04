@@ -21,10 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
@@ -33,84 +29,84 @@ description:
 module: cp_gaia_initial_setup
 options:
   wait_for_task:
-    description: wait for task or return immediately
+    description: Wait for task or return immediately.
     required: False
     default: True
     type: bool
   password:
-    description: Password of user admin. Required in case default initial password has not been changed before
+    description: Password of user admin. Required in case default initial password has not been changed before.
     required: False
     type: str
   security_management:
-    description: Install Security Management or Multi domain server
+    description: Install Security Management or Multi domain server.
     required: False
     type: dict
     suboptions:
       multi_domain:
-        description: Install Security Multi domain server, it can be primary or secondary or log-server according to type parameter
+        description: Install Security Multi domain server, it can be C(primary) or C(secondary) or C(log-server) according to type parameter.
         required: False
         default: False
         type: bool
       type:
-        description: type of security management or multi domain server
+        description: Type of security management or multi domain server.
         required: False
         choices: [primary, secondary, log-server]
         default: primary
         type: str
       activation_key:
-        description: Secure Internal Communication key, relevant in case of secondary or log-server
+        description: Secure Internal Communication key, relevant in case of secondary or log-server.
         required: False
         type: str
       leading_interface:
-        description: leading multi domain server interface, relevant in case of multi-domain enabled
+        description: Leading multi domain server interface, relevant in case of multi-domain enabled.
         required: False
         type: str
       gui_clients:
         description:
-          - choose which GUI clients can log into the Security Management.
-            fill one of the parameters (range/network/single-ip),
-            for multi-domain it can be only single-ip or can keep the default value
+          - Choose which GUI clients can log into the Security Management.
+            fill one of the parameters C(range) C(network) C(single-ip),
+            for multi-domain it can be only single-ip or can keep the default value.
         required: False
         type: dict
         suboptions:
             range:
-              description: range of IPs allowed to connect to management
+              description: Range of IPs allowed to connect to management.
               required: False
               type: dict
               suboptions:
                   first_IPv4_range:
-                    description: First IP in range
+                    description: First IP in range.
                     required: False
                     type: str
                   last_IPv4_range:
-                    description: Last IP in range
+                    description: Last IP in range.
                     required: False
                     type: str
             network:
-              description: IPs from specific network allowed to connect to management
+              description: IPs from specific network allowed to connect to management.
               required: False
               type: dict
               suboptions:
                   address:
-                    description: IPv4 address of network
+                    description: IPv4 address of network.
                     required: False
                     type: str
                   mask_length:
-                    description: Mask length of network
+                    description: Mask length of network.
                     required: False
                     type: int
             single_ip:
-              description: In case of a single IP which allowed to connect to management
+              description: In case of a single IP which allowed to connect to management.
               required: False
               type: str
   security_gateway:
-    description: Install Security Gateway
+    description: Install Security Gateway.
     required: False
     type: dict
     suboptions:
       dynamically_assigned_ip:
         description:
-          - Enable DAIP (dynamic ip) gateway. Should be false if cluster_member or security_management enabled
+          - Enable DAIP (dynamic ip) gateway. Should be false if cluster_member or security_management enabled.
         required: False
         default: False
         type: bool
@@ -120,25 +116,26 @@ options:
         default: False
         type: bool
       activation_key:
-        description: Secure Internal Communication key
+        description: Secure Internal Communication key.
         required: False
         type: str
 short_description: Run First Time Wizard configuration.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
-- name: initial setup
-  cp_gaia_initial_setup:
+- name: Initial setup
+  M(cp_gaia_initial_setup):
     wait_for_task: True
     security_gateway: {cluster_member: False, activation_key: bbbb, dynamically_assigned_ip: False}
 """
 
 RETURN = """
 initial_setup:
-  description: The checkpoint object updated.
+  descriptiondescription: The checkpoint object updated.
   returned: always.
   type: dict
 """

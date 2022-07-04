@@ -21,25 +21,23 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 DOCUMENTATION = """
 module: cp_gaia_user
 author: Ameer Asli (@chkp-ameera)
 description:
-- Change a user's characteristics
-short_description: Change a user's characteristics
+- Change a user's characteristics.
+short_description: Change a user's characteristics.
 version_added: '3.0.0'
+notes: Supports C(check_mode).
 options:
   state:
-      description: Ansible state which can be present/absent
-      required: False
-      type: str
-      default: present
+    description: Ansible state which can be C(present) or C(absent).
+    required: False
+    type: str
+    default: present
+    choices: [present, absent]
   name:
-    description: user name.
+    description: User name.
     required: True
     type: str
   shell:
@@ -73,7 +71,7 @@ options:
         When set to 'False' If the user was being forced to change their password, cancel that.
         If the user was locked out due to failure to change their password
         within the time limit configured in 'set password-controls expiration-lockout-days'
-        they will no longer be locked out
+        they will no longer be locked out.
     required: False
     type: bool
   real_name:
@@ -85,14 +83,14 @@ options:
     required: False
     type: bool
   allow_access_using:
-    description: Modify the access-mechanisms available for a user. Valid values are CLI, Web-UI, Gaia-API (supported from R81.10).
+    description: Modify the access-mechanisms available for a user. Valid values are C(CLI) C(Web-UI) C(Gaia-API) (supported from R81.10).
     required: False
     type: list
     elements: str
     choices: ['CLI', 'Web-UI', 'Gaia-API']
     default: ['CLI', 'Web-UI']
   roles:
-    description: roles spesified to the user
+    description: Roles spesified to the user.
     required: False
     type: list
     elements: str
@@ -109,14 +107,14 @@ options:
     required: False
     type: str
   uid:
-    description: Specifies a numeric user ID used to identify permissions of a user, duplicate UIDs are not allowed
+    description: Specifies a numeric user ID used to identify permissions of a user, duplicate UIDs are not allowed.
     required: False
     type: int
 """
 
 EXAMPLES = """
 - name: Set shell field for the user
-  cp_gaia_user:
+  M(cp_gaia_user):
     shell: bash
     name: admin
 

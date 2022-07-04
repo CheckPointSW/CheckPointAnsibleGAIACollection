@@ -21,10 +21,6 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1',
-                    'status': ['preview'],
-                    'supported_by': 'community'}
-
 
 DOCUMENTATION = """
 author: Yuval Feiger (@chkp-yuvalfe)
@@ -50,13 +46,14 @@ options:
     default: False
 short_description: Add a new file to a Check Point machine.
 version_added: '1.0.0'
+notes: Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
-- name: add a file
-  cp_gaia_put_file:
+- name: Add a file
+  M(cp_gaia_put_file):
     file_name: "ansible_file.txt"
     text_content: "It's an ansible file."
     override: true

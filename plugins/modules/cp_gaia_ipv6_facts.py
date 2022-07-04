@@ -25,10 +25,11 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Check IPv6 support in the machine's operating system
+- Check IPv6 support in the machine's operating system.
 module: cp_gaia_ipv6_facts
-short_description: Check IPv6 support in the machine's operating system
+short_description: Check IPv6 support in the machine's operating system.
 version_added: '2.0.0'
+notes: Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 
@@ -38,7 +39,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show IPv6 status
-  cp_gaia_ipv6_facts:
+  M(cp_gaia_ipv6_facts):
 
 
 """
@@ -66,7 +67,7 @@ def main():
     gaia_api_version = 'v1.6/'
 
     res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
-    module.exit_json(**res)
+    module.exit_json(ansible_facts=res["ansible_facts"])
 
 
 if __name__ == "__main__":
