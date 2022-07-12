@@ -29,7 +29,8 @@ description:
 module: cp_gaia_routes_bgp_facts
 short_description: Show active BGP routes.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -54,7 +55,7 @@ options:
 
 EXAMPLES = """
 - name: Show active BGP routes
-  M(cp_gaia_routes_bgp_facts):
+  check_point.gaia.cp_gaia_routes_bgp_facts:
 """
 
 

@@ -29,7 +29,8 @@ description:
 module: cp_gaia_dhcp_server
 short_description: Change DHCP server settings.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   enabled:
         description: DHCP server status.
@@ -118,7 +119,7 @@ options:
 
 EXAMPLES = """
 - name: Change DHCP server settings
-  M(check_point.gaia.cp_gaia_dhcp_server):
+  check_point.gaia.cp_gaia_dhcp_server:
     enabled: False
     subnets: [
         {"subnet": "4.5.6.0",

@@ -28,7 +28,8 @@ description:
 - Show role information.
 short_description: Show role/s information.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
@@ -41,10 +42,10 @@ options:
 
 EXAMPLES = """
 - name: Show roles
-  M(cp_gaia_role_facts):
+  check_point.gaia.cp_gaia_role_facts:
 
 - name: Show role by specifying it's name
-  M(cp_gaia_role_facts):
+  check_point.gaia.cp_gaia_role_facts:
     name: test_role
 
 """

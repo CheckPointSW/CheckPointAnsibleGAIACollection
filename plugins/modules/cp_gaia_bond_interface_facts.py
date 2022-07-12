@@ -28,7 +28,8 @@ description:
 - Show bond interface.
 short_description: Show bond interface/s.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   name:
     description: Interface name to show. If not specified, all bond interfaces information is returned.
@@ -39,7 +40,7 @@ options:
 
 EXAMPLES = """
 - name: Show bond interface
-  M(cp_gaia_bond_interface_facts):
+  check_point.gaia.cp_gaia_bond_interface_facts:
 
 - name: Show bond interface by specifying it's name
   cp_gaia_bond_interface_facts:

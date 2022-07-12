@@ -28,7 +28,8 @@ description:
 - Change the scheduled job's recurrence or command. Scheduled jobs run as admin.
 short_description: Modify scheduled job.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
@@ -106,7 +107,7 @@ options:
 
 EXAMPLES = """
 - name: Add new scheduled job
-  M(cp_gaia_scheduled_job):
+  check_point.gaia.cp_gaia_scheduled_job:
     name: "startup_job"
     command: "/home/admin/job.sh"
     recurrence: {"type": "system-startup"}
@@ -127,7 +128,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type='str', default='present'),
+        state=dict(type='str', default='present', choices=['present', 'absent']),
         name=dict(required=True, type='str'),
         command=dict(type='str'),
         recurrence=dict(

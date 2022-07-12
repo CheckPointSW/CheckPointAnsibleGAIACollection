@@ -34,13 +34,14 @@ options:
     type: str
 short_description: Setting the hostname of a machine.
 version_added: '1.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - name: Changing a hostname
-  M(cp_gaia_hostname):
+  check_point.gaia.cp_gaia_hostname:
     name: new-hostname
 
 """

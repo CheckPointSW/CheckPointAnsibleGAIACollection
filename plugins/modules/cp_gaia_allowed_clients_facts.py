@@ -29,7 +29,8 @@ description:
 module: cp_gaia_allowed_clients_facts
 short_description: Show the configuration of allowed clients.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 """
@@ -37,7 +38,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show allowed clients
-  M(cp_gaia_allowed_clients_facts):
+  check_point.gaia.cp_gaia_allowed_clients_facts:
 """
 
 

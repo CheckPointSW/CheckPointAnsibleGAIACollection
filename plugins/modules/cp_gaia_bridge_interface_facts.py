@@ -28,7 +28,8 @@ description:
 - Show bridge interface.
 short_description: Show bridge interface/s.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   name:
     description: Interface name to show. If not specified, all bridge interfaces information is returned.
@@ -39,10 +40,10 @@ options:
 
 EXAMPLES = """
 - name: Show bridge interface
-  M(cp_gaia_bridge_interface_facts):
+  check_point.gaia.cp_gaia_bridge_interface_facts:
 
 - name: Show bridge interface by specifying it's name
-  M(cp_gaia_bridge_interface_facts):
+  check_point.gaia.cp_gaia_bridge_interface_facts:
     name: br1
 
 """

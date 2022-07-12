@@ -29,7 +29,8 @@ description:
 module: cp_gaia_remote_syslog_facts
 short_description: Show remote system log server configuration.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -44,8 +45,8 @@ options:
 
 EXAMPLES = """
 - name: Show remote syslog log server by specifying it IP
-  M(cp_gaia_remote_syslog_facts):
-    "server_ip": "10.11.2.130"
+  check_point.gaia.cp_gaia_remote_syslog_facts:
+    server_ip: "10.11.2.130"
 
 """
 

@@ -28,7 +28,8 @@ description:
 - Change a user's characteristics.
 short_description: Change a user's characteristics.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   state:
     description: Ansible state which can be C(present) or C(absent).
@@ -114,7 +115,7 @@ options:
 
 EXAMPLES = """
 - name: Set shell field for the user
-  M(cp_gaia_user):
+  check_point.gaia.cp_gaia_user:
     shell: bash
     name: admin
 
@@ -134,7 +135,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type='str', default='present'),
+        state=dict(type='str', default='present', choices=['present', 'absent']),
         name=dict(type='str', required=True),
         shell=dict(type='str', required=False, choices=['scp-only', 'tcsh', 'csh', 'sh', 'no-login', 'bash', 'cli'], default='cli'),
         homedir=dict(type='str', required=False),

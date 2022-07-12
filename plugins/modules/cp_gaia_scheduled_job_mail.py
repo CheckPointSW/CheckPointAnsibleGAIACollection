@@ -28,7 +28,8 @@ description:
 - Set which e-mail address the job scheduler sends reports to. Pass empty string to delete the current e-mail address.
 short_description: Modify scheduled job mail.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
@@ -40,7 +41,7 @@ options:
 
 EXAMPLES = """
 - name: Set scheduled job mail
-  M(cp_gaia_scheduled_job_mail):
+  check_point.gaia.cp_gaia_scheduled_job_mail:
     email_address: "sysadmins@company.com"
 
 """

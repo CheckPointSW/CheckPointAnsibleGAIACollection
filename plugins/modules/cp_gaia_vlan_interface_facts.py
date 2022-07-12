@@ -28,7 +28,8 @@ description:
 - Show vlan interface.
 short_description: Show vlan interface/s.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   name:
     description: Interface name to show. If not specified, all vlan interfaces information is returned.
@@ -39,10 +40,10 @@ options:
 
 EXAMPLES = """
 - name: Show vlan interface
-  M(cp_gaia_vlan_interface_facts):
+  check_point.gaia.cp_gaia_vlan_interface_facts:
 
 - name: Show vlan interface by specifying it's name
-  M(cp_gaia_vlan_interface_facts):
+  check_point.gaia.cp_gaia_vlan_interface_facts:
     name: eth1.2
 
 """

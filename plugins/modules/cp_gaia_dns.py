@@ -29,7 +29,8 @@ description:
 module: cp_gaia_dns
 short_description: Setting DNS configuration.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -56,11 +57,11 @@ options:
 
 EXAMPLES = """
 - name: Setting dns servers for the system
-  M(cp_gaia_dns):
-    "suffix": "checkpoint.com"
-    "primary": "1.2.3.4"
-    "tertiary": "3.4.5.6"
-    "secondary": "2.3.4.5"
+  check_point.gaia.cp_gaia_dns:
+    suffix: "checkpoint.com"
+    primary: "1.2.3.4"
+    tertiary: "3.4.5.6"
+    secondary: "2.3.4.5"
 
 """
 

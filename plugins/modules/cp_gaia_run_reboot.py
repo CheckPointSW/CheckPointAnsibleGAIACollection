@@ -35,14 +35,15 @@ options:
     type: bool
 short_description: Run reboot on Check Point machine.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
 - name: Run reboot
-  M(cp_gaia_run_reboot):
+  check_point.gaia.cp_gaia_run_reboot:
 """
 
 RETURN = """

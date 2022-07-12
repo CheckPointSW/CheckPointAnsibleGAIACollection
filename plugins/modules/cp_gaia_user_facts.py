@@ -28,7 +28,8 @@ description:
 - Show the users currently configured.
 short_description: Show user/s.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   name:
     description: User name to show. If not specified, all users information is returned.
@@ -39,10 +40,10 @@ options:
 
 EXAMPLES = """
 - name: Show users
-  M(cp_gaia_user_facts):
+  check_point.gaia.cp_gaia_user_facts:
 
 - name: Show user by specifying it's name
-  M(cp_gaia_user_facts):
+  check_point.gaia.cp_gaia_user_facts:
     name: admin
 
 """

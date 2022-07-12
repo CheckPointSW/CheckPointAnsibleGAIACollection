@@ -28,7 +28,8 @@ description:
 - Modify role.
 short_description: Modify role.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
@@ -68,7 +69,7 @@ options:
 
 EXAMPLES = """
 - name: Add new role
-  M(cp_gaia_role):
+  check_point.gaia.cp_gaia_role:
     name: myrole
     extended_commands: ['LSMenabler']
     features: [{"name": "dhcp", "permission": "read-write"},
@@ -92,7 +93,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type='str', default='present'),
+        state=dict(type='str', default='present', choices=['present', 'absent']),
         name=dict(required=True, type='str'),
         features=dict(
             type='list', elements='dict',

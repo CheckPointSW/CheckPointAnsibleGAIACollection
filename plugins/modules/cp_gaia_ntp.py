@@ -29,7 +29,8 @@ description:
 module: cp_gaia_ntp
 short_description: Sets NTP status and servers.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -61,7 +62,7 @@ options:
 
 EXAMPLES = """
 - name: Setting ntp servers for the system
-  M(cp_gaia_ntp):
+  check_point.gaia.cp_gaia_ntp:
     enabled: False
     servers: [{"version": 1, "type": "primary", "address": "1.1.1.1"}]
 """

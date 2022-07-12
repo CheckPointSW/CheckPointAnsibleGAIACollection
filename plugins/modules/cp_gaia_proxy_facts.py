@@ -29,13 +29,14 @@ description:
 module: cp_gaia_proxy_facts
 short_description: Show proxy setting.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 """
 
 
 EXAMPLES = """
 - name: Show proxy setting
-  M(cp_gaia_proxy_facts):
+  check_point.gaia.cp_gaia_proxy_facts:
 """
 
 

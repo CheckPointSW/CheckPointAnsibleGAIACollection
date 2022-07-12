@@ -29,7 +29,8 @@ description:
 module: cp_gaia_password_policy
 short_description: Setting password policy configuration.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -138,7 +139,7 @@ options:
 
 EXAMPLES = """
 - name: Change password policy
-  M(check_point.gaia.cp_gaia_password_policy):
+  check_point.gaia.cp_gaia_password_policy:
         lock_settings: {'failed_attempts_settings': {'failed_attempts_allowed': 10,
                                                      'failed_lock_duration_seconds': 1200,
                                                      'failed_lock_enabled': False,

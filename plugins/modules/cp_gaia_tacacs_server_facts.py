@@ -29,13 +29,14 @@ description:
 module: cp_gaia_tacacs_server_facts
 short_description: Show tacacs servers settings.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 """
 
 
 EXAMPLES = """
 - name: Show tacacs servers settings.
-  M(cp_gaia_tacacs_server_facts):
+  check_point.gaia.cp_gaia_tacacs_server_facts:
 """
 
 

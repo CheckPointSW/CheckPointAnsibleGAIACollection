@@ -28,7 +28,8 @@ description:
 - Show scheduled job information.
 short_description: Show scheduled job/s information.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
@@ -41,10 +42,10 @@ options:
 
 EXAMPLES = """
 - name: Show scheduled jobs
-  M(cp_gaia_scheduled_job_facts):
+  check_point.gaia.cp_gaia_scheduled_job_facts:
 
 - name: Show scheduled job by specifying it's name
-  M(cp_gaia_scheduled_job_facts):
+  check_point.gaia.cp_gaia_scheduled_job_facts):
     name: test_job
 
 """

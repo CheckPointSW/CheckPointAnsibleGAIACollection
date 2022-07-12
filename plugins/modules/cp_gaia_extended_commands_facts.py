@@ -28,14 +28,15 @@ description:
 - Show available extended commands.
 short_description: Show available extended commands.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 """
 
 EXAMPLES = """
 - name: Show extended commands
-  M(cp_gaia_extended_commands_facts):
+  check_point.gaia.cp_gaia_extended_commands_facts:
 """
 
 RETURN = """

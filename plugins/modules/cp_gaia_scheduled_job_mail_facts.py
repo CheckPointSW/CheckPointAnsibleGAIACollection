@@ -28,7 +28,8 @@ description:
 - Show scheduled job mail information.
 short_description: Show scheduled job mail information.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 
@@ -36,7 +37,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show scheduled job mail
-  M(cp_gaia_scheduled_job_mail_facts):
+  check_point.gaia.cp_gaia_scheduled_job_mail_facts:
 """
 
 RETURN = """
