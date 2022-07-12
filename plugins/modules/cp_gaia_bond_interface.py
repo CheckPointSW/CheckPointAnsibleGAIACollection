@@ -28,7 +28,8 @@ description:
 - Modify bond interface.
 short_description: Modify bond interface.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   state:
     description: Ansible state which can be C(present) or C(absent).
@@ -150,7 +151,7 @@ options:
 
 EXAMPLES = """
 - name: Set comment field of a bond interface
-  M(cp_gaia_bond_interface):
+  check_point.gaia.cp_gaia_bond_interface:
     comments: bond5 interface
     name: bond5
     mode: xor
@@ -171,7 +172,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type='str', default='present'),
+        state=dict(type='str', default='present', choices=['present', 'absent']),
         name=dict(required=True, type='str'),
         enabled=dict(type='bool'),
         comments=dict(type='str'),

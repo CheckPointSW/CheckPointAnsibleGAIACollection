@@ -28,7 +28,8 @@ description:
 - Modify bridge interface.
 short_description: Modify bridge interface.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   state:
     description: Ansible state which can be C(present) or C(absent).
@@ -121,7 +122,7 @@ options:
 
 EXAMPLES = """
 - name: Add new bridge interface
-  M(cp_gaia_bridge_interface):
+  check_point.gaia.cp_gaia_bridge_interface:
     comments: bridge5 interface
     name: br5
     members: ['eth3', 'eth4']
@@ -142,7 +143,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type='str', default='present'),
+        state=dict(type='str', default='present', choices=['present', 'absent']),
         name=dict(required=True, type='str'),
         enabled=dict(type='bool'),
         comments=dict(type='str'),

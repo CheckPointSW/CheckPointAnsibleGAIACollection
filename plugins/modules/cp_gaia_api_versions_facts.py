@@ -28,14 +28,15 @@ description:
 - Show api versions.
 short_description: Show api versions.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 """
 
 EXAMPLES = """
 - name: Show api versions
-  M(cp_gaia_api_versions_facts):
+  check_point.gaia.cp_gaia_api_versions_facts:
 """
 
 RETURN = """

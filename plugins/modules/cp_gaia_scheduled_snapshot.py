@@ -29,7 +29,8 @@ description:
 module: cp_gaia_scheduled_snapshot
 short_description: Set scheduled snapshot.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -131,7 +132,7 @@ options:
 
 EXAMPLES = """
 - name: Set scheduled snapshot
-  M(check_point.gaia.cp_gaia_scheduled_snapshot):
+  check_point.gaia.cp_gaia_scheduled_snapshot:
     recurrence: {"pattern": "weekly", "weekdays": ["Mon","Wed"], time: {"minute": 30,"hour": 13}}
     name_prefix: "weeklySnap"
     host: {"username": "username","upload_path": "/home/admin/", "password": "secret", "target": "lvm"}

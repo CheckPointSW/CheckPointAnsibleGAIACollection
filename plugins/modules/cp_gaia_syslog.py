@@ -29,7 +29,8 @@ description:
 module: cp_gaia_syslog
 short_description: Setting system logging configuration.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -56,11 +57,11 @@ options:
 
 EXAMPLES = """
 - name: Modify system logging configuration
-  M(cp_gaia_syslog):
-    "send_to_mgmt": false
-    "filename": "/var/log/messages"
-    "cp_logs": false
-    "audit_log": true
+  check_point.gaia.cp_gaia_syslog:
+    send_to_mgmt: false
+    filename: "/var/log/messages"
+    cp_logs: false
+    audit_log: true
 
 """
 

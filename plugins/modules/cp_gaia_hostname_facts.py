@@ -28,13 +28,14 @@ description:
 module: cp_gaia_hostname_facts
 short_description: Show hostname settings.
 version_added: '1.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - name: Show current hostname
-  M(cp_gaia_hostname_facts):
+  check_point.gaia.cp_gaia_hostname_facts:
 
 """
 

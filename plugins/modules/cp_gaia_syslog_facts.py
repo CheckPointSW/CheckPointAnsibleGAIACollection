@@ -29,7 +29,8 @@ description:
 module: cp_gaia_syslog_facts
 short_description: Show system log configuration.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 
@@ -39,7 +40,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show system logging configuration
-  M(cp_gaia_syslog_facts):
+  check_point.gaia.cp_gaia_syslog_facts:
 
 
 """

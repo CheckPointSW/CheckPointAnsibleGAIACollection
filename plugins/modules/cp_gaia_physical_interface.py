@@ -28,7 +28,8 @@ description:
 - Set Physical interface.
 short_description: Set Physical interface.
 version_added: '1.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   auto_negotiation:
     description: Activating Auto-Negotiation will skip the speed and duplex configuration.
@@ -99,7 +100,7 @@ options:
 
 EXAMPLES = """
 - name: Set comment field of a physical interface
-  M(cp_gaia_physical_interface):
+  check_point.gaia.cp_gaia_physical_interface:
     comments: eth0 interface
     enabled: true
     name: eth0

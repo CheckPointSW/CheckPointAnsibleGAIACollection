@@ -28,14 +28,15 @@ description:
 module: cp_gaia_message_of_the_day_facts
 short_description: Show message of the day settings.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 """
 
 EXAMPLES = """
 - name: Show message of the day
-  M(cp_gaia_message_of_the_day_facts):
+  check_point.gaia.cp_gaia_message_of_the_day_facts:
 
 """
 

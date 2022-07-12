@@ -28,7 +28,8 @@ description:
 - Modify vlan interface.
 short_description: Modify vlan interface.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   state:
     description: Ansible state which can be C(present) or C(absent).
@@ -110,7 +111,7 @@ options:
 
 EXAMPLES = """
 - name: Set comment field of a vlan interface
-  M(cp_gaia_vlan_interface):
+  check_point.gaia.cp_gaia_vlan_interface:
     comments: "vlan5 interface"
     name: eth1.5
 
@@ -130,7 +131,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type='str', default='present'),
+        state=dict(type='str', default='present', choices=['present', 'absent']),
         name=dict(required=True, type='str'),
         enabled=dict(type='bool'),
         comments=dict(type='str'),

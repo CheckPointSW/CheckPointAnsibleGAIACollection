@@ -29,7 +29,8 @@ description:
 module: cp_gaia_radius_server
 short_description: Set radius servers settings.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   super_user_uid:
         description: The UID that will be given to a super user.
@@ -76,7 +77,7 @@ options:
 
 EXAMPLES = """
 - name: Change Radius server settings
-  M(check_point.gaia.cp_gaia_radius_server):
+  check_point.gaia.cp_gaia_radius_server:
     default_shell: cli
     servers: [{"priority": 3, "address": "1.2.1.2", "port": 56, "timeout": 1, "secret": "12345"}]
 """

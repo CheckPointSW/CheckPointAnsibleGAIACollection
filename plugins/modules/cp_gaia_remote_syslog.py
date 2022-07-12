@@ -29,7 +29,8 @@ description:
 module: cp_gaia_remote_syslog
 short_description: Modify remote system log server configuration.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -62,9 +63,9 @@ options:
 
 EXAMPLES = """
 - name: Modifying remote syslog messaging level
-  M(cp_gaia_remote_syslog):
-    "server_ip": "10.11.2.130"
-    "level": "debug"
+  check_point.gaia.cp_gaia_remote_syslog:
+    server_ip: "10.11.2.130"
+    level: "debug"
 
 """
 
@@ -85,7 +86,7 @@ def main():
     # arguments for the module:
     fields = dict(
         server_ip=dict(type="str", required=True),
-        state=dict(type="str", default="present"),
+        state=dict(type="str", default="present", choices=['present', 'absent']),
         protocol=dict(type="str"),
         port=dict(type="str"),
         level=dict(type="str")

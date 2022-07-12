@@ -28,7 +28,8 @@ description:
 - Show task.
 short_description: Show task.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -41,7 +42,7 @@ options:
 
 EXAMPLES = """
 - name: Show task
-  M(cp_gaia_task_facts):
+  check_point.gaia.cp_gaia_task_facts:
     task_id: ["ccc88f8f-ee65-44d2-bdc6-797f8347f6e1"]
 """
 

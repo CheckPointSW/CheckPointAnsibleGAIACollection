@@ -29,7 +29,8 @@ description:
 module: cp_gaia_dns_facts
 short_description: Show DNS settings.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 
@@ -39,7 +40,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show current dns configuration
-  M(cp_gaia_dns_facts):
+  check_point.gaia.cp_gaia_dns_facts:
 
 
 """

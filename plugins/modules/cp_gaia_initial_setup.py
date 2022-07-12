@@ -121,21 +121,22 @@ options:
         type: str
 short_description: Run First Time Wizard configuration.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
 - name: Initial setup
-  M(cp_gaia_initial_setup):
+  check_point.gaia.cp_gaia_initial_setup:
     wait_for_task: True
     security_gateway: {cluster_member: False, activation_key: bbbb, dynamically_assigned_ip: False}
 """
 
 RETURN = """
 initial_setup:
-  descriptiondescription: The checkpoint object updated.
+  description: The checkpoint object updated.
   returned: always.
   type: dict
 """

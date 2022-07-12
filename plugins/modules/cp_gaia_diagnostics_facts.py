@@ -28,7 +28,8 @@ description:
 - Show diagnostics.
 short_description: Show diagnostics.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -46,9 +47,9 @@ options:
 
 EXAMPLES = """
 - name: Show diagnostics
-  M(cp_gaia_diagnostics_facts):
-    category: "os"
-    topic: "memory"
+  check_point.gaia.cp_gaia_diagnostics_facts:
+    category: os
+    topic: memory
 """
 
 RETURN = """

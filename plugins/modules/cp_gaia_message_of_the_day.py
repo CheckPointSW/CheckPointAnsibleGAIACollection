@@ -37,13 +37,14 @@ options:
     type: bool
 short_description: Setting the message of the day of a machine.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - message_of_the_day: Changing the message of the day
-  M(cp_gaia_message_of_the_day):
+  check_point.gaia.cp_gaia_message_of_the_day:
     msg: "Hello today"
 
 """

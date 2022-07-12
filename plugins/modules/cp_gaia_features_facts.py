@@ -28,14 +28,15 @@ description:
 - Show available features.
 short_description: Show available features.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 """
 
 EXAMPLES = """
 - name: Show features
-  M(cp_gaia_features_facts):
+  check_point.gaia.cp_gaia_features_facts:
 """
 
 RETURN = """

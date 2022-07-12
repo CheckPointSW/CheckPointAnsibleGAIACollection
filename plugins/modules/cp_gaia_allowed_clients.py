@@ -29,7 +29,6 @@ description: Modify the configuration of allowed clients.
 module: cp_gaia_allowed_clients
 short_description: Modify the configuration of allowed clients.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
 requirements: ['supported starting from gaia_api >= 1.6']
 options:
   allowed_networks:
@@ -56,12 +55,14 @@ options:
     description: Allowed all hosts.
     required: False
     type: bool
+notes:
+- Supports C(check_mode).
 '''
 
 
 EXAMPLES = '''
 - name: Set allowed clients
-  M(check_point.gaia.cp_gaia_allowed_clients):
+  check_point.gaia.cp_gaia_allowed_clients:
     allowed_networks: [{"subnet": "44.4.44.0", "mask_length": 24}, {"subnet": "55.4.55.0", "mask_length": 24}]
 '''
 

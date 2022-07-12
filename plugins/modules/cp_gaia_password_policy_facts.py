@@ -29,7 +29,8 @@ description:
 module: cp_gaia_password_policy_facts
 short_description: Show password policy configuration.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 """
@@ -37,7 +38,7 @@ requirements:
 
 EXAMPLES = """
 - name: Show password policy configuration
-  M(cp_gaia_password_policy_facts):
+  check_point.gaia.cp_gaia_password_policy_facts:
 """
 
 

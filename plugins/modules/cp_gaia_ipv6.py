@@ -29,7 +29,8 @@ description:
 module: cp_gaia_ipv6
 short_description: Enables/Disables IPv6 support in the machine's operating system.
 version_added: '2.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -44,8 +45,8 @@ options:
 
 EXAMPLES = """
 - name: Set IPv6 status
-  M(cp_gaia_ipv6):
-    "enabled": true
+  check_point.gaia.cp_gaia_ipv6:
+    enabled: true
 
 """
 

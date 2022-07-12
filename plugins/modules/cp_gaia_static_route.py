@@ -29,7 +29,8 @@ description:
 module: cp_gaia_static_route
 short_description: Modify the configuration of static route.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
@@ -95,7 +96,7 @@ options:
 
 EXAMPLES = """
 - name: Set new static route
-  M(check_point.gaia.cp_gaia_static_route):
+  check_point.gaia.cp_gaia_static_route:
     state: present
     address: 1.2.125.0
     mask_length: 24
@@ -120,7 +121,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        state=dict(type="str", default="present"),
+        state=dict(type="str", default="present", choices=['present', 'absent']),
         address=dict(type="str", required=True),
         mask_length=dict(type="int", required=True),
         type=dict(type="str", required=True, choices=['blackhole', 'gateway', 'reject']),

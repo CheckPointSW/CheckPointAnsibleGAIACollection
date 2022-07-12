@@ -29,13 +29,14 @@ description:
 module: cp_gaia_dhcp_server_facts
 short_description: Shows DHCP server information.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 """
 
 
 EXAMPLES = """
 - name: Shows DHCP server information.
-  M(cp_gaia_dhcp_server_facts):
+  check_point.gaia.cp_gaia_dhcp_server_facts:
 """
 
 

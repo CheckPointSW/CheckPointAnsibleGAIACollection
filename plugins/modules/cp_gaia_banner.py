@@ -39,13 +39,14 @@ options:
     type: bool
 short_description: Setting the banner message.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - banner: Changing the banner message
-  M(cp_gaia_banner):
+  check_point.gaia.cp_gaia_banner:
     msg: new_message
 
 """

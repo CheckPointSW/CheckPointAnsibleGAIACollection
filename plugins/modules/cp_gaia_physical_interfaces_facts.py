@@ -28,7 +28,8 @@ description:
 - Show Physical interfaces.
 short_description: Show Physical interface/s.
 version_added: '1.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 options:
   name:
     description: Interface name to show. If not specified, all physical interfaces information is returned.
@@ -39,10 +40,10 @@ options:
 
 EXAMPLES = """
 - name: Show physical interfaces
-  M(cp_gaia_physical_interfaces_facts):
+  check_point.gaia.cp_gaia_physical_interfaces_facts:
 
 - name: Show physical interface by specifying it name
-  M(cp_gaia_physical_interfaces_facts):
+  check_point.gaia.cp_gaia_physical_interfaces_facts:
     name: eth0
 
 """

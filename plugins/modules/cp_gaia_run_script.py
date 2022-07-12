@@ -61,14 +61,15 @@ options:
     type: bool
 short_description: Run script Check Point machine.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
 - name: Run script
-  M(cp_gaia_run_script):
+  check_point.gaia.cp_gaia_run_script:
     script: "ls -la"
     environment_variables: [{"name": "VAR_NAME", "value": "VAR_VALUE"}]
 """

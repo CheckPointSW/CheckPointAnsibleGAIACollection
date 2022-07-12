@@ -34,13 +34,14 @@ options:
     default: False
 short_description: Enable/disable the hostname on login page message.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 EXAMPLES = """
 - hostname_on_login_page: Changing the banner message
-  M(cp_gaia_hostname_on_login_page):
+  check_point.gaia.cp_gaia_hostname_on_login_page:
     enabled: True
 
 """

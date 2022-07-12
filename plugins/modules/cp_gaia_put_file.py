@@ -46,14 +46,15 @@ options:
     default: False
 short_description: Add a new file to a Check Point machine.
 version_added: '1.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 
 """
 
 
 EXAMPLES = """
 - name: Add a file
-  M(cp_gaia_put_file):
+  check_point.gaia.cp_gaia_put_file:
     file_name: "ansible_file.txt"
     text_content: "It's an ansible file."
     override: true

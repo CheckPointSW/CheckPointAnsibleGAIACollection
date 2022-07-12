@@ -28,7 +28,8 @@ description:
 - Modify ssh server settings.
 short_description: Modify ssh server settings.
 version_added: '3.0.0'
-notes: Supports C(check_mode).
+notes:
+- Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
@@ -51,7 +52,7 @@ options:
 
 EXAMPLES = """
 - name: Set ssh server settings
-  M(cp_gaia_ssh_server_settings):
+  check_point.gaia.cp_gaia_ssh_server_settings:
     enabled_ciphers: ['aes128-ctr', 'aes128-gcm@openssh.com', 'aes192-ctr', 'aes256-ctr',
                       'aes256-gcm@openssh.com', 'chacha20-poly1305@openssh.com']
     enabled_kex_algorithms: ['curve25519-sha256', 'curve25519-sha256@libssh.org',
