@@ -5,6 +5,19 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
 
 
+v4.0.0
+======
+
+Release Summary
+---------------
+
+A new major release of ``check_point.gaia``, released on 2022-08-18.
+
+Major Changes
+---------------
+
+- breaking facts modules output and make it use ansible_facts in return value.
+
 v3.0.0
 ======
 
