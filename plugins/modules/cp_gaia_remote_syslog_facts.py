@@ -53,9 +53,30 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        server_ip:
+            description: No Documentation available.
+            returned: always
+            type: str
+        state:
+            description: Ansible state which can be C(present) or C(absent).
+            returned: always
+            type: str
+        protocol:
+            description: Log protocol, Supported starting from R81.20 .
+            returned: always
+            type: str
+        port:
+            description: Log port, Supported starting from R81.20 .
+            returned: always
+            type: str
+        level:
+            description: No Documentation available.
+            returned: always
+            type: str
 """
 
 

@@ -42,9 +42,89 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The interface/s facts.
+    returned: always.
+    type: dict
+    contains:
+        enabled:
+            description: DHCP server status.
+            returned: always
+            type: bool
+        subnets:
+            description: Subnets.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                subnet:
+                    description: IPv4 address for the subnet.
+                    returned: always
+                    type: str
+                max_lease:
+                    description: The longest lease that the server can allocate, in seconds.
+                    returned: always
+                    type: int
+                default_lease:
+                    description: The default lease that the server allocates, in seconds.
+                    returned: always
+                    type: int
+                enabled:
+                    description: Enable DHCP on this subnet.
+                    returned: always
+                    type: bool
+                ip_pools:
+                    description: Range of IPv4 addresses that the server assigns to hosts.
+                    returned: always
+                    type: list
+                    elements: dict
+                    contains:
+                        start:
+                            description: The first IPv4 address of the range.
+                            returned: always
+                            type: str
+                        include:
+                            description: Specifies whether to include or exclude this range of IPv4 addresses in the IP pool.
+                            returned: always
+                            type: str
+                        end:
+                            description: The last IPv4 address of the range.
+                            returned: always
+                            type: str
+                        enabled:
+                            description: Enables or disables the DHCP Server for this subnet IP pool.
+                            returned: always
+                            type: bool
+                netmask:
+                    description: Subnet mask.
+                    returned: always
+                    type: int
+                default_gateway:
+                    description: The IPv4 address of the default gateway for the DHCP clients.
+                    returned: always
+                    type: str
+                dns:
+                    description: DNS configuration.
+                    returned: always
+                    type: dict
+                    contains:
+                            domain_name:
+                                description: Domain name.
+                                returned: always
+                                type: str
+                            primary:
+                                description: The IPv4 address of the Primary DNS server for the DHCP clients.
+                                returned: always
+                                type: str
+                            secondary:
+                                description: The IPv4 address of the Secondary DNS server for the DHCP clients
+                                             (to use if the primary DNS server does not respond).
+                                returned: always
+                                type: str
+                            tertiary:
+                                description: The IPv4 address of the Tertiary DNS server for the DHCP clients
+                                             (to use if the primary and secondary DNS servers do not respond).
+                                returned: always
+                                type: str
 """
 
 

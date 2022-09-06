@@ -52,9 +52,39 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The role/s facts.
-  returned: always.
-  type: list
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        state:
+            description: Ansible state which can be C(present) or C(absent).
+            returned: always
+            type: str
+        name:
+            description: Role name.
+            returned: always
+            type: str
+        features:
+            description: Specifies which features will be assigned to the role.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                name:
+                    description: Feature name. Valid values are feature name as shown in cp_gaia_features_facts or C(all) to specify all features.
+                    returned: always
+                    type: str
+                permission:
+                    description: Feature permission. Valid values are C(read-write) C(read-only).
+                    returned: always
+                    type: str
+        extended_commands:
+            description:
+              - Specifies which extended commands will be assigned to the role.
+                Valid values are extended commands as shown in cp_gaia_extended_commands_facts API output.
+            returned: always
+            type: list
+            elements: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

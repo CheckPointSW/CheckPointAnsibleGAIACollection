@@ -41,9 +41,114 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The asset facts.
-  returned: always.
-  type: list
+    description: The asset facts.
+    returned: always.
+    type: dict
+    contains:
+        ac:
+            description:
+              - The AC asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        disk:
+            description:
+              - The disk asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        lom_info:
+            description:
+              - The lom asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        memory:
+            description:
+              - The memory asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        network:
+            description:
+              - The network asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        power_supply:
+            description:
+              - The power supply asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        sam:
+            description:
+              - The sam asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
+        system:
+            description:
+              - The system asset.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              key:
+                description: The asset element key.
+                type: str
+              value:
+                description: The asset element value.
+                type: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

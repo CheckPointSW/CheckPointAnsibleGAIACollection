@@ -42,9 +42,14 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The scheduled job mail facts.
-  returned: always.
-  type: list
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        email_address:
+            description: E-mail address to send reports to.
+            returned: always.
+            type: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

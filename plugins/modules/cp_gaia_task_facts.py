@@ -48,9 +48,64 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The task facts.
-  returned: always.
-  type: list
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        tasks:
+            description: Tasks.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                task_id:
+                    description: ID of the task being executed.
+                    returned: always
+                    type: str
+                last_update_time:
+                    description:
+                      - Last update timestamp from task's execution.
+                        A task can update its status during execution.
+                        Updates interval will change from one API to another.
+                    returned: always
+                    type: str
+                progress_description:
+                    description: Progress description will change between one API to another.
+                    returned: always
+                    type: str
+                progress_percentage:
+                    description: Note Percentage will be marked as 100 upon failure as well.
+                    returned: always
+                    type: int
+                start_time:
+                    description: Execution start time, in iso8601 format.
+                    returned: always
+                    type: str
+                status_code:
+                    description: HTTP return code.
+                    returned: always
+                    type: int
+                task_name:
+                    description: Request URL. For example '/run-script' for run-script tasks.
+                    returned: always
+                    type: str
+                status:
+                    description: Status.
+                    returned: always
+                    type: str
+                task_details:
+                    description: The type of object depends on the request. See 'run-script' output for example.
+                    returned: always
+                    type: list
+                    elements: dict
+                execution_time:
+                    description: Time in seconds.
+                    returned: always
+                    type: int
+                time_spent_in_queue:
+                    description: Time in seconds.
+                    returned: always
+                    type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule

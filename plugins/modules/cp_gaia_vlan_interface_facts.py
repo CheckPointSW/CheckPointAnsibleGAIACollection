@@ -50,9 +50,126 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The interface/s facts.
-  returned: always.
-  type: list
+    description: The interface/s facts.
+    returned: always.
+    type: dict
+    contains:
+        objects:
+            description:
+              - List of interfaces.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                name:
+                    description:
+                      - Interface name.
+                    returned: always
+                    type: str
+                ipv4_address:
+                    description: Interface IPv4 address.
+                    returned: always
+                    type: str
+                ipv4_mask_length:
+                    description: Interface IPv4 address mask length.
+                    returned: always
+                    type: int
+                ipv6_address:
+                    description: Interface IPv6 address.
+                    returned: always
+                    type: str
+                ipv6_autoconfig:
+                    description: Configure IPv6 auto-configuration.
+                    returned: always
+                    type: bool
+                ipv6_mask_length:
+                    description: Interface IPv6 address mask length.
+                    returned: always
+                    type: int
+                comments:
+                    description: Interface Comments.
+                    returned: always
+                    type: str
+                enabled:
+                    description: Interface State.
+                    returned: always
+                    type: bool
+                dhcp:
+                    description: DHCP configuration.
+                    returned: always
+                    type: dict
+                    contains:
+                        enabled:
+                            description: Enable DHCP on this interface.
+                            returned: always
+                            type: bool
+                        server_timeout:
+                            description: Specifies the amount of time, in seconds,
+                                         that must pass between the time that the interface begins to try to determine its address
+                                         and the time that it decides that it's not going to be able to contact a server.
+                            returned: always
+                            type: int
+                        retry:
+                            description: Specifies the time, in seconds,
+                                         that must pass after the interface has determined that there is no DHCP server present
+                                         before it tries again to contact a DHCP server.
+                            returned: always
+                            type: int
+                        leasetime:
+                            description:
+                              - Specifies the lease time, in seconds, when requesting for an IP address.
+                                Default value is "default" - according to the server.
+                            returned: always
+                            type: int
+                        reacquire_timeout:
+                            description:
+                              - When trying to reacquire the last ip address,
+                                The reacquire-timeout statement sets the time, in seconds,
+                                that must elapse after the first try to reacquire the old address before it gives up and
+                                tries to discover a new address.
+                            returned: always
+                            type: int
+                mtu:
+                    description: Interface mtu.
+                    returned: always
+                    type: int
+                ipv6_local_link_address:
+                    description: Interface ipv6 local link address.
+                    returned: always
+                    type: str
+                status:
+                    description: Interface data.
+                    returned: always
+                    type: dict
+                    contains:
+                        link_state:
+                            description: Link status.
+                            returned: always
+                            type: bool
+                        speed:
+                            description: Speed.
+                            returned: always
+                            type: str
+                        duplex:
+                            description: Duplex.
+                            returned: always
+                            type: str
+                        tx_bytes:
+                            description: TX bytes.
+                            returned: always
+                            type: int
+                        tx_packets:
+                            description: TX packets.
+                            returned: always
+                            type: int
+                        rx_bytes:
+                            description: RX bytes.
+                            returned: always
+                            type: int
+                        rx_packets:
+                            description: RX packets.
+                            returned: always
+                            type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule

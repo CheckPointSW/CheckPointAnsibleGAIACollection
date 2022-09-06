@@ -48,9 +48,26 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        send_to_mgmt:
+            description: Sending logs to Management server.
+            returned: always.
+            type: bool
+        cp_logs:
+            description: Syslog auditlog permanent.
+            returned: always.
+            type: bool
+        audit_log:
+            description: Syslog auditlog permanent.
+            returned: always.
+            type: bool
+        filename:
+            description: Syslog output filename.
+            returned: always.
+            type: str
 """
 
 

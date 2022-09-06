@@ -50,9 +50,75 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The user/s facts.
-  returned: always.
-  type: dict
+    description: The user/s facts.
+    returned: always.
+    type: dict
+    contains:
+        objects:
+            description:
+              - List of users.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                name:
+                    description:
+                      - User name.
+                    returned: always
+                    type: str
+                uid:
+                    description:
+                      - User UID.
+                    returned: always
+                    type: int
+                homedir:
+                    description:
+                      - User home directory.
+                    returned: always
+                    type: str
+                primary_system_group_id:
+                    description:
+                      - User primary system group id.
+                    returned: always
+                    type: int
+                secondary_system_groups:
+                    description:
+                      - User secondary system groups.
+                    returned: always
+                    type: list
+                    elements: str
+                real_name:
+                    description:
+                      - User real name.
+                    returned: always
+                    type: str
+                shell:
+                    description:
+                      - User shell.
+                    returned: always
+                    type: str
+                allow_access_using:
+                    description:
+                      - The access-mechanisms available for a user. Valid values CLI, Web-UI, Gaia-API (supported from R81.10). Default [CLI, Web-UI].
+                    returned: always
+                    type: list
+                    elements: str
+                must_change_password:
+                    description:
+                      - Must_change_password.
+                    returned: always
+                    type: bool
+                roles:
+                    description:
+                      - User roles.
+                    returned: always
+                    type: list
+                    elements: str
+                locked:
+                    description:
+                      - If the user has been locked out.
+                    returned: always
+                    type: bool
 """
 
 from ansible.module_utils.basic import AnsibleModule

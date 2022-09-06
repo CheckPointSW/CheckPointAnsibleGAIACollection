@@ -61,9 +61,27 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        total:
+            description: Total number of routes.
+            returned: always
+            type: int
+        from:
+            description: From which route the query was done.
+            returned: always
+            type: int
+        to:
+            description: To which route the query was done.
+            returned: always
+            type: int
+        objects:
+            description: List of all aggregate routes.
+            returned: always
+            type: list
+            elements: dict
 """
 
 

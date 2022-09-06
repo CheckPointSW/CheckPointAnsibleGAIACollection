@@ -41,9 +41,14 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        name:
+            description: Hostname.
+            returned: always
+            type: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

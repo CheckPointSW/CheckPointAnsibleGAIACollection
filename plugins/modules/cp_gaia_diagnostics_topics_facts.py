@@ -41,9 +41,15 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The diagnostics topics facts.
-  returned: always.
-  type: list
+    description: The diagnostics topics facts.
+    returned: always.
+    type: dict
+    contains:
+        os:
+            description: The topics which are valid for show-diagnostics.
+            returned: always
+            type: list
+            elements: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

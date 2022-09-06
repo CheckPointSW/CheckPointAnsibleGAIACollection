@@ -48,9 +48,26 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        suffix:
+            description: Use empty-string in order to remove the setting.
+            returned: always.
+            type: str
+        primary:
+            description: Use empty-string in order to remove the setting.
+            returned: always.
+            type: str
+        tertiary:
+            description: Use empty-string in order to remove the setting.
+            returned: always.
+            type: str
+        secondary:
+            description: Use empty-string in order to remove the setting.
+            returned: always.
+            type: str
 """
 
 

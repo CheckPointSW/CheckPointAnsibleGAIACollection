@@ -44,9 +44,97 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        lock_settings:
+            description: Password change configuration.
+            returned: always
+            type: dict
+            contains:
+                inactivity_settings:
+                    description: Inactivity configuration.
+                    returned: always
+                    type: dict
+                    contains:
+                        lock_unused_accounts_enabled:
+                            description: Password lock unused accounts.
+                            returned: always
+                            type: bool
+                        inactivity_threshold_days:
+                            description: Inactivity days to password expiration lockout, Valid values are 1-1827.
+                            returned: always
+                            type: int
+                failed_attempts_settings:
+                    description: Failed attempts configuration.
+                    returned: always
+                    type: dict
+                    contains:
+                        failed_lock_duration_seconds:
+                            description: Password failed logging lockout duration, Valid values are 60-604800.
+                            returned: always
+                            type: int
+                        failed_lock_enforced_on_admin:
+                            description: Enforce failed lockout on admin user.
+                            returned: always
+                            type: bool
+                        failed_lock_enabled:
+                            description: Lock user after exceeded maximum allowed login attempts.
+                            returned: always
+                            type: bool
+                        failed_attempts_allowed:
+                            description: Amount of login attempts allowed before lockout, Valid values are 2-1000.
+                            returned: always
+                            type: int
+                password_expiration_days:
+                    description: Password expiration lifetime, Valid values are 60-604800.
+                    returned: always
+                    type: int
+                password_expiration_warning_days:
+                    description: Number of days before a password expires that the user gets warned, Valid values are 1-366.
+                    returned: always
+                    type: int
+                password_expiration_maximum_days_before_lock:
+                    description: Password expiration lockout in days, Valid values are 1-1827.
+                    returned: always
+                    type: int
+                must_one_time_password_enabled:
+                    description: Forces a user to change their password after it has been set via "User Management"
+                                 (but not via "Self Password Change" or forced change at login).
+                                 Use this command to set the value.
+                    returned: always
+                    type: bool
+        password_history:
+            description: Password history configuration.
+            returned: always
+            type: dict
+            contains:
+                check_history_enabled:
+                    description: Password history check.
+                    returned: always
+                    type: bool
+                repeated_history_length:
+                    description: Password history length.
+                    returned: always
+                    type: int
+        password_strength:
+            description: Password history configuration.
+            returned: always
+            type: dict
+            contains:
+                minimum_length:
+                    description: Password minimum length, Valid values are 6-128.
+                    returned: always
+                    type: int
+                complexity:
+                    description: Password complexity, Valid values are 1-4.
+                    returned: always
+                    type: int
+                palindrome_check_enabled:
+                    description: Password palindrome check.
+                    returned: always
+                    type: bool
 """
 
 

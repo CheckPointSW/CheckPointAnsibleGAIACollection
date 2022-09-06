@@ -41,9 +41,30 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The version facts.
-  returned: always.
-  type: list
+    description: The version facts.
+    returned: always.
+    type: dict
+    contains:
+        product_version:
+            description:
+              - Gaia version.
+            returned: always
+            type: str
+        os_build:
+            description:
+              - Build number.
+            returned: always
+            type: str
+        os_kernel_version:
+            description:
+              - Gaia kernel version.
+            returned: always
+            type: str
+        os_edition:
+            description:
+              - Gaia edition.
+            returned: always
+            type: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

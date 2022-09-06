@@ -42,9 +42,40 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        super_user_uid:
+            description: The UID that will be given to a TACACS+ user.
+            returned: always
+            type: str
+        enabled:
+            description: TACACS-authentication on or off.
+            returned: always
+            type: bool
+        servers:
+            description: TACACS servers list.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                priority:
+                    description: Search priority (lower values comes first). Valid values are -999 - 999.
+                    returned: always
+                    type: int
+                secret:
+                    description: Secret string.
+                    returned: always
+                    type: str
+                timeout:
+                    description: Valid values are 1-50.
+                    returned: always
+                    type: int
+                address:
+                    description: Server address.
+                    returned: always
+                    type: str
 """
 
 
