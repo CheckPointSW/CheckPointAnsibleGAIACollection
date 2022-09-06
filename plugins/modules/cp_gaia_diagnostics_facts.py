@@ -54,9 +54,27 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The diagnostics facts.
-  returned: always.
-  type: list
+    description: The diagnostics facts.
+    returned: always.
+    type: dict
+    contains:
+        total:
+            description: How much to show.
+            returned: always
+            type: int
+        from:
+            description: Starting from.
+            returned: always
+            type: int
+        to:
+            description: Ending to.
+            returned: always
+            type: int
+        objects:
+            description: List for memory, disk, or CPU based on the "topic" parameter.
+            returned: always
+            type: list
+            elements: dict
 """
 
 from ansible.module_utils.basic import AnsibleModule

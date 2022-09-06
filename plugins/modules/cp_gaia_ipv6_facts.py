@@ -48,9 +48,18 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        enabled:
+            description: Ipv6 enabled (true/false).
+            returned: always
+            type: bool
+        reboot_required:
+            description: Notifying when reboot is required in order for the changes to take effect (Refer to 'run-reboot' API).
+            returned: always
+            type: bool
 """
 
 

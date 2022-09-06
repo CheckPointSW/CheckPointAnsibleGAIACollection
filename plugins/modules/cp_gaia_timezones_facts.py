@@ -48,9 +48,15 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        timezones:
+            description: List of timezones in Area / Region format.
+            returned: always
+            type: list
+            elements: str
 """
 
 

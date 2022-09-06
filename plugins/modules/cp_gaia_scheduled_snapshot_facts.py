@@ -44,9 +44,101 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        description:
+                description: Description of the scheduled snapshot.
+                returned: always
+                type: str
+        enabled:
+                description: State of the snapshot scheduler.
+                returned: always
+                type: bool
+        retention_policy:
+                description: Retention policy for the snapshot scheduler.
+                returned: always
+                type: dict
+                contains:
+                    keep_disk_space_above_in_GB:
+                        description: Minimum diskspace to keep on the local machine (GB).
+                        returned: always
+                        type: int
+                    min_snapshots_to_keep:
+                        description: Minimum snapshots to keep.
+                        returned: always
+                        type: int
+                    max_snapshots_to_keep:
+                        description: Maximum snapshots to keep.
+                        returned: always
+                        type: int
+        recurrence:
+                description: Recurrence of the scheduled snapshot.
+                returned: always
+                type: dict
+                contains:
+                    time:
+                        description: Recurrence time.
+                        returned: always
+                        type: dict
+                        contains:
+                            hour:
+                                description: Time hour.
+                                returned: always
+                                type: int
+                            minute:
+                                description: Time minute.
+                                returned: always
+                                type: int
+                    pattern:
+                        description: Recurrence pattern. choices=['daily', 'monthly', 'weekly'].
+                        returned: always
+                        type: str
+                    months:
+                        description: Recurrence months.
+                        returned: always
+                        type: list
+                        elements: int
+                    weekdays:
+                        description: Recurrence weekdays.
+                        returned: always
+                        type: list
+                        elements: str
+                    days:
+                        description: Recurrence days.
+                        returned: always
+                        type: list
+                        elements: int
+        name_prefix:
+              description: Prefix for the snapshots name created by the scheduler.
+              returned: always
+              type: str
+        host:
+              description: Target host for the snapshots creation.
+              returned: always
+              type: dict
+              contains:
+                    username:
+                        description: Username for scp/ftp targets.
+                        returned: always
+                        type: str
+                    upload_path:
+                        description: Upload path for scp/ftp targets.
+                        returned: always
+                        type: str
+                    password:
+                        description: Password for scp/ftp targets.
+                        returned: always
+                        type: str
+                    target:
+                        description: Host target type. choices=['lvm', 'ftp', 'scp'].
+                        returned: always
+                        type: str
+                    ip_address:
+                        description: IP_Address of the target.
+                        returned: always
+                        type: str
 """
 
 

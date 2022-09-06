@@ -41,9 +41,24 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The features facts.
-  returned: always.
-  type: list
+    description: The features facts.
+    returned: always.
+    type: dict
+    contains:
+        features:
+            description: Available features.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                name:
+                    description: feature name.
+                    returned: always
+                    type: str
+                description:
+                    description: feature description.
+                    returned: always
+                    type: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

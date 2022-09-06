@@ -41,9 +41,28 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The extended commands facts.
-  returned: always.
-  type: list
+    description: The extended commands facts.
+    returned: always.
+    type: dict
+    contains:
+        extended_commands:
+            description: Available extended commands.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                name:
+                    description: Extended command name.
+                    returned: always
+                    type: str
+                description:
+                    description: Extended command description.
+                    returned: always
+                    type: str
+                path:
+                    description: Extended command path.
+                    returned: always
+                    type: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

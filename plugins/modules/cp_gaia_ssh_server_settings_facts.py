@@ -49,9 +49,25 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The SSH server settings facts.
-  returned: always.
-  type: list
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        enabled_ciphers:
+            description: Enabled ssh ciphers.
+            returned: always.
+            type: list
+            elements: str
+        enabled_mac_algorithms:
+            description: Enabled ssh mac algorithms.
+            returned: always.
+            type: list
+            elements: str
+        enabled_kex_algorithms:
+            description: Enabled ssh kex algorithms.
+            returned: always.
+            type: list
+            elements: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

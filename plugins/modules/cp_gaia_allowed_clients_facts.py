@@ -44,9 +44,34 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        allowed_any_host:
+            description:
+              - Allowed any host to access the server.
+            returned: always
+            type: bool
+        allowed_hosts:
+            description:
+              - Lists of allowed hosts.
+            returned: always
+            type: list
+            elements: str
+        allowed_networks:
+            description:
+              - List of allowed networks.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+              subnet:
+                description: The network subnet.
+                type: str
+              mask_length:
+                description: The network mask length.
+                type: int
 """
 
 

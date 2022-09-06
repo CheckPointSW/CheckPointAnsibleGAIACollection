@@ -52,9 +52,79 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The scheduled job/s facts.
-  returned: always.
-  type: list
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        jobs:
+            description: All jobs.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                name:
+                    description: Scheduled job name.
+                    returned: always
+                    type: str
+                command:
+                    description: Command (expert CLI style).
+                    returned: always
+                    type: str
+                recurrence:
+                    description: Recurrence.
+                    returned: always
+                    type: dict
+                    contains:
+                        type:
+                            description: Job recurrence type.
+                            returned: always
+                            type: str
+                        interval:
+                            description: Time interval in minutes. Relevant for "interval" recurrence type.
+                            returned: always
+                            type: int
+                        time_of_day:
+                            description: Time of day in 24 hour format. Relevant for "daily", "weekly" and "monthly" recurrence types.
+                            returned: always
+                            type: dict
+                            contains:
+                                hour:
+                                    description: Time hour.
+                                    returned: always
+                                    type: int
+                                minute:
+                                    description: Time minute.
+                                    returned: always
+                                    type: int
+                        hourly:
+                            description: Hours of day in 24 hour format. Can choose multiple hours. Relevant for "hourly" recurrence type.
+                            returned: always
+                            type: dict
+                            contains:
+                                hours_of_day:
+                                    description: Hours of day in 24 hour format.
+                                    returned: always
+                                    type: list
+                                    elements: int
+                                minute:
+                                    description: Time minute.
+                                    returned: always
+                                    type: int
+                        weekdays:
+                            description: Days of the week. Relevant for "weekly" recurrence type.
+                            returned: always
+                            type: list
+                            elements: str
+                        days:
+                            description: Days of the month. Relevant for "monthly" recurrence type.
+                            returned: always
+                            type: list
+                            elements: int
+                        months:
+                            description: Month numbers. Relevant for "monthly" recurrence type.
+                            returned: always
+                            type: list
+                            elements: int
 """
 
 from ansible.module_utils.basic import AnsibleModule

@@ -41,9 +41,21 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The api versions facts.
-  returned: always.
-  type: list
+    description: The api versions facts.
+    returned: always.
+    type: dict
+    contains:
+        current_version:
+            description:
+              - Represents the latest supported version by the installed REST engine.
+            returned: always
+            type: str
+        supported_versions:
+            description:
+              - Represents all the previous versions supported by the installed REST engine.
+            returned: always
+            type: list
+            elements: str
 """
 
 from ansible.module_utils.basic import AnsibleModule

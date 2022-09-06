@@ -42,9 +42,18 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        address:
+            description: Ipv4-address or Ipv6-address.
+            returned: always
+            type: str
+        port:
+            description: Proxy port.
+            returned: always
+            type: int
 """
 
 

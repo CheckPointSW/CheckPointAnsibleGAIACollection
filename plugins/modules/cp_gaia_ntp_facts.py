@@ -48,9 +48,36 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        enabled:
+            description: active status.
+            returned: always
+            type: bool
+        servers:
+            description: Servers list.
+            returned: always
+            type: list
+            elements: dict
+            contains:
+                address:
+                    description: Ipv4-address or Ipv6-address.
+                    returned: always
+                    type: str
+                version:
+                    description: NTP version.
+                    returned: always
+                    type: int
+                type:
+                    description: NTP type.
+                    returned: always
+                    type: str
+                status:
+                    description: NTP status.
+                    returned: always
+                    type: str
 """
 
 

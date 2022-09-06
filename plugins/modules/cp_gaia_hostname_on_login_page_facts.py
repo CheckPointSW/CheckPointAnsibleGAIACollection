@@ -42,9 +42,14 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-  description: The checkpoint object facts.
-  returned: always.
-  type: dict
+    description: The checkpoint object facts.
+    returned: always.
+    type: dict
+    contains:
+        enabled:
+            description: Hostname on Gaia Portal login page enabled (true/false).
+            returned: always
+            type: bool
 """
 
 from ansible.module_utils.basic import AnsibleModule
