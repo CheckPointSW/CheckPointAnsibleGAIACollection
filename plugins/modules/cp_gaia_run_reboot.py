@@ -28,6 +28,10 @@ description:
 - Reboot Check Point machine operation.
 module: cp_gaia_run_reboot
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   wait_for_task:
     description: Wait for task or return immediately.
     required: False
@@ -54,20 +58,21 @@ run_reboot:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation, checkpoint_argument_spec_for_async
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_all
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_async
 
 
 def main():
     # arguments for the module:
     fields = dict()
     fields.update(checkpoint_argument_spec_for_async)
-
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'run-reboot'
-    gaia_api_version = 'v1.6/'
 
     # Run the command:
-    res = chkp_api_operation(module, gaia_api_version, api_call_object)
+    res = chkp_api_operation(module, api_call_object)
 
     module.exit_json(**res)
 

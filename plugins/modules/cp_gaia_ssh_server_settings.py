@@ -33,6 +33,10 @@ notes:
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   enabled_ciphers:
     description: Enabled ssh ciphers.
     required: False
@@ -75,7 +79,7 @@ ssh_server_settings:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -85,12 +89,11 @@ def main():
         enabled_mac_algorithms=dict(type='list', elements='str'),
         enabled_kex_algorithms=dict(type='list', elements='str')
     )
-
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'ssh-server-settings'
-    gaia_api_version = 'v1.7/'
 
-    res = chkp_api_call(module, gaia_api_version, api_call_object, False)
+    res = chkp_api_call(module, api_call_object, False)
     module.exit_json(**res)
 
 

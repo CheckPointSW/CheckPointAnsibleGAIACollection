@@ -27,6 +27,10 @@ description:
 - Setting the hostname on login page message.
 module: cp_gaia_hostname_on_login_page
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   enabled:
     description: Hostname on WebUI login page enabled.
     required: false
@@ -54,7 +58,7 @@ hostname_on_login_page:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -62,11 +66,11 @@ def main():
     fields = dict(
         enabled=dict(type='bool', required=False, default=False)
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'hostname-on-login-page'
-    gaia_api_version = 'v1.6/'
 
-    res = chkp_api_call(module, gaia_api_version, api_call_object, False)
+    res = chkp_api_call(module, api_call_object, False)
     module.exit_json(**res)
 
 

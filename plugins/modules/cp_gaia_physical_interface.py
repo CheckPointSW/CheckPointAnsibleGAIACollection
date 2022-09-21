@@ -31,6 +31,10 @@ version_added: '1.0.0'
 notes:
 - Supports C(check_mode).
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   auto_negotiation:
     description: Activating Auto-Negotiation will skip the speed and duplex configuration.
     required: false
@@ -115,7 +119,7 @@ physical_interface:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -138,13 +142,13 @@ def main():
         speed=dict(required=False, type="str"),
         ipv6_mask_length=dict(required=False, type="int")
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'physical-interface'
-    gaia_api_version = 'v1.6/'
     ignore = ["status"]
     show_params = ["name"]
 
-    res = chkp_api_call(module, gaia_api_version, api_call_object, False, ignore=ignore, show_params=show_params)
+    res = chkp_api_call(module, api_call_object, False, ignore=ignore, show_params=show_params)
     module.exit_json(**res)
 
 

@@ -27,6 +27,11 @@ author: Ameer Asli (@chkp-ameera)
 description:
 - Shows DHCP server information.
 module: cp_gaia_dhcp_server_facts
+options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
 short_description: Shows DHCP server information.
 version_added: '3.0.0'
 notes:
@@ -129,18 +134,18 @@ ansible_facts:
 
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
     # arguments for the module:
     fields = dict()
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
     api_call_object = 'dhcp-server'
-    gaia_api_version = 'v1.6/'
 
-    res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
+    res = chkp_facts_api_call(module, api_call_object, False)
     module.exit_json(ansible_facts=res["ansible_facts"])
 
 
