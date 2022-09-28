@@ -27,6 +27,10 @@ description:
 - Setting the hostname of a machine.
 module: cp_gaia_hostname
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   name:
     description: New hostname to change. Hostname can be a combination of letters and numbers, it cannot
       be in IP format or start/end with characters such as ''.'' And ''-''.
@@ -54,7 +58,7 @@ hostname:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -62,11 +66,11 @@ def main():
     fields = dict(
         name=dict(type='str', required=True)
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'hostname'
-    gaia_api_version = 'v1.6/'
 
-    res = chkp_api_call(module, gaia_api_version, api_call_object, False)
+    res = chkp_api_call(module, api_call_object, False)
     module.exit_json(**res)
 
 

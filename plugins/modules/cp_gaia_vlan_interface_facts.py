@@ -31,6 +31,10 @@ version_added: '3.0.0'
 notes:
 - Supports C(check_mode).
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   name:
     description: Interface name to show. If not specified, all vlan interfaces information is returned.
     required: false
@@ -173,7 +177,7 @@ ansible_facts:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -181,11 +185,11 @@ def main():
     fields = dict(
         name=dict(required=False, type='str')
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = "vlan-interface"
-    gaia_api_version = 'v1.6/'
 
-    res = chkp_facts_api_call(module, gaia_api_version, api_call_object, True)
+    res = chkp_facts_api_call(module, api_call_object, True)
     module.exit_json(ansible_facts=res["ansible_facts"])
 
 

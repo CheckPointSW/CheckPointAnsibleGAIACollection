@@ -34,7 +34,10 @@ notes:
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
-
+    version:
+      description: Gaia API version for example 1.6.
+      required: False
+      type: str
     server_ip:
         description: No Documentation available.
         required: True
@@ -79,7 +82,7 @@ remote_syslog:
 
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -91,6 +94,7 @@ def main():
         port=dict(type="str"),
         level=dict(type="str")
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(
         argument_spec=fields,
         required_if=[
@@ -99,10 +103,9 @@ def main():
         supports_check_mode=True
     )
     api_call_object = 'remote-syslog'
-    gaia_api_version = 'v1.6/'
     show_params = ["server_ip"]
 
-    res = chkp_api_call(module, gaia_api_version, api_call_object, True, show_params=show_params)
+    res = chkp_api_call(module, api_call_object, True, show_params=show_params)
     module.exit_json(**res)
 
 

@@ -33,6 +33,10 @@ options:
     required: False
     default: True
     type: bool
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   password:
     description: Password of user admin. Required in case default initial password has not been changed before.
     required: False
@@ -142,7 +146,9 @@ initial_setup:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation, checkpoint_argument_spec_for_async
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_all
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_async
 
 
 def main():
@@ -188,13 +194,13 @@ def main():
         )
     )
     fields.update(checkpoint_argument_spec_for_async)
+    fields.update(checkpoint_argument_spec_for_all)
 
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'set-initial-setup'
-    gaia_api_version = 'v1.6/'
 
     # Run the command:
-    res = chkp_api_operation(module, gaia_api_version, api_call_object)
+    res = chkp_api_operation(module, api_call_object)
 
     module.exit_json(**res)
 

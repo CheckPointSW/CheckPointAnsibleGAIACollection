@@ -4,6 +4,23 @@ Check_Point.gaia Release Notes
 
 .. contents:: Topics
 
+v4.1.0
+======
+
+Release Summary
+---------------
+
+this release 4.1.0 of ``check_point.gaia``, released on 2022-09-21.
+
+Minor Changes
+---------------
+
+add the ability to send gaia_api version within the request.
+
+Bugfixes
+---------------
+
+add idempotincy check before each present request. do not send the request if it the same configuration in the machine.
 
 v4.0.0
 ======

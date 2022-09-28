@@ -28,6 +28,10 @@ description:
 - Add a new file to a Check Point machine.
 module: cp_gaia_put_file
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   file_name:
     description: Filename include the desired path. The file will be created in the user home directory if the full path wasn't provided.
     required: true
@@ -69,7 +73,7 @@ put_file:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -79,12 +83,12 @@ def main():
         text_content=dict(type='str', required=True),
         override=dict(type='bool', default=False),
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'put-file'
-    gaia_api_version = 'v1.6/'
 
     # Run the command:
-    res = chkp_api_operation(module, gaia_api_version, api_call_object)
+    res = chkp_api_operation(module, api_call_object)
 
     module.exit_json(**res)
 

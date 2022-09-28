@@ -33,6 +33,10 @@ notes:
 requirements:
 - supported starting from gaia_api >= 1.7
 options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
   state:
     description: Ansible state which can be C(present) or C(absent).
     required: False
@@ -87,7 +91,7 @@ role:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -105,12 +109,12 @@ def main():
         extended_commands=dict(type='list', elements='str')
     )
 
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'role'
-    gaia_api_version = 'v1.7/'
     show_params = ['name']
 
-    res = chkp_api_call(module, gaia_api_version, api_call_object, True, show_params=show_params)
+    res = chkp_api_call(module, api_call_object, True, show_params=show_params)
     module.exit_json(**res)
 
 

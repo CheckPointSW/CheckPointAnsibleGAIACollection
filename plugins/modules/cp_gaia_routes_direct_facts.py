@@ -34,6 +34,10 @@ notes:
 requirements:
 - supported starting from gaia_api >= 1.6
 options:
+    version:
+      description: Gaia API version for example 1.6.
+      required: False
+      type: str
     limit:
         description: The maximum number of returned results.
         required: False
@@ -86,7 +90,7 @@ ansible_facts:
 
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
 
 def main():
@@ -96,12 +100,12 @@ def main():
         offset=dict(type="int", required=False, default=0),
         order=dict(type="str", required=False, choices=['ASC', 'DESC'], default="ASC"),
     )
+    fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
     api_call_object = 'routes-direct'
-    gaia_api_version = 'v1.6/'
 
-    res = chkp_facts_api_call(module, gaia_api_version, api_call_object, False)
+    res = chkp_facts_api_call(module, api_call_object, False)
     module.exit_json(ansible_facts=res["ansible_facts"])
 
 

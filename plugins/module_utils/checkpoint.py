@@ -39,10 +39,37 @@ checkpoint_argument_spec_for_async = dict(
     wait_for_task=dict(type='bool', default=True)
 )
 
+checkpoint_argument_spec_for_all = dict(
+    version=dict(type='str')
+)
+
 
 # parse failure message with code and response
 def parse_fail_message(code, response):
     return 'Checkpoint device returned error {0} with message {1}'.format(code, response)
+
+
+def idempotency_check(old_val, new_val):
+    if isinstance(new_val, dict):
+        for key in new_val:
+            if key in old_val:
+                if idempotency_check(old_val[key], new_val[key]) is False:
+                    return False
+    elif isinstance(new_val, list):
+        if len(new_val) != len(old_val):
+            return False
+        for item in new_val:
+            if item not in old_val:
+                return False
+    else:
+        if new_val != old_val:
+            return False
+    return True
+
+
+# if user insert a specific version, we add it to the url
+def get_version(module):
+    return ('v' + module.params['version'] + '/') if module.params.get('version') else ''
 
 
 # send the request to checkpoint
@@ -54,7 +81,8 @@ def send_request(connection, version, url, payload=None):
 # get the payload from the user parameters
 def is_checkpoint_param(parameter):
     if parameter == 'state' or \
-            parameter == 'wait_for_task':
+            parameter == 'wait_for_task' or \
+            parameter == 'version':
         return False
     return True
 
@@ -138,7 +166,8 @@ def api_call(module, target_version, api_call_object):
     return code, response
 
 
-def chkp_facts_api_call(module, target_version, api_call_object, is_multible):
+def chkp_facts_api_call(module, api_call_object, is_multible):
+    target_version = get_version(module)
     if is_multible is True:
         show_single = False
         module_key_params = dict((k, v) for k, v in module.params.items() if v is not None)
@@ -164,7 +193,8 @@ def chkp_facts_api_call(module, target_version, api_call_object, is_multible):
     }
 
 
-def chkp_api_call(module, target_version, api_call_object, has_add_api, ignore=None, show_params=None, add_params=None):
+def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params=None, add_params=None):
+    target_version = get_version(module)
     changed = False
     if show_params is None:
         show_params = []
@@ -190,6 +220,16 @@ def chkp_api_call(module, target_version, api_call_object, has_add_api, ignore=N
                 "changed": False
             }
     else:  # handle set/add
+        params_dict = module.params.copy()
+        for key, value in module.params.items():
+            if not is_checkpoint_param(key):
+                del params_dict[key]
+
+        if idempotency_check(res, params_dict) is True:
+            return {
+                api_call_object.replace('-', '_'): res,
+                "changed": False
+            }
         code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
         if code != 200 and has_add_api is True:
             if add_params:
@@ -212,7 +252,8 @@ def chkp_api_call(module, target_version, api_call_object, has_add_api, ignore=N
 
 
 # for operation and async tasks
-def chkp_api_operation(module, target_version, api_call_object):
+def chkp_api_operation(module, api_call_object):
+    target_version = get_version(module)
     code, response = api_call(module, target_version, api_call_object)
     result = {'changed': True}
     if code == 200:
