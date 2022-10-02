@@ -48,7 +48,7 @@ dependencies: {}
 repository: https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection
 
 # The URL to any online docs
-documentation: https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection/tree/master/docs/build/html/index.html
+documentation: https://chkp-ameera.github.io/CheckPointAnsibleGAIACollection/index.html
 
 # The URL to the homepage of the collection/project
 homepage: https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection
