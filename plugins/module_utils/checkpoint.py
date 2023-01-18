@@ -33,7 +33,12 @@ __metaclass__ = type
 import time
 
 from ansible.module_utils.connection import Connection
+from enum import Enum
 
+# class syntax
+class RequestType(Enum):
+    BEFORE_REQUEST = 1
+    AFTER_REQUEST = 2
 
 checkpoint_argument_spec_for_async = dict(
     wait_for_task=dict(type='bool', default=True)
@@ -69,7 +74,10 @@ def idempotency_check(old_val, new_val):
 
 # if user insert a specific version, we add it to the url
 def get_version(module):
-    return ('v' + module.params['version'] + '/') if module.params.get('version') else ''
+    res = ('v' + module.params['version'] + '/') if module.params.get('version') else ''
+    del module.params['version']
+    return res
+
 
 
 # send the request to checkpoint
@@ -81,28 +89,38 @@ def send_request(connection, version, url, payload=None):
 # get the payload from the user parameters
 def is_checkpoint_param(parameter):
     if parameter == 'state' or \
-            parameter == 'wait_for_task' or \
-            parameter == 'version':
+            parameter == 'wait_for_task':
         return False
     return True
 
 
 # build the payload from the parameters which has value (not None), and they are parameter of checkpoint API as well
-def replace_chkp_params(params, old, new):
+def replace_chkp_params(params, request_type):
     payload = {}
-    # we used a dedicated 'msg' parametr because we can not use 'message' parameter
-    # as 'message' is used internally in Ansible Core engine
-    if "msg" in params:
-        params["message"] = params.pop("msg")
+    old = ""
+    new = ""
+    if request_type == RequestType.BEFORE_REQUEST:
+        old = "_"
+        new = "-"
+        # we used a dedicated 'msg' parametr because we can not use 'message' parameter
+        # as 'message' is used internally in Ansible Core engine
+        if "msg" in params:
+            params["message"] = params.pop("msg")
+    elif request_type == RequestType.AFTER_REQUEST:
+        old = "-"
+        new = "_"
+        if "message" in params:
+            params["msg"] = params.pop("message")
+
     for parameter in params:
         parameter_value = params[parameter]
         if parameter_value is not None and is_checkpoint_param(parameter):
             if isinstance(parameter_value, dict):
-                payload[parameter.replace(old, new)] = replace_chkp_params(parameter_value, old, new)
+                payload[parameter.replace(old, new)] = replace_chkp_params(parameter_value, request_type)
             elif isinstance(parameter_value, list) and len(parameter_value) != 0 and isinstance(parameter_value[0], dict):
                 payload_list = []
                 for element_dict in parameter_value:
-                    payload_list.append(replace_chkp_params(element_dict, old, new))
+                    payload_list.append(replace_chkp_params(element_dict, request_type))
                 payload[parameter.replace(old, new)] = payload_list
             else:
                 payload[parameter.replace(old, new)] = parameter_value
@@ -158,11 +176,11 @@ def wait_for_task(module, version, task_id):
 
 # handle api call
 def api_call(module, target_version, api_call_object):
-    payload = replace_chkp_params(module.params, "_", "-")
+    payload = replace_chkp_params(module.params, RequestType.BEFORE_REQUEST)
     connection = Connection(module._socket_path)
     code, response = send_request(connection, target_version, api_call_object, payload)
 
-    response = replace_chkp_params(response, "-", "_")
+    response = replace_chkp_params(response, RequestType.AFTER_REQUEST)
     return code, response
 
 
@@ -225,17 +243,21 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
             if not is_checkpoint_param(key):
                 del params_dict[key]
 
-        if idempotency_check(res, params_dict) is True:
-            return {
-                api_call_object.replace('-', '_'): res,
-                "changed": False
-            }
-        code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
-        if code != 200 and has_add_api is True:
-            if add_params:
-                [module.params.pop(key) for key in show_params if key not in add_params]
-                module.params.update(add_params)
-            code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
+        if code == 200:
+            if idempotency_check(res, params_dict) is True:
+                return {
+                    api_call_object.replace('-', '_'): res,
+                    "changed": False
+                }
+            code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
+        else:
+            if has_add_api is True:
+                if add_params:
+                    [module.params.pop(key) for key in show_params if key not in add_params]
+                    module.params.update(add_params)
+                code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
+            else: # some requests like static-route don't have add, try set instead
+                code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
 
     if code != 200:
         module.fail_json(msg=parse_fail_message(code, res))

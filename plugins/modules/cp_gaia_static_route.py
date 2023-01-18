@@ -154,7 +154,7 @@ def main():
     api_call_object = 'static-route'
     show_params = ["address", "mask_length"]
 
-    res = chkp_api_call(module, api_call_object, True, show_params=show_params)
+    res = chkp_api_call(module, api_call_object, False, show_params=show_params)
     module.exit_json(**res)
 
 
