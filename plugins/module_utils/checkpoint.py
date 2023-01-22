@@ -33,12 +33,9 @@ __metaclass__ = type
 import time
 
 from ansible.module_utils.connection import Connection
-from enum import Enum
 
-# class syntax
-class RequestType(Enum):
-    BEFORE_REQUEST = 1
-    AFTER_REQUEST = 2
+BEFORE_REQUEST = 1
+AFTER_REQUEST = 2
 
 checkpoint_argument_spec_for_async = dict(
     wait_for_task=dict(type='bool', default=True)
@@ -79,7 +76,6 @@ def get_version(module):
     return res
 
 
-
 # send the request to checkpoint
 def send_request(connection, version, url, payload=None):
     code, response = connection.send_request('/gaia_api/' + version + url, payload)
@@ -99,14 +95,14 @@ def replace_chkp_params(params, request_type):
     payload = {}
     old = ""
     new = ""
-    if request_type == RequestType.BEFORE_REQUEST:
+    if request_type == BEFORE_REQUEST:
         old = "_"
         new = "-"
         # we used a dedicated 'msg' parametr because we can not use 'message' parameter
         # as 'message' is used internally in Ansible Core engine
         if "msg" in params:
             params["message"] = params.pop("msg")
-    elif request_type == RequestType.AFTER_REQUEST:
+    elif request_type == AFTER_REQUEST:
         old = "-"
         new = "_"
         if "message" in params:
@@ -176,11 +172,11 @@ def wait_for_task(module, version, task_id):
 
 # handle api call
 def api_call(module, target_version, api_call_object):
-    payload = replace_chkp_params(module.params, RequestType.BEFORE_REQUEST)
+    payload = replace_chkp_params(module.params, BEFORE_REQUEST)
     connection = Connection(module._socket_path)
     code, response = send_request(connection, target_version, api_call_object, payload)
 
-    response = replace_chkp_params(response, RequestType.AFTER_REQUEST)
+    response = replace_chkp_params(response, AFTER_REQUEST)
     return code, response
 
 
@@ -256,7 +252,7 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
                     [module.params.pop(key) for key in show_params if key not in add_params]
                     module.params.update(add_params)
                 code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
-            else: # some requests like static-route don't have add, try set instead
+            else:  # some requests like static-route don't have add, try set instead
                 code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
 
     if code != 200:
