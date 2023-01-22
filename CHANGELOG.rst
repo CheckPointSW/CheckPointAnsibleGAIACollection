@@ -4,6 +4,15 @@ Check_Point.gaia Release Notes
 
 .. contents:: Topics
 
+v4.1.1
+======
+
+Bugfixes
+---------------
+
+- improve infrastructure for idempotency check.
+- fix some modules which didn't work as expected (Scheduled Job, Role, Proxy, physical interface, users, ntp, banner message, static route)
+
 v4.1.0
 ======
 
