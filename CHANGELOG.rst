@@ -4,6 +4,22 @@ Check_Point.gaia Release Notes
 
 .. contents:: Topics
 
+v5.0.0
+======
+
+Release Summary
+---------------
+
+This is release 5.0.0 of ``check_point.gaia``, released on 2023-10-01.
+
+New Modules
+-----------
+
+- check_point.gaia.cp_gaia_expert_password – manage expert password of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_expert_password_facts – get expert hash password of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_time_and_date – manage time and date and timezone of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_time_and_date_facts – get time and date and timezone of a Check Point machine over Web Services API.
+
 v4.1.1
 ======
 

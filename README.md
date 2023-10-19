@@ -117,7 +117,10 @@ Modules
 * `cp_gaia_task_facts` –  show task in a Check Point machine over Web Services API.
 * `cp_gaia_timezones_facts` –  show time zones in a Check Point machine over Web Services API.
 * `cp_gaia_version_facts` –  show gaia version in a Check Point machine over Web Services API.
-
+* `cp_gaia_expert_password` – manage expert password of a Check Point machine over Web Services API.
+* `cp_gaia_expert_password_facts` – get expert hash password of a Check Point machine over Web Services API.
+* `cp_gaia_time_and_date` – manage time and date and timezone of a Check Point machine over Web Services API.
+* `cp_gaia_time_and_date_facts` – get time and date and timezone of a Check Point machine over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's
