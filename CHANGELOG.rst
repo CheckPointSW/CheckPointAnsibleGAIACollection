@@ -4,6 +4,20 @@ Check_Point.gaia Release Notes
 
 .. contents:: Topics
 
+v5.0.1
+======
+
+Release Summary
+---------------
+
+this release 5.0.1 of ``check_point.gaia``, released on 2023-10-26.
+
+Minor Changes
+---------------
+
+update ansible min supported version to 2.14.0 as the old one is EoL.
+
+
 v5.0.0
 ======
 
