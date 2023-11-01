@@ -127,6 +127,10 @@ Modules
 * `cp_gaia_virtual_gateway` – manages virtual-gateway objects on Check Point machine over Web Services API.
 * `cp_gaia_virtual_gateway_facts` – get virtual-gateway objects facts on Check Point machine over Web Services API.
 * `cp_gaia_virtual_vsnext_state_facts` – get the VSNext state on Check Point machine over Web Services API.
+* `cp_gaia_dynamic_content` – install policy on a dynamic layer Check Point machine over Web Services API.
+* `cp_gaia_dynamic_content_layer_facts` – get the details of the installed policy on a given dynamic layer on a Check Point machine over Web Services API.
+* `cp_gaia_dynamic_content_layers_facts` – get the details of all dynamic layers on a Check Point machine over Web Services API.
+* `cp_gaia_simulate_packet` – simulate packet rulebase execution on a Check Point machine over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's
