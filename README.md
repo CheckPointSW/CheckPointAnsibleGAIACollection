@@ -121,6 +121,10 @@ Modules
 * `cp_gaia_expert_password_facts` – get expert hash password of a Check Point machine over Web Services API.
 * `cp_gaia_time_and_date` – manage time and date and timezone of a Check Point machine over Web Services API.
 * `cp_gaia_time_and_date_facts` – get time and date and timezone of a Check Point machine over Web Services API.
+* `cp_gaia_dynamic_content` – install policy on a dynamic layer Check Point machine over Web Services API.
+* `cp_gaia_dynamic_content_layer_facts` – get the details of the installed policy on a given dynamic layer on a Check Point machine over Web Services API.
+* `cp_gaia_dynamic_content_layers_facts` – get the details of all dynamic layers on a Check Point machine over Web Services API.
+* `cp_gaia_simulate_packet` – simulate packet rulebase execution on a Check Point machine over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's

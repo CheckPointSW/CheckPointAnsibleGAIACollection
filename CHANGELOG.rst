@@ -4,6 +4,23 @@ Check_Point.gaia Release Notes
 
 .. contents:: Topics
 
+v5.1.0
+======
+
+Release Summary
+---------------
+
+this release 5.1.0 of ``check_point.gaia``, released on 2023-11-1.
+
+New Modules
+-----------
+
+- check_point.gaia.cp_gaia_dynamic_content – install policy on a dynamic layer Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_dynamic_content_layer_facts – get the details of the installed policy on a given dynamic layer on a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_dynamic_content_layers_facts – get the details of all dynamic layers on a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_simulate_packet – simulate packet rulebase execution on a Check Point machine over Web Services API.
+
+
 v5.0.1
 ======
 
