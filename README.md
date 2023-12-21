@@ -121,6 +121,15 @@ Modules
 * `cp_gaia_expert_password_facts` – get expert hash password of a Check Point machine over Web Services API.
 * `cp_gaia_time_and_date` – manage time and date and timezone of a Check Point machine over Web Services API.
 * `cp_gaia_time_and_date_facts` – get time and date and timezone of a Check Point machine over Web Services API.
+* `cp_gaia_maestro_changes` – apply or discard pending Maestro changes over Web Services API.
+* `cp_gaia_maestro_gateways` – manage Maestro Gateways over Web Services API.
+* `cp_gaia_maestro_gateways_facts` – get information about Maestro Gateways over Web Services API.
+* `cp_gaia_maestro_ports` – configure Maestro Orchestrator ports over Web Services API.
+* `cp_gaia_maestro_ports_facts` - get information about Maestro Orchestrator ports over Web Services API.
+* `cp_gaia_maestro_security_groups` - manage Maestro Security Groups over Web Services API.
+* `cp_gaia_maestro_security_groups_facts` - get information about Maestro Security Groups over Web Services API.
+* `cp_gaia_maestro_sites` - add description to Maestro Sites over Web Services API.
+* `cp_gaia_maestro_sites_facts` - get information about Maestro Sites over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's

@@ -31,7 +31,6 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 import time
-
 from ansible.module_utils.connection import Connection
 
 BEFORE_REQUEST = 1
@@ -188,6 +187,9 @@ def chkp_facts_api_call(module, api_call_object, is_multible):
         if "static-route" == api_call_object:
             if "address" in module_key_params and "mask_length" in module_key_params:
                 show_single = True
+        elif "maestro" in api_call_object:
+            if "id" in module_key_params or "interface_name" in module_key_params or "site_id" in module_key_params:
+                show_single = True
         else:
             if len(module_key_params) > 0:
                 show_single = True
@@ -207,7 +209,7 @@ def chkp_facts_api_call(module, api_call_object, is_multible):
     }
 
 
-def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params=None, add_params=None):
+def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params=None, add_params=None, is_maestro_special=False):
     target_version = get_version(module)
     changed = False
     if show_params is None:
@@ -217,43 +219,53 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
     modules_params_original = module.params
     module_params_show = dict((k, v) for k, v in module.params.items() if k in show_params and v is not None)
     module.params = module_params_show
-    code, res = api_call(module, target_version, api_call_object="show-{0}".format(api_call_object))
-    before = res.copy()
-    [before.pop(key, None) for key in ignore]
+    if not is_maestro_special:
+        code, res = api_call(module, target_version, api_call_object="show-{0}".format(api_call_object))
+        before = res.copy()
+        [before.pop(key, None) for key in ignore]
+    else:
+        code, res = api_call(module, target_version, api_call_object="show-maestro-security-groups")
+        before = res.copy()
 
     # Run the command:
     module.params = modules_params_original
     if 'state' in module.params and module.params['state'] == 'absent':  # handle delete
-        if code == 200:
-            # delete/show require same params
-            module.params = module_params_show
-            code, res = api_call(module, target_version, api_call_object="delete-{0}".format(api_call_object))
+        if is_maestro_special:
+            code, res = api_call(module, target_version, api_call_object="discard-{0}".format(api_call_object))
         else:
-            return {
-                api_call_object.replace('-', '_'): {},
-                "changed": False
-            }
-    else:  # handle set/add
-        params_dict = module.params.copy()
-        for key, value in module.params.items():
-            if not is_checkpoint_param(key):
-                del params_dict[key]
-
-        if code == 200:
-            if idempotency_check(res, params_dict) is True:
+            if code == 200:
+                # delete/show require same params
+                module.params = module_params_show
+                code, res = api_call(module, target_version, api_call_object="delete-{0}".format(api_call_object))
+            else:
                 return {
-                    api_call_object.replace('-', '_'): res,
+                    api_call_object.replace('-', '_'): {},
                     "changed": False
                 }
-            code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
+    else:  # handle set/add
+        if is_maestro_special:
+            code, res = api_call(module, target_version, api_call_object="apply-{0}".format(api_call_object))
         else:
-            if has_add_api is True:
-                if add_params:
-                    [module.params.pop(key) for key in show_params if key not in add_params]
-                    module.params.update(add_params)
-                code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
-            else:  # some requests like static-route don't have add, try set instead
+            params_dict = module.params.copy()
+            for key, value in module.params.items():
+                if not is_checkpoint_param(key):
+                    del params_dict[key]
+
+            if code == 200:
+                if idempotency_check(res, params_dict) is True:
+                    return {
+                        api_call_object.replace('-', '_'): res,
+                        "changed": False
+                    }
                 code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
+            else:
+                if has_add_api is True:
+                    if add_params:
+                        [module.params.pop(key) for key in show_params if key not in add_params]
+                        module.params.update(add_params)
+                    code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
+                else:  # some requests like static-route don't have add, try set instead
+                    code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
 
     if code != 200:
         module.fail_json(msg=parse_fail_message(code, res))
