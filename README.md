@@ -147,7 +147,15 @@ Modules
 * `cp_gaia_snmp_trap_receiver_facts` –  get SNMP trap receiver configuration of a Check Point machine over Web Services API.
 * `cp_gaia_snmp_user` –  manage SNMP USM user configuration of a Check Point machine over Web Services API.
 * `cp_gaia_snmp_user_facts` –  get SNMP USM user configuration of a Check Point machine over Web Services API.
-
+* `cp_gaia_maestro_changes` – apply or discard pending Maestro changes over Web Services API.
+* `cp_gaia_maestro_gateways` – manage Maestro Gateways over Web Services API.
+* `cp_gaia_maestro_gateways_facts` – get information about Maestro Gateways over Web Services API.
+* `cp_gaia_maestro_ports` – configure Maestro Orchestrator ports over Web Services API.
+* `cp_gaia_maestro_ports_facts` - get information about Maestro Orchestrator ports over Web Services API.
+* `cp_gaia_maestro_security_groups` - manage Maestro Security Groups over Web Services API.
+* `cp_gaia_maestro_security_groups_facts` - get information about Maestro Security Groups over Web Services API.
+* `cp_gaia_maestro_sites` - add description to Maestro Sites over Web Services API.
+* `cp_gaia_maestro_sites_facts` - get information about Maestro Sites over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's
