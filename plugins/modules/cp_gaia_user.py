@@ -160,6 +160,14 @@ def main():
     ignore = []
     show_params = ["name"]
 
+    if module.params['name'] == 'admin':
+      admin_forbidden_fields = ["homedir", "uid", "primary_system_group_id", "real_name", "roles", "allow_access_using"]
+      before_params = module.params.copy()
+      for key, value in module.params.items():
+        if key in admin_forbidden_fields:
+          del before_params[key]
+      module.params=before_params
+
     res = chkp_api_call(module, api_call_object, True, show_params=show_params)
     module.exit_json(**res)
 
