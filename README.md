@@ -2,7 +2,8 @@
 This Ansible collection provides control over a Check Point machine using
 Check Point's web-services APIs.
 
-This is the repository of the gaia collection which can be found here - https://galaxy.ansible.com/check_point/gaia
+This is my local branch from the repository of the gaia collection which can be found here - https://galaxy.ansible.com/check_point/gaia.
+This branch combines each of my local branches together for collective testing.
 
 Installation instructions
 -------------------------
