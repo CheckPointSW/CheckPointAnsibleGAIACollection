@@ -99,6 +99,40 @@ options:
     description: Set transmit buffer size for interfaces.
     required: false
     type: int
+  dhcp:
+    description: DHCP configuration.
+    required: false
+    type: dict
+    suboptions:
+        enabled:
+            description: Enable DHCP on this interface.
+            required: False
+            type: bool
+        server_timeout:
+            description: Specifies the amount of time, in seconds,
+                         that must pass between the time that the interface begins to try to determine its address
+                         and the time that it decides that it's not going to be able to contact a server.
+            required: False
+            type: int
+            default: 60
+        retry:
+            description: Specifies the time, in seconds,
+                         that must pass after the interface has determined that there is no DHCP server present
+                         before it tries again to contact a DHCP server.
+            required: False
+            type: int
+            default: 300
+        leasetime:
+            description: Specifies the lease time, in seconds, when requesting for an IP address. Default value is "default" - according to the server.
+            required: False
+            type: int
+        reacquire_timeout:
+            description: When trying to reacquire the last ip address,
+                         The reacquire-timeout statement sets the time, in seconds,
+                         that must elapse after the first try to reacquire the old address before it gives up and tries to discover a new address.
+            required: False
+            type: int
+            default: 10
 
 """
 
@@ -140,7 +174,17 @@ def main():
         mac_addr=dict(required=False, type="str"),
         rx_ringsize=dict(required=False, type="int"),
         speed=dict(required=False, type="str"),
-        ipv6_mask_length=dict(required=False, type="int")
+        ipv6_mask_length=dict(required=False, type="int"),
+        dhcp=dict(
+            type='dict',
+            options=dict(
+                enabled=dict(type='bool'),
+                server_timeout=dict(type='int', default=60),
+                retry=dict(type='int', default=300),
+                leasetime=dict(type='int'),
+                reacquire_timeout=dict(type='int', default=10),
+            )
+        )
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
