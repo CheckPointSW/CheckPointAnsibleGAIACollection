@@ -55,8 +55,12 @@ def idempotency_check(old_val, new_val):
     if isinstance(new_val, dict):
         for key in new_val:
             if key in old_val:
-                if idempotency_check(old_val[key], new_val[key]) is False:
-                    return False
+                if key == 'ipv4_mask_length' or key == 'ipv6_mask_length':  # mask-lengths incorrectly come in as 'str' type from show-... api
+                  if idempotency_check(int(old_val[key]), int(new_val[key])) is False:
+                      return False
+                else:
+                  if idempotency_check(old_val[key], new_val[key]) is False:
+                      return False
     elif isinstance(new_val, list):
         if len(new_val) != len(old_val):
             return False
