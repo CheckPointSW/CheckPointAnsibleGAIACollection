@@ -23,7 +23,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: cp_gaia_system_group_facts
-author: Ameer Asli (@chkp-ameera)
+author: Duane Toler (@duanetoler)
 description:
 - Show the system groups currently configured.
 short_description: Show system group/s.

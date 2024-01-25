@@ -23,7 +23,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: cp_gaia_user
-author: Ameer Asli (@chkp-ameera)
+author: Duane Toler (@duanetoler)
 description:
 - Change a user's characteristics.
 short_description: Change a user's characteristics.
@@ -42,92 +42,32 @@ options:
     default: present
     choices: [present, absent]
   name:
-    description: User name.
+    description: System group name.
     required: True
     type: str
-  shell:
-    description: Specifies the user's default command line interpreter during login.
-    required: False
-    default: 'cli'
-    type: str
-    choices: ['scp-only', 'tcsh', 'csh', 'sh', 'no-login', 'bash' ,'cli']
-  homedir:
-    description:
-      - Specifies the user's home directory as the full UNIX path name where the user is placed on login.
-        If the directory doesn't exist, it is created.
-        Range  Must be under '/home' and must not contain colon.
-        Unless set, the default 'homedir' will be '/home/user-name'.
-    required: False
-    type: str
-  secondary_system_groups:
-    description: This operation sets the groups of the user. Valid values must be names of known groups.
-    required: False
-    type: list
-    elements: str
-  password_hash:
-    description: An encrypted representation of the password. Hash version of a password can be generated using the 'grub-md5-crypt' utility.
-    required: False
-    type: str
-  must_change_password:
-    description:
-      - Forcing password change is relevant only when a password is set.
-        When set to 'True' Force the user to change their password the next time they log in.
-        If they don't log in within the time limit configured in 'set password-controls expiration-lockout-days' they may not be able to log in at all.
-        When set to 'False' If the user was being forced to change their password, cancel that.
-        If the user was locked out due to failure to change their password
-        within the time limit configured in 'set password-controls expiration-lockout-days'
-        they will no longer be locked out.
-    required: False
-    type: bool
-  real_name:
-    description: Specifies a string describing a user; conventionally it's the user's full name. Default is Username, capitalized.
-    required: False
-    type: str
-  unlock:
-    description: If the user has been locked out, cancel that. True cancel lock-out. False  do nothing.
-    required: False
-    type: bool
-  allow_access_using:
-    description: Modify the access-mechanisms available for a user. Valid values are C(CLI) C(Web-UI) C(Gaia-API) (supported from R81.10).
-    required: False
-    type: list
-    elements: str
-    choices: ['CLI', 'Web-UI', 'Gaia-API']
-    default: ['CLI', 'Web-UI']
-  roles:
-    description: Roles spesified to the user.
-    required: False
-    type: list
-    elements: str
-  primary_system_group_id:
-    description: GID. Numeric ID which is used in identifying the primary group to which this user belongs.
+  gid:
+    description: Specifies a numeric group ID used to identify the group, duplicate GIDs are not allowed.
     required: False
     type: int
-    default: 100
-  password:
-    description: Specifies new password on command line.
-                 Check Point recommends that a password be at least eight characters long.
-                 A password must contain at least six characters.
-                 Enforcement level can be modified via 'password control' feature.
+  members:
+    description: List of users in the group.
     required: False
-    type: str
-  uid:
-    description: Specifies a numeric user ID used to identify permissions of a user, duplicate UIDs are not allowed.
-    required: False
-    type: int
+    type: list
+    elements: str
 """
 
 EXAMPLES = """
-- name: Set shell field for the user
-  check_point.gaia.cp_gaia_user:
-    shell: bash
-    name: admin
+- name: Add new system group
+  check_point.gaia.cp_gaia_system_group:
+    name: new_group
+    members:
+      - admin
 
 """
 
 RETURN = """
-user:
-  description: The updated user details.
+group:
+  description: The updated group details.
   returned: always.
   type: dict
 """
