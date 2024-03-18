@@ -80,17 +80,10 @@ class HttpApi(HttpApiBase):
     def login(self, username, password):
         payload = {}
         url = '/gaia_api/login'
-        cp_domain = self.get_option('domain')
-        cp_api_key = self.get_option('api_key')
-        if cp_domain:
-            payload['domain'] = cp_domain
-        if username and password and not cp_api_key:
-            payload['user'] = username
-            payload['password'] = password
-        elif cp_api_key and not username and not password:
-            payload['api-key'] = cp_api_key
+        if username and password:
+            payload = {'user': username, 'password': password}
         else:
-            raise AnsibleConnectionFailure('[Username and password] or api_key are required for login')
+            raise AnsibleConnectionFailure('Username and password are required for login')
         if self.mgmt_proxy_enabled == True:
             url = '/web_api/login'
         response, response_data = self.send_request(url, payload)
@@ -100,9 +93,6 @@ class HttpApi(HttpApiBase):
         except KeyError:
             raise ConnectionError(
                 'Server returned response without token info during connection authentication: %s' % response_data)
-        # Case of read-only
-        if 'uid' in response_data.keys():
-            self.connection._session_uid = response_data['uid']
 
     def logout(self):
         url = '/gaia_api/logout'
@@ -114,10 +104,7 @@ class HttpApi(HttpApiBase):
         return self.connection._session_uid
 
     def send_request(self, path, body_params):
-        cp_cloud_mgmt_id = self.get_option('cloud_mgmt_id')
-        if cp_cloud_mgmt_id:
-            path = '/' + cp_cloud_mgmt_id + path
-        # we only replace gaia_ip/ with web_api/gaia-api/ if target is set and path contails for gaia_ip/
+        # we only replace gaia_ip/ with web_api/gaia-api/ if target is set and path contains for gaia_ip/
         cp_api_target = self.get_option('cptarget')
         if 'gaia_api/' in path: # Avoid login/logut requests in case of web_api
             if self.mgmt_proxy_enabled == True:
