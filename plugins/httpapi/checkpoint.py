@@ -27,18 +27,6 @@ options:
       - Specifies the domain of the Check Point device
     vars:
       - name: ansible_checkpoint_domain
-  api_key:
-    type: str
-    description:
-      - Login with api-key instead of user & password
-    vars:
-      - name: ansible_api_key
-  cloud_mgmt_id:
-    type: str
-    description:
-      - The Cloud Management ID
-    vars:
-      - name: ansible_cloud_mgmt_id
 """
 
 import json
