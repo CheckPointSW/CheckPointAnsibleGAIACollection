@@ -153,3 +153,40 @@ See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
 ## Supported Python versions
 
 - Modules and plugins require Python 2.7 or newer
+
+
+# Check Point Ansible Proxy Integration
+
+## Overview
+
+This feature integrating the Proxy API for Check Point Security Gateways through the Management Server. The Proxy API enables the Management Server to forward API requests to designated gateways, eliminating the need to address each gateway individually.
+
+
+ ![image](https://github.com/nilsujma-dev/Check-Point-Ansible-Proxy-Integration/assets/114651180/0a9dc69f-2a64-4511-bb95-01e28f0049af)
+
+
+
+## Integration Process
+
+### Step 1: Options Selected
+
+1. **Source Code:** 
+
+The revised code introduces a significant enhancement – the 'target gateway' option. This addition allows the specification of a designated gateway to receive API requests, leveraging the Management Server's Proxy API feature. This modification expands the module's capabilities, aligning with advanced network management requirements and enabling more precise API interactions.
+
+## How to Use
+
+1. Edit the `hosts` so that it will contain a new section similar to this one:
+```
+[check_point_mgmt]
+mgmt_proxy enabled=True
+```
+2. in the playbook add this var under each task:
+```
+vars:
+    ansible_checkpoint_target: <target_gatway>
+```
+3. in `hosts` change ansible_user and ansible_password to management credintials
+3. Follow the standard Ansible playbook execution process with the enhanced Check Point Ansible Collection.
+
+
