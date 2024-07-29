@@ -38,23 +38,6 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
-    limit:
-        description: The maximum number of returned results. relevant in case facts for all routes.
-        required: False
-        default: 50
-        type: int
-    offset:
-        description: The number of results to initially skip. relevant in case facts for all routes.
-        required: False
-        default: 0
-        type: int
-    order:
-        description:
-          - Sorts the routes by either ascending or descending order. Valid values are C(ASC) C(DESC). relevant in case facts for all routes.
-        required: False
-        type: str
-        default: ASC
-        choices: ['ASC', 'DESC']
     address:
         description: Existing IPv4 address, required in case fact for single route.
         required: False
@@ -106,10 +89,7 @@ def main():
     # arguments for the module:
     fields = dict(
         address=dict(type="str"),
-        mask_length=dict(type="int"),
-        limit=dict(type="int", required=False, default=50),
-        offset=dict(type="int", required=False, default=0),
-        order=dict(type="str", required=False, default='ASC', choices=['ASC', 'DESC'])
+        mask_length=dict(type="int")
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True, required_together=[('address', 'mask_length')])
