@@ -32,8 +32,9 @@ options:
     required: False
     type: str
 short_description: Show the VSNext state.
-author: Omer Hadad (@chkp-omerhad)
 version_added: '6.0.0'
+author: Omer Hadad (@chkp-omerhad)
+
 notes:
 - Supports C(check_mode).
 requirements:
