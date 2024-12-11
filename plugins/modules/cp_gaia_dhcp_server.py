@@ -157,7 +157,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        enabled=dict(type='bool')
+        enabled=dict(type='bool'),
         subnets=dict(
             type='list', elements='dict',
             options=dict(

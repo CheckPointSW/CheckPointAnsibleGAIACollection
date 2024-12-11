@@ -139,7 +139,7 @@ def main():
         comment=dict(type='str'),
         rank=dict(type='int'),
         ping=dict(type='bool', default=False),
-        scope_local=dict(type='bool', default=False)
+        scope_local=dict(type='bool', default=False),
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(

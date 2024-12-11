@@ -121,12 +121,12 @@ Modules
 * `cp_gaia_expert_password_facts` – get expert hash password of a Check Point machine over Web Services API.
 * `cp_gaia_time_and_date` – manage time and date and timezone of a Check Point machine over Web Services API.
 * `cp_gaia_time_and_date_facts` – get time and date and timezone of a Check Point machine over Web Services API.
-* `cp_gaia_virtual_systems_facts` – Get virtual-system objects facts on Check Point over Web Services API.
-* `cp_gaia_virtual_switch` – Manages virtual switch on Check Point Gateway over Web Services API.
-* `cp_gaia_virtual_switch_facts` – Get virtual-switch objects facts on Check Point over Web Services API.
-* `cp_gaia_virtual_gateway` – Get virtual-gateway objects facts on Check Point over Web Services API.
-* `cp_gaia_virtual_gateway_facts` – Get virtual-gateway objects facts on Check Point over Web Services API.
-* `cp_gaia_virtual_vsnext_state_facts` – Show the VSNext state on Check Point over Web Services API.
+* `cp_gaia_virtual_systems_facts` – get virtual-system objects facts on Check Point over Web Services API.
+* `cp_gaia_virtual_switch` – manages virtual switch on Check Point Gateway over Web Services API.
+* `cp_gaia_virtual_switch_facts` – get virtual-switch objects facts on Check Point over Web Services API.
+* `cp_gaia_virtual_gateway` – manages virtual-gateway objects on Check Point Gateway over Web Services API.
+* `cp_gaia_virtual_gateway_facts` – get virtual-gateway objects facts on Check Point over Web Services API.
+* `cp_gaia_virtual_vsnext_state_facts` – get the VSNext state on Check Point over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's
