@@ -39,6 +39,10 @@ options:
     description: Interface name to show. If not specified, all physical interfaces information is returned.
     required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 
 """
 
@@ -194,6 +198,10 @@ ansible_facts:
                     description: Interface tx ringsize.
                     returned: always
                     type: int
+                virtual_system_id:
+                    description: Virtual System ID.
+                    returned: always
+                    type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -203,7 +211,8 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        name=dict(required=False, type="str")
+        name=dict(required=False, type="str"),
+        virtual_system_id=dict(type="int", required=False)
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

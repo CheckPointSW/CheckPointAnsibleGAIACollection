@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
@@ -16,82 +17,58 @@
 # You should have received a copy of the GNU General Public License
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
-
 from __future__ import (absolute_import, division, print_function)
-
 __metaclass__ = type
 
-
 DOCUMENTATION = """
-author: Majd Sharkia (@chkp-majds)
+---
+module: cp_gaia_virtual_gateway_facts
+short_description: Get virtual-system objects facts on Check Point over Web Services API
 description:
-- Show DNS settings.
-module: cp_gaia_dns_facts
+  - Get virtual-system objects facts on Check Point devices.
+  - All operations are performed over Web Services API.
+  - This module handles both operations, get a specific object and get several objects,
+    For getting a specific object use the parameter 'id' to specify the virtual system id.
+version_added: "2.9"
+author: "Jafar Atili (@chkp-jafara)"
 options:
-  version:
-    description: Gaia API version for example 1.6.
-    required: False
+  id:
+    description:
+      - Virtual system ID.
+        This parameter is relevant only for getting a specific Virtual system object.
     type: str
-short_description: Show DNS settings.
-version_added: '2.0.0'
-notes:
-- Supports C(check_mode).
-requirements:
-- supported starting from gaia_api >= 1.6
-
-
 """
-
-
 EXAMPLES = """
-- name: Show current dns configuration
-  check_point.gaia.cp_gaia_dns_facts:
-
-
+- name: show-virtual-system
+  cp_gaia_virtual_gateway_facts:
+    id: 1
+- name: show-virtual-systems
+  cp_gaia_virtual_gateway_facts:
 """
-
-
 RETURN = """
 ansible_facts:
-    description: The checkpoint object facts.
-    returned: always.
-    type: dict
-    contains:
-        suffix:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
-        primary:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
-        tertiary:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
-        secondary:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
+  description: The checkpoint object facts.
+  returned: always.
+  type: dict
 """
-
-
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
-
-def main():
-    # arguments for the module:
+def run_module():
     fields = dict(
-        virtual_system_id=dict(type="int", required=False)
+        id=dict(type="int"),
+        member_id=dict(type="int")
         )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'dns'
-
+    if module.params["id"]:
+        api_call_object = 'virtual-gateway'
+    else:
+        api_call_object = 'virtual-gateways'
     res = chkp_facts_api_call(module, api_call_object, False)
-    module.exit_json(ansible_facts=res["ansible_facts"])
+    module.exit_json(**res)
 
-
-if __name__ == "__main__":
+def main():
+    run_module()
+if __name__ == '__main__':
     main()

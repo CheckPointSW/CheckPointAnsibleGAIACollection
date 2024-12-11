@@ -39,6 +39,10 @@ options:
     description: Interface name to show. If not specified, all vlan interfaces information is returned.
     required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 
 """
 
@@ -141,6 +145,10 @@ ansible_facts:
                     description: Interface ipv6 local link address.
                     returned: always
                     type: str
+                virtual_system_id:
+                    description: Virtual system ID.
+                    returned: always
+                    type: int
                 status:
                     description: Interface data.
                     returned: always
@@ -183,7 +191,8 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        name=dict(required=False, type='str')
+        name=dict(required=False, type='str'),
+        virtual_system_id=dict(required=False, type='int')
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

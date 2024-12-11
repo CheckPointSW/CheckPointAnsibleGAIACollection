@@ -95,6 +95,10 @@ options:
                 description: The IPv4 address of the default gateway for the DHCP clients.
                 required: False
                 type: str
+            virtual_system_id:
+                description: Virtual System ID.
+                required: False
+                type: int
             dns:
                 description: DNS configuration.
                 required: False
@@ -133,7 +137,7 @@ EXAMPLES = """
         "default_gateway": "4.5.6.1",
         "ip_pools": [{"start": "4.5.6.5", "end": "4.5.6.7", "enabled": True, "include": "include"}],
         "dns": {"domain_name": "my_domain_name", "primary": "8.8.8.8", "secondary": "8.8.8.8", "tertiary": "8.8.4.4"},
-        "enabled": True}
+        "enabled": True, virtual_system_id: 0}
     ]
 """
 
@@ -154,6 +158,7 @@ def main():
     # arguments for the module:
     fields = dict(
         enabled=dict(type='bool'),
+        virtual_system_id=dict(type='int', required=False),
         subnets=dict(
             type='list', elements='dict',
             options=dict(

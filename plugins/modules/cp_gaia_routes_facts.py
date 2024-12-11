@@ -38,6 +38,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+        description: Virtual System ID.
+        required: False
+        type: int
     limit:
         description: The maximum number of returned results.
         required: False
@@ -86,6 +90,10 @@ ansible_facts:
             returned: always
             type: list
             elements: dict
+        virtual_system_id:
+            description: Virtual System ID.
+            returned: always
+            type: int
 """
 
 
@@ -99,6 +107,7 @@ def main():
         limit=dict(type="int", required=False, default=50),
         offset=dict(type="int", required=False, default=0),
         order=dict(type="str", required=False, choices=['ASC', 'DESC'], default="ASC"),
+        virtual_system_id=dict(type="int", required=False)
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

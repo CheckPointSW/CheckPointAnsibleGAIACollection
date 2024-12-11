@@ -122,6 +122,10 @@ options:
     required: false
     type: list
     elements: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 
 EXAMPLES = """
@@ -167,7 +171,8 @@ def main():
             )
         ),
         mtu=dict(type='int'),
-        members=dict(type='list', elements='str')
+        members=dict(type='list', elements='str'),
+        virtual_system_id=dict(type="int", required=False)
     )
 
     fields.update(checkpoint_argument_spec_for_all)

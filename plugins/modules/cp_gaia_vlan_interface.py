@@ -111,6 +111,10 @@ options:
     description: Interface mtu.
     required: false
     type: int
+  virtual_system_id:
+    description: Virtual system identifier.
+    required: false
+    type: int
 """
 
 EXAMPLES = """
@@ -154,7 +158,8 @@ def main():
                 reacquire_timeout=dict(type='int', default=10),
             )
         ),
-        mtu=dict(type='int')
+        mtu=dict(type='int'),
+        virtual_system_id=dict(type='int', required=False)
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

@@ -107,6 +107,10 @@ ansible_facts:
                     description: The IPv4 address of the default gateway for the DHCP clients.
                     returned: always
                     type: str
+                virtual_system_id:
+                    description: Virtual System ID.
+                    returned: always
+                    type: int
                 dns:
                     description: DNS configuration.
                     returned: always
@@ -139,7 +143,9 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 
 def main():
     # arguments for the module:
-    fields = dict()
+    fields = dict(
+        virtual_system_id=dict(type="int", required=False)
+    )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 

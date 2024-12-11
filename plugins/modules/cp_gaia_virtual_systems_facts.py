@@ -23,75 +23,60 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-author: Majd Sharkia (@chkp-majds)
+author: Omer Hadad (@chkp-omerhad)
 description:
-- Show DNS settings.
-module: cp_gaia_dns_facts
+- Show Virtual Systems.
+module: cp_gaia_virtual_systems_facts
 options:
   version:
-    description: Gaia API version for example 1.6.
+    description: Gaia API version for example 1.8.
     required: False
     type: str
-short_description: Show DNS settings.
-version_added: '2.0.0'
+short_description: Show Virtual Systems.
+version_added: '5.0.0'
 notes:
 - Supports C(check_mode).
 requirements:
-- supported starting from gaia_api >= 1.6
-
-
+- supported starting from gaia_api >= 1.8
 """
-
-
 EXAMPLES = """
-- name: Show current dns configuration
-  check_point.gaia.cp_gaia_dns_facts:
-
+- name: Show Virtual Systems
+  check_point.gaia.cp_gaia_virtual_systems_facts:
 
 """
-
-
 RETURN = """
 ansible_facts:
-    description: The checkpoint object facts.
+    description: The VSNext state facts.
     returned: always.
     type: dict
     contains:
-        suffix:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
-        primary:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
-        tertiary:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
-        secondary:
-            description: Use empty-string in order to remove the setting.
-            returned: always.
-            type: str
+        enabled:
+            description: The VSNext state.
+            returned: always
+            type: bool
+        session-virtual-system-id:
+            description: The Virtual System ID of the current Gaia API session.
+            returned: always
+            type: int
+        member-id:
+            description: The member on which the command was executed.
+            returned: On Scalable and Elastic XL platforms only.
+            type: sp-member-id
 """
-
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
-
-def main():
-    # arguments for the module:
-    fields = dict(
-        virtual_system_id=dict(type="int", required=False)
-        )
+def run_module():
+    fields = dict()
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'dns'
+    api_call_object = 'virtual-systems'
 
     res = chkp_facts_api_call(module, api_call_object, False)
     module.exit_json(ansible_facts=res["ansible_facts"])
 
-
-if __name__ == "__main__":
+def main():
+    run_module()
+if __name__ == '__main__':
     main()

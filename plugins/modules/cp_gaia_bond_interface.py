@@ -41,6 +41,10 @@ options:
     type: str
     default: present
     choices: [present, absent]
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
   name:
     description:
       - Interface name with format C(bond<id>), valid values are bond1, bond2, bond3 .. etc.
@@ -151,6 +155,10 @@ options:
     description: Media monitoring interval, Valid values are C(1-5000).
     required: false
     type: int
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 """
 
 EXAMPLES = """
@@ -203,7 +211,8 @@ def main():
         primary=dict(type='str'),
         lacp_rate=dict(type='str', choices=['slow', 'fast']),
         mode=dict(type='str', choices=['round-robin', 'active-backup', 'xor', '8023AD']),
-        mii_interval=dict(type='int')
+        mii_interval=dict(type='int'),
+        virtual_system_id=dict(type="int", required=False)
     )
 
     fields.update(checkpoint_argument_spec_for_all)
