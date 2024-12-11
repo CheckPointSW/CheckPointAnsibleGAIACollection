@@ -21,13 +21,13 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-module: cp_gaia_virtual_system
+module: cp_gaia_virtual_gateway
 short_description: Manages virtual gateway on Check Point Gateway over Web Services API
 description:
   - Manages virtual gateway on Check Point gateways including creating, updating and removing virtual systems.
   - All operations are performed over Web Services API.
-version_added: "2.9"
-author: "Jafar Atili (@chkp-jafara)"
+version_added: "6.0.0"
+author: Omer Hadad (@chkp-omerhad)
 options:
   id:
     description:

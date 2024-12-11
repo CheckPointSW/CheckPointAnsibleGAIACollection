@@ -23,7 +23,6 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-author: Omer Hadad (@chkp-omerhad)
 description:
 - Show Virtual Systems.
 module: cp_gaia_virtual_systems_facts
@@ -33,7 +32,8 @@ options:
     required: False
     type: str
 short_description: Show Virtual Systems.
-version_added: '5.0.0'
+version_added: '6.0.0'
+author: Omer Hadad (@chkp-omerhad)
 notes:
 - Supports C(check_mode).
 requirements:

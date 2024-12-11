@@ -109,8 +109,7 @@ def main():
         mask_length=dict(type="int"),
         limit=dict(type="int", required=False, default=50),
         offset=dict(type="int", required=False, default=0),
-        order=dict(type="str", required=False, default='ASC', choices=['ASC', 'DESC']),
-        virtual_system_id=dict(type="int", required=False)
+        order=dict(type="str", required=False, default='ASC', choices=['ASC', 'DESC'])
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True, required_together=[('address', 'mask_length')])

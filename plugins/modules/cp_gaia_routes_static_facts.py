@@ -98,8 +98,7 @@ def main():
     fields = dict(
         limit=dict(type="int", required=False, default=50),
         offset=dict(type="int", required=False, default=0),
-        order=dict(type="str", required=False, choices=['ASC', 'DESC'], default="ASC"),
-        virtual_system_id=dict(type="int", required=False)
+        order=dict(type="str", required=False, choices=['ASC', 'DESC'], default="ASC")
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

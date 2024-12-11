@@ -82,9 +82,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 
 def main():
     # arguments for the module:
-    fields = dict(
-        virtual_system_id=dict(type="int", required=False)
-        )
+    fields = dict()
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'dns'

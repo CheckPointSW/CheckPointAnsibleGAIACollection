@@ -23,7 +23,6 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-author: Omer Hadad (@chkp-omerhad)
 description:
 - Show the VSNext state.
 module: cp_gaia_vsnext_state_facts
@@ -33,7 +32,8 @@ options:
     required: False
     type: str
 short_description: Show the VSNext state.
-version_added: '5.0.0'
+author: Omer Hadad (@chkp-omerhad)
+version_added: '6.0.0'
 notes:
 - Supports C(check_mode).
 requirements:

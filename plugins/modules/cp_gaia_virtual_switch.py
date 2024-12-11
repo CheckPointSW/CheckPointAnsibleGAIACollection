@@ -26,8 +26,8 @@ short_description: Manages virtual switch on Check Point Gateway over Web Servic
 description:
   - Manages virtual switch on Check Point gateways including creating, updating and removing virtual switches.
   - All operations are performed over Web Services API.
-version_added: "2.9"
-author: "Jafar Atili (@chkp-jafara)"
+version_added: "6.0.0"
+author: Omer Hadad (@chkp-omerhad)
 options:
   id:
     description:

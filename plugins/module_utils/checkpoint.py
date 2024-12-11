@@ -42,7 +42,8 @@ checkpoint_argument_spec_for_async = dict(
 )
 
 checkpoint_argument_spec_for_all = dict(
-    version=dict(type='str')
+    version=dict(type='str'),
+    virtual_system_id=dict(type="int", required=False)
 )
 
 

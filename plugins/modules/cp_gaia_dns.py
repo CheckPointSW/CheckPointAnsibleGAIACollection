@@ -87,8 +87,7 @@ def main():
         suffix=dict(type="str"),
         primary=dict(type="str"),
         tertiary=dict(type="str"),
-        secondary=dict(type="str"),
-        virtual_system_id=dict(type="int", required=False)
+        secondary=dict(type="str")
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

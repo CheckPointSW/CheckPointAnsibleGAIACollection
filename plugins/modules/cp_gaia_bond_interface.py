@@ -211,8 +211,7 @@ def main():
         primary=dict(type='str'),
         lacp_rate=dict(type='str', choices=['slow', 'fast']),
         mode=dict(type='str', choices=['round-robin', 'active-backup', 'xor', '8023AD']),
-        mii_interval=dict(type='int'),
-        virtual_system_id=dict(type="int", required=False)
+        mii_interval=dict(type='int')
     )
 
     fields.update(checkpoint_argument_spec_for_all)

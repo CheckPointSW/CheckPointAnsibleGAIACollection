@@ -144,8 +144,7 @@ def main():
         mac_addr=dict(required=False, type="str"),
         rx_ringsize=dict(required=False, type="int"),
         speed=dict(required=False, type="str"),
-        ipv6_mask_length=dict(required=False, type="int"),
-        virtual_system_id=dict(required=False, type="int")
+        ipv6_mask_length=dict(required=False, type="int")
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

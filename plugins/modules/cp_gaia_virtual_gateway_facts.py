@@ -29,8 +29,8 @@ description:
   - All operations are performed over Web Services API.
   - This module handles both operations, get a specific object and get several objects,
     For getting a specific object use the parameter 'id' to specify the virtual system id.
-version_added: "2.9"
-author: "Jafar Atili (@chkp-jafara)"
+version_added: "6.0.0"
+author: Omer Hadad (@chkp-omerhad)
 options:
   id:
     description:

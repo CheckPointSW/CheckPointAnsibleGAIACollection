@@ -158,8 +158,7 @@ def main():
                 reacquire_timeout=dict(type='int', default=10),
             )
         ),
-        mtu=dict(type='int'),
-        virtual_system_id=dict(type='int', required=False)
+        mtu=dict(type='int')
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

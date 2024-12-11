@@ -39,10 +39,6 @@ options:
     description: Interface name to show. If not specified, all bond interfaces information is returned.
     required: false
     type: str
-  virtual_system_id:
-    description: Virtual System ID.
-    required: false
-    type: int
 
 
 """
@@ -225,8 +221,7 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        name=dict(required=False, type='str'),
-        virtual_system_id=dict(required=False, type="int")
+        name=dict(required=False, type='str')
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
