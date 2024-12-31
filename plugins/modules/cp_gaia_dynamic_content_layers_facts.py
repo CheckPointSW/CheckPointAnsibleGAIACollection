@@ -37,7 +37,7 @@ options:
         default: True
         type: bool
 short_description: get the names and meta-data of all dynamic layers.
-version_added: '5.1.0'
+version_added: '6.0.0'
 
 """
 

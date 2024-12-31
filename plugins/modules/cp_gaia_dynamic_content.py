@@ -51,10 +51,10 @@ options:
     wait_for_task:
         description: Wait for task or return immediately.
         required: False
-        default: false
+        default: False
         type: bool
 short_description: installing policy
-version_added: '5.1.0'
+version_added: '6.0.0'
 notes:
 - its advisable to perform with wait_for_task set to false and refer to show_task command
 """

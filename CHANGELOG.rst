@@ -21,13 +21,13 @@ cp_gaia_virtual_gateway – manages virtual-gateway objects on Check Point machi
 cp_gaia_virtual_gateway_facts – get virtual-gateway objects facts on Check Point machine over Web Services API.
 cp_gaia_virtual_vsnext_state_facts – get the VSNext state on Check Point machine over Web Services API.
 
-v5.1.0
+v6.0.0
 ======
 
 Release Summary
 ---------------
 
-this release 5.1.0 of ``check_point.gaia``, released on 2023-11-1.
+this release 6.0.0 of ``check_point.gaia``, released on 2023-11-1.
 
 New Modules
 -----------

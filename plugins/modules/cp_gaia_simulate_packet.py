@@ -115,7 +115,7 @@ options:
         default: True
         required: False
 short_description: installing policy
-version_added: '5.1.0'
+version_added: '6.0.0'
 notes:
 - its advisable to perform with wait_for_task set to false and refer to show_task command
 """
