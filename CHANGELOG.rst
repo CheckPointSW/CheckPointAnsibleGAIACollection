@@ -3,6 +3,23 @@ Check_Point.gaia Release Notes
 ==============================
 
 .. contents:: Topics
+    
+v6.0.0
+======
+
+Release Summary
+---------------
+
+This is release 6.0.0 of ``check_point.gaia``, released on 2024-12-31.
+
+New Modules
+-----------
+cp_gaia_virtual_systems_facts – get virtual-system objects facts on Check Point machine over Web Services API.
+cp_gaia_virtual_switch – manages virtual switch on Check Point machine over Web Services API.
+cp_gaia_virtual_switch_facts – get virtual-switch objects facts on Check Point machine over Web Services API.
+cp_gaia_virtual_gateway – manages virtual-gateway objects on Check Point machine over Web Services API.
+cp_gaia_virtual_gateway_facts – get virtual-gateway objects facts on Check Point machine over Web Services API.
+cp_gaia_virtual_vsnext_state_facts – get the VSNext state on Check Point machine over Web Services API.
 
 v5.0.1
 ======

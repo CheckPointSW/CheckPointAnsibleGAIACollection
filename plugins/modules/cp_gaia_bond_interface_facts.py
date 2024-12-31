@@ -39,6 +39,10 @@ options:
     description: Interface name to show. If not specified, all bond interfaces information is returned.
     required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 
 """
 
@@ -70,6 +74,10 @@ ansible_facts:
                       - Interface name.
                     returned: always
                     type: str
+                virtual_system_id:
+                    description: Virtual System ID.
+                    returned: always
+                    type: int
                 ipv4_address:
                     description: Interface IPv4 address.
                     returned: always

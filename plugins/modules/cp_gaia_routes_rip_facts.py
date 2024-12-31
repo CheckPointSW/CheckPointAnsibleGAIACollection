@@ -54,6 +54,10 @@ options:
         type: str
         choices: ['ASC', 'DESC']
         default: 'ASC'
+    virtual_system_id:
+        description: Virtual System ID.
+        required: False
+        type: int
 """
 
 
@@ -86,6 +90,10 @@ ansible_facts:
             returned: always
             type: list
             elements: dict
+        virtual_systems_id:
+            description: Virtual System ID.
+            returned: always
+            type: int
 """
 
 
