@@ -54,7 +54,7 @@ options:
         default: False
         type: bool
 short_description: installing policy
-version_added: '6.0.0'
+version_added: '7.0.0'
 notes:
 - its advisable to perform with wait_for_task set to false and refer to show_task command
 """

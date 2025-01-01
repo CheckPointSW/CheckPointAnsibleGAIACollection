@@ -41,7 +41,7 @@ options:
         default: True
         type: bool
 short_description: getting information of the chosen dynamic layer.
-version_added: '6.0.0'
+version_added: '7.0.0'
 
 """
 
