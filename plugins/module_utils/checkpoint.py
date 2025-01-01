@@ -41,6 +41,10 @@ checkpoint_argument_spec_for_async = dict(
     wait_for_task=dict(type='bool', default=True)
 )
 
+checkpoint_argument_spec_for_async_false = dict(
+    wait_for_task=dict(type='bool', default=False)
+)
+
 checkpoint_argument_spec_for_all = dict(
     version=dict(type='str'),
     virtual_system_id=dict(type="int", required=False)
@@ -72,8 +76,11 @@ def idempotency_check(old_val, new_val):
 
 # if user insert a specific version, we add it to the url
 def get_version(module):
-    res = ('v' + module.params['version'] + '/') if module.params.get('version') else ''
-    del module.params['version']
+    if module.params.get('version'):
+        res = ('v' + module.params['version'] + '/')
+        del module.params['version']
+    else:
+        res = ''
     return res
 
 
