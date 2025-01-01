@@ -259,6 +259,9 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
                 if add_params:
                     [module.params.pop(key) for key in show_params if key not in add_params]
                     module.params.update(add_params)
+                if 'loopback-interface' == api_call_object:  # loopback doesn't take 'name' for add-... api
+                    if 'name' in module.params:
+                        module.params.pop("name")
                 code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
             else:  # some requests like static-route don't have add, try set instead
                 code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
