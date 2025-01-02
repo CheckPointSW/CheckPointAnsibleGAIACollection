@@ -41,6 +41,10 @@ options:
     type: str
     default: present
     choices: [present, absent]
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
   name:
     description:
       - Interface name with format C(bond<id>), valid values are bond1, bond2, bond3 .. etc.
@@ -149,6 +153,10 @@ options:
     choices: ['round-robin', 'active-backup', 'xor', '8023AD']
   mii_interval:
     description: Media monitoring interval, Valid values are C(1-5000).
+    required: false
+    type: int
+  virtual_system_id:
+    description: Virtual System ID.
     required: false
     type: int
 """

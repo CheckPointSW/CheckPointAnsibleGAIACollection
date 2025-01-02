@@ -99,6 +99,10 @@ options:
     description: Set transmit buffer size for interfaces.
     required: false
     type: int
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 
 """
 

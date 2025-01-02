@@ -111,6 +111,10 @@ options:
     description: Interface mtu.
     required: false
     type: int
+  virtual_system_id:
+    description: Virtual system identifier.
+    required: false
+    type: int
 """
 
 EXAMPLES = """

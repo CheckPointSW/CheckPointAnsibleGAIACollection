@@ -38,6 +38,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+        description: Virtual System ID.
+        required: False
+        type: int
     limit:
         description: The maximum number of returned results.
         required: False
@@ -86,6 +90,10 @@ ansible_facts:
             returned: always
             type: list
             elements: dict
+        virtual_system_id:
+            description: Virtual System ID.
+            returned: always
+            type: int
 """
 
 

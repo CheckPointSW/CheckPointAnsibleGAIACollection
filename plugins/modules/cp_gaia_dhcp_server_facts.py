@@ -107,6 +107,10 @@ ansible_facts:
                     description: The IPv4 address of the default gateway for the DHCP clients.
                     returned: always
                     type: str
+                virtual_system_id:
+                    description: Virtual System ID.
+                    returned: always
+                    type: int
                 dns:
                     description: DNS configuration.
                     returned: always
