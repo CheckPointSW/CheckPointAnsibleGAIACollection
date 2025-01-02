@@ -27,7 +27,7 @@ author: Duane Toler (@duanetoler)
 description:
 - Show the system groups currently configured.
 short_description: Show system group/s.
-version_added: '3.0.0'
+version_added: '7.0.0'
 notes:
 - Supports C(check_mode).
 options:

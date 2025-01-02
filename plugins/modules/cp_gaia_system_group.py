@@ -22,11 +22,11 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-module: cp_gaia_user
+module: cp_gaia_system group
 author: Duane Toler (@duanetoler)
 description:
-- Change a user's characteristics.
-short_description: Change a user's characteristics.
+- Change a system group's characteristics.
+short_description: Change a system group's characteristics.
 version_added: '3.0.0'
 notes:
 - Supports C(check_mode).
@@ -49,7 +49,7 @@ options:
     description: Specifies a numeric group ID used to identify the group, duplicate GIDs are not allowed.
     required: False
     type: int
-  members:
+  users:
     description: List of users in the group.
     required: False
     type: list
