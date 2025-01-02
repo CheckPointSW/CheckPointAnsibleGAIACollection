@@ -22,12 +22,12 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-module: cp_gaia_bond_interface_facts
-author: Ameer Asli (@chkp-ameera)
+module: cp_gaia_loopback_interface_facts
+author: Duane Toler (@duanetoler)
 description:
-- Show bond interface.
-short_description: Show bond interface/s.
-version_added: '3.0.0'
+- Show loopback interface.
+short_description: Show loopback interface/s.
+version_added: '5.0.x'
 notes:
 - Supports C(check_mode).
 options:
@@ -36,23 +36,19 @@ options:
     required: False
     type: str
   name:
-    description: Interface name to show. If not specified, all bond interfaces information is returned.
+    description: Interface name to show. If not specified, all loopback interfaces information is returned.
     required: false
     type: str
-  virtual_system_id:
-    description: Virtual System ID.
-    required: false
-    type: int
 
 """
 
 EXAMPLES = """
-- name: Show bond interface
-  check_point.gaia.cp_gaia_bond_interface_facts:
+- name: Show loopback interface
+  check_point.gaia.cp_gaia_loopback_interface_facts:
 
-- name: Show bond interface by specifying it's name
-  cp_gaia_bond_interface_facts:
-    name: bond1
+- name: Show loopback interface by specifying it's name
+  check_point.gaia.cp_gaia_loopback_interface_facts:
+    name: loop01
 
 """
 
@@ -74,10 +70,6 @@ ansible_facts:
                       - Interface name.
                     returned: always
                     type: str
-                virtual_system_id:
-                    description: Virtual System ID.
-                    returned: always
-                    type: int
                 ipv4_address:
                     description: Interface IPv4 address.
                     returned: always
@@ -106,41 +98,6 @@ ansible_facts:
                     description: Interface State.
                     returned: always
                     type: bool
-                dhcp:
-                    description: DHCP configuration.
-                    returned: always
-                    type: dict
-                    contains:
-                        enabled:
-                            description: Enable DHCP on this interface.
-                            returned: always
-                            type: bool
-                        server_timeout:
-                            description: Specifies the amount of time, in seconds,
-                                         that must pass between the time that the interface begins to try to determine its address
-                                         and the time that it decides that it's not going to be able to contact a server.
-                            returned: always
-                            type: int
-                        retry:
-                            description: Specifies the time, in seconds,
-                                         that must pass after the interface has determined that there is no DHCP server present
-                                         before it tries again to contact a DHCP server.
-                            returned: always
-                            type: int
-                        leasetime:
-                            description:
-                              - Specifies the lease time, in seconds, when requesting for an IP address.
-                                Default value is "default" - according to the server.
-                            returned: always
-                            type: int
-                        reacquire_timeout:
-                            description:
-                              - When trying to reacquire the last ip address,
-                                The reacquire-timeout statement sets the time, in seconds,
-                                that must elapse after the first try to reacquire the old address before it gives up and
-                                tries to discover a new address.
-                            returned: always
-                            type: int
                 mtu:
                     description: Interface mtu.
                     returned: always
@@ -182,39 +139,6 @@ ansible_facts:
                             description: RX packets.
                             returned: always
                             type: int
-                members:
-                    description: Interfaces members of the bond.
-                    returned: always
-                    type: list
-                    elements: str
-                xmit_hash_policy:
-                    description: Transmit hash policy.
-                    returned: always
-                    type: str
-                down_delay:
-                    description: Down delay in milliseconds.
-                    returned: always
-                    type: int
-                up_delay:
-                    description: Up delay in milliseconds.
-                    returned: always
-                    type: int
-                primary:
-                    description: Primary member of the bond interface.
-                    returned: always
-                    type: str
-                lacp_rate:
-                    description: LACP rate.
-                    returned: always
-                    type: str
-                mode:
-                    description: Primary member of the bond interface.
-                    returned: always
-                    type: str
-                mii_interval:
-                    description: Media monitoring interval, Valid values are C(1-5000).
-                    returned: always
-                    type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -228,7 +152,7 @@ def main():
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = "bond-interface"
+    api_call_object = "loopback-interface"
 
     res = chkp_facts_api_call(module, api_call_object, True)
     module.exit_json(ansible_facts=res["ansible_facts"])

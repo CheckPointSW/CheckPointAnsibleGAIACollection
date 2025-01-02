@@ -41,8 +41,13 @@ checkpoint_argument_spec_for_async = dict(
     wait_for_task=dict(type='bool', default=True)
 )
 
+checkpoint_argument_spec_for_async_false = dict(
+    wait_for_task=dict(type='bool', default=False)
+)
+
 checkpoint_argument_spec_for_all = dict(
-    version=dict(type='str')
+    version=dict(type='str'),
+    virtual_system_id=dict(type="int", required=False)
 )
 
 
@@ -75,8 +80,11 @@ def idempotency_check(old_val, new_val):
 
 # if user insert a specific version, we add it to the url
 def get_version(module):
-    res = ('v' + module.params['version'] + '/') if module.params.get('version') else ''
-    del module.params['version']
+    if module.params.get('version'):
+        res = ('v' + module.params['version'] + '/')
+        del module.params['version']
+    else:
+        res = ''
     return res
 
 
@@ -255,6 +263,9 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
                 if add_params:
                     [module.params.pop(key) for key in show_params if key not in add_params]
                     module.params.update(add_params)
+                if 'loopback-interface' == api_call_object:  # loopback doesn't take 'name' for add-... api
+                    if 'name' in module.params:
+                        module.params.pop("name")
                 code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
             else:  # some requests like static-route don't have add, try set instead
                 code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))

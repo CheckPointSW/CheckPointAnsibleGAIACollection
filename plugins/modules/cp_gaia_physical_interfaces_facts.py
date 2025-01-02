@@ -39,6 +39,10 @@ options:
     description: Interface name to show. If not specified, all physical interfaces information is returned.
     required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 
 """
 
@@ -192,6 +196,10 @@ ansible_facts:
                     type: int
                 tx_ringsize:
                     description: Interface tx ringsize.
+                    returned: always
+                    type: int
+                virtual_system_id:
+                    description: Virtual System ID.
                     returned: always
                     type: int
 """

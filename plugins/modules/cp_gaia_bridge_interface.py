@@ -122,6 +122,10 @@ options:
     required: false
     type: list
     elements: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 
 EXAMPLES = """

@@ -123,6 +123,16 @@ options:
         description: Secure Internal Communication key.
         required: False
         type: str
+      vsnext:
+        description: Enable/Disable VSNext.
+        required: False
+        default: False
+        type: bool
+      elastic_xl:
+        description: Enable/Disable ElasticXL.
+        required: False
+        default: False
+        type: bool
 short_description: Run First Time Wizard configuration.
 version_added: '3.0.0'
 notes:
@@ -189,7 +199,9 @@ def main():
             options=dict(
                 dynamically_assigned_ip=dict(type='bool', required=False, default=False),
                 cluster_member=dict(type='bool', required=False, default=False),
-                activation_key=dict(type='str', required=False, no_log=True)
+                activation_key=dict(type='str', required=False, no_log=True),
+                vsnext=dict(type='bool', required=False, default=False),
+                elastic_xl=dict(type='bool', required=False, default=False)
             )
         )
     )

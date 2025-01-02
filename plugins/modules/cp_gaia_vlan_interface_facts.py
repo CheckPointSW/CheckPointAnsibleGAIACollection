@@ -39,6 +39,10 @@ options:
     description: Interface name to show. If not specified, all vlan interfaces information is returned.
     required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 
 """
 
@@ -141,6 +145,10 @@ ansible_facts:
                     description: Interface ipv6 local link address.
                     returned: always
                     type: str
+                virtual_system_id:
+                    description: Virtual system ID.
+                    returned: always
+                    type: int
                 status:
                     description: Interface data.
                     returned: always
