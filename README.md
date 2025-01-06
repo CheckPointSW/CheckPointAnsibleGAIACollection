@@ -131,6 +131,11 @@ Modules
 * `cp_gaia_dynamic_content_layer_facts` – get the details of the installed policy on a given dynamic layer on a Check Point machine over Web Services API.
 * `cp_gaia_dynamic_content_layers_facts` – get the details of all dynamic layers on a Check Point machine over Web Services API.
 * `cp_gaia_simulate_packet` – simulate packet rulebase execution on a Check Point machine over Web Services API.
+* `cp_gaia_alias_interface` – Manage Alias interface of a Check Point machine over Web Services API.
+* `cp_gaia_alias_interface_facts` – Get information about alias interfaces of a Check Point machine over Web Services API.
+* `cp_gaia_system_group` – Manage system groups of a Check Point machine over Web Services API.
+* `cp_gaia_system_group_facts` – Get information about system groups of a Check Point machine over Web Services API.
+
 
 ### Code of Conduct
 This collection follows the Ansible project's

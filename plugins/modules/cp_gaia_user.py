@@ -148,9 +148,9 @@ def main():
         must_change_password=dict(type='bool', required=False),
         real_name=dict(type='str', required=False),
         unlock=dict(type='bool', required=False),
-        allow_access_using=dict(type='list', elements='str', required=False, choices=['CLI', 'Web-UI', 'Gaia-API'], default=['CLI', 'Web-UI']),
+        allow_access_using=dict(type='list', elements='str', required=False, choices=['CLI', 'Web-UI', 'Gaia-API']),
         roles=dict(type='list', elements='str', required=False),
-        primary_system_group_id=dict(type='int', required=False, default=100),
+        primary_system_group_id=dict(type='int', required=False),
         password=dict(type='str', required=False, no_log=True),
         uid=dict(type='int', required=False)
     )

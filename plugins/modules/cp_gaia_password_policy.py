@@ -84,18 +84,18 @@ options:
                         type: int
                         default: 10
             password_expiration_days:
-                description: Password expiration lifetime, Valid values are 60-604800.
+                description: Password expiration lifetime, Valid values are 60-604800 or "never".
                 required: False
-                type: int
+                type: raw
             password_expiration_warning_days:
                 description: Number of days before a password expires that the user gets warned, Valid values are 1-366.
                 required: False
                 type: int
                 default: 7
             password_expiration_maximum_days_before_lock:
-                description: Password expiration lockout in days, Valid values are 1-1827.
+                description: Password expiration lockout in days, Valid values are 1-1827 or "never".
                 required: False
-                type: int
+                type: raw
             must_one_time_password_enabled:
                 description: Forces a user to change their password after it has been set via "User Management"
                              (but not via "Self Password Change" or forced change at login).
@@ -192,9 +192,9 @@ def main():
                         failed_attempts_allowed=dict(type='int', default=10)
                     )
                 ),
-                password_expiration_days=dict(type='int', no_log=True),
+                password_expiration_days=dict(type='raw', no_log=True),
                 password_expiration_warning_days=dict(type='int', default=7, no_log=True),
-                password_expiration_maximum_days_before_lock=dict(type='int', no_log=True),
+                password_expiration_maximum_days_before_lock=dict(type='raw', no_log=True),
                 must_one_time_password_enabled=dict(type='bool', default=False)
             )
         ),
@@ -219,6 +219,28 @@ def main():
 
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
+
+    # handle password_expiration_days, it can get never in addition to integer
+    password_expiration_days = module.params.get('password_expiration_days')
+    try:
+        if password_expiration_days is not None:
+            password_expiration_days = int(password_expiration_days)
+    except ValueError:
+        if password_expiration_days == "never":
+            pass
+        else:
+            module.fail_json(msg="The 'password_expiration_days' parameter must be an integer or never.")
+
+    # handle password_expiration_maximum_days_before_lock, it can get never in addition to integer
+    password_expiration_maximum_days_before_lock = module.params.get('password_expiration_maximum_days_before_lock')
+    try:
+        if password_expiration_maximum_days_before_lock is not None:
+            password_expiration_maximum_days_before_lock = int(password_expiration_maximum_days_before_lock)
+    except ValueError:
+        if password_expiration_maximum_days_before_lock == "never":
+            pass
+        else:
+            module.fail_json(msg="The 'password_expiration_maximum_days_before_lock' parameter must be an integer or never.")
 
     api_call_object = 'password-policy'
 
