@@ -24,25 +24,25 @@ DOCUMENTATION = """
 module: cp_gaia_virtual_switch
 short_description: Manages virtual switch on Check Point Gateway over Web Services API
 description:
-  - Manages virtual switch on Check Point gateways including creating, updating and removing virtual switches.
-  - All operations are performed over Web Services API.
+  - Manages virtual switches on Check Point gateways, including creating, updating, and removing virtual switches.
+  - All operations are performed over the Web Services API.
 version_added: "6.0.0"
 author: Omer Hadad (@chkp-omerhad)
 options:
   id:
     description:
       - Virtual Switch ID.
-        This parameter is used to change existing virtual switch or creating new if does not exist
+      - This parameter is used to change an existing virtual switch or create a new one if it does not exist.
     type: str
   name:
     description:
-      - name of the virtual switch.
-      This parameter is used to change existing virtual switch or creating new if does not exist
+      - Name of the virtual switch.
+      - This parameter is used to change an existing virtual switch or create a new one if it does not exist.
     type: str
   interfaces:
-      description:
-        - Collection of interfaces to be set identified by the name. Replaces existing interfaces.
-      type: list
+    description:
+      - Collection of interfaces to be set, identified by their names. Replaces existing interfaces.
+    type: list
 """
 EXAMPLES = """
 - name: set virtual switch
