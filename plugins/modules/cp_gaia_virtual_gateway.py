@@ -24,100 +24,97 @@ DOCUMENTATION = """
 module: cp_gaia_virtual_gateway
 short_description: Manages virtual gateway on Check Point Gateway over Web Services API
 description:
-  - Manages virtual gateway on Check Point gateways including creating, updating and removing virtual systems.
+  - Manages virtual gateway on Check Point gateways including creating, updating, and removing virtual systems.
   - All operations are performed over Web Services API.
 version_added: "6.0.0"
 author: Omer Hadad (@chkp-omerhad)
 options:
   id:
     description:
-      - virtual gateway ID.
-        This parameter is used to change existing virtual gateway or creating new if does not exist
+      - Virtual gateway ID.
+      - This parameter is used to change an existing virtual gateway or create a new one if it does not exist.
     type: str
   name:
     description:
-      - name of the virtual gateway.
-      This parameter is used to change existing virtual gateway by name
+      - Name of the virtual gateway.
+      - This parameter is used to change an existing virtual gateway by name.
     type: str
   one_time_password:
     description:
-      - one time password of the virtual gateway.
-      This parameter is used to set one time password for existing virtual gateway by name or id
+      - One-time password of the virtual gateway.
+      - This parameter is used to set the one-time password for an existing virtual gateway by name or ID.
     type: str
   interfaces:
     description:
-      - configure interfaces for the virtual gateway.
+      - Configure interfaces for the virtual gateway.
+      - Collection of interfaces to be set, identified by the name. Replaces existing interfaces.
     type: list
-    description:
-      - Collection of interfaces to be set identified by the name. Replaces existing interfaces.
   resources:
-      description:
-        - virtual gateway resources configuration
-        type: dict
-        suboptions:
-          firewall_ipv4_instances:
-            description:
-              - The number of IPv4 CoreXL instances to be assigned to the virtual gateway identified by name or id
-              type: int
-          firewall_ipv6_instances:
-            description:
-              - The number of IPv6 CoreXL instances to be assigned to the virtual gateway identified by name or id
-              type: int
-  virtual_switches:
-      description:
-        - Connect virtual gateway identified by name or id to pre existing virtual switches identified by their ids
-        type: list
+    description:
+      - Virtual gateway resources configuration.
+    type: dict
+    suboptions:
+      firewall_ipv4_instances:
         description:
-          - Collection of virtual switches to be set identified by the ids. Replaces existing interfaces.
-        type: list
+          - The number of IPv4 CoreXL instances to be assigned to the virtual gateway identified by name or ID.
+        type: int
+      firewall_ipv6_instances:
+        description:
+          - The number of IPv6 CoreXL instances to be assigned to the virtual gateway identified by name or ID.
+        type: int
+  virtual_switches:
+    description:
+      - Connect virtual gateway identified by name or ID to pre-existing virtual switches identified by their IDs.
+      - Collection of virtual switches to be set, identified by their IDs. Replaces existing interfaces.
+    type: list
   mgmt_connection:
     description:
-      - management connection configuration
+      - Management connection configuration.
     type: dict
     suboptions:
       mgmt_connection_identifier:
         description:
-          - management connection identifier.
-          This parameter is used to change existing virtual gateway by name
+          - Management connection identifier.
+          - This parameter is used to change an existing virtual gateway by name.
         type: str
       mgmt_connection_type:
         description:
-          - management connection type.
-          This parameter is used to change existing virtual gateway by name
+          - Management connection type.
+          - This parameter is used to change an existing virtual gateway by name.
         type: str
       mgmt_ipv4_configuration:
         description:
-          - management connection IPv4 configuration
+          - Management connection IPv4 configuration.
         type: dict
         suboptions:
           ipv4_address:
             description:
-              - management connection IPv4 address.
+              - Management connection IPv4 address.
             type: str
           ipv4_mask_length:
             description:
-              - management connection IPv4 mask length.
+              - Management connection IPv4 mask length.
             type: int
           ipv4_default_gateway:
             description:
-              - management connection IPv4 default gateway.
+              - Management connection IPv4 default gateway.
             type: str
       mgmt_ipv6_configuration:
         description:
-          - management connection IPv6 configuration
+          - Management connection IPv6 configuration.
         type: dict
         suboptions:
           ipv6_address:
             description:
-              - management connection IPv6 address.
+              - Management connection IPv6 address.
             type: str
           ipv6_mask_length:
             description:
-              - management connection IPv6 mask length.
+              - Management connection IPv6 mask length.
             type: int
           ipv6_default_gateway:
             description:
-              - management connection IPv6 default gateway.
+              - Management connection IPv6 default gateway.
             type: str
 """
 EXAMPLES = """
@@ -129,18 +126,18 @@ EXAMPLES = """
       - name: eth1-02.2
       - name: eth1-02.3
     virtual_switches:
-        - id: 1
-        - id: 500
+      - id: 1
+      - id: 500
     resources:
       firewall_ipv4_instances: 2
       firewall_ipv6_instances: 0
     mgmt_connection:
-          mgmt_connection_identifier: 500
-          mgmt_connection_type: virtual-switch-id
-          mgmt_ipv4_configuration:
-            ipv4_address: 172.72.72.1
-            ipv4_mask: 24
-            ipv4_default_gateway: 172.72.72.4
+      mgmt_connection_identifier: 500
+      mgmt_connection_type: virtual-switch-id
+      mgmt_ipv4_configuration:
+        ipv4_address: 172.72.72.1
+        ipv4_mask: 24
+        ipv4_default_gateway: 172.72.72.4
 """
 RETURN = """
 cp_gaia_virtual_system:
@@ -184,3 +181,4 @@ def main():
     run_module()
 if __name__ == '__main__':
     main()
+
