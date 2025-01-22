@@ -11,7 +11,7 @@ v6.0.0
 Release Summary
 ---------------
 
-this release 6.0.0 of ``check_point.gaia``, released on 2025-1-6.
+this release 6.0.0 of ``check_point.gaia``, released on 2025-1-22.
 
 New Modules
 -----------
