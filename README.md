@@ -135,6 +135,18 @@ Modules
 * `cp_gaia_alias_interface_facts` – Get information about alias interfaces of a Check Point machine over Web Services API.
 * `cp_gaia_system_group` – Manage system groups of a Check Point machine over Web Services API.
 * `cp_gaia_system_group_facts` – Get information about system groups of a Check Point machine over Web Services API.
+* `cp_gaia_grub_password` – manage grub password of a Check Point machine over Web Services API.
+* `cp_gaia_grub_password_facts` – get grub hash password of a Check Point machine over Web Services API.
+* `cp_gaia_snmp` –  manage SNMP configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_facts` –  get SNMP configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_custom_trap` –  manage SNMP custom trap configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_custom_trap_facts` –  get SNMP custom trap configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_pre_defined_traps` –  manage SNMP pre defined traps configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_pre_defined_traps_facts` –  get SNMP pre defined traps configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_trap_receiver` –  manage SNMP trap receiver configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_trap_receiver_facts` –  get SNMP trap receiver configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_user` –  manage SNMP USM user configuration of a Check Point machine over Web Services API.
+* `cp_gaia_snmp_user_facts` –  get SNMP USM user configuration of a Check Point machine over Web Services API.
 
 
 ### Code of Conduct
