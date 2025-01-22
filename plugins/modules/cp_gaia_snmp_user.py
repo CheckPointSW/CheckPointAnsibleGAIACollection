@@ -66,11 +66,13 @@ options:
             choices: [MD5, SHA1, SHA256, SHA512]
         password:
             description:
-              - Authentication Password - (8 or more printable characters, Limited by 128 characters) Each SNMPv3 USM user must have an authentication pass phrase.
+              - Authentication Password - (8 or more printable characters, Limited by 128 characters)
+              Each SNMPv3 USM user must have an authentication pass phrase.
             type: str
         password_hash:
             description:
-              - Authentication Hashed Password - (8 or more printable characters, Limited by 128 characters) Each SNMPv3 USM user must have an authentication pass phrase.
+              - Authentication Hashed Password - (8 or more printable characters, Limited by 128 characters)
+              Each SNMPv3 USM user must have an authentication pass phrase.
             type: str
   privacy:
     description:
@@ -84,11 +86,13 @@ options:
             choices: [AES, DES, AES256]
         password:
             description:
-              - Privacy Password - (8 or more printable characters, Limited by 128 characters) An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
+              - Privacy Password - (8 or more printable characters, Limited by 128 characters)
+              An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
             type: str
         password_hash:
             description:
-              - Privacy Hashed Password - (8 or more printable characters, Limited by 128 characters) An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
+              - Privacy Hashed Password - (8 or more printable characters, Limited by 128 characters)
+              An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
             type: str
 """
 
@@ -119,15 +123,21 @@ def main():
         permission=dict(type='str', required=False, choices=['read-only', 'read-write']),
         allowed_virtual_systems=dict(type='str', required=False),
         authentication=dict(
-                    protocol=dict(type='str', required=False, choices=['MD5', 'SHA1', 'SHA256', 'SHA512']),
-                    password=dict(type='str', required=False, no_log=True),
-                    password_hash=dict(type='str', required=False, no_log=True)
-                    ),
+            type="dict",
+            options=dict(
+                protocol=dict(type="str", required=False, choices=['MD5', 'SHA1', 'SHA256', 'SHA512']),
+                password=dict(type="str", required=False, no_log=True),
+                password_hash=dict(type="str", required=False, no_log=True)
+            )
+        ),
         privacy=dict(
-                    protocol=dict(type='str', required=False, choices=['AES', 'DES', 'AES256']),
-                    password=dict(type='str', required=False, no_log=True),
-                    password_hash=dict(type='str', required=False, no_log=True)
-                    )
+            type="dict",
+            options=dict(
+                protocol=dict(type="str", required=False, choices=['AES', 'DES', 'AES256']),
+                password=dict(type="str", required=False, no_log=True),
+                password_hash=dict(type="str", required=False, no_log=True)
+            )
+        )
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

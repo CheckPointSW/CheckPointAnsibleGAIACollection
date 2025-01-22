@@ -89,7 +89,7 @@ def main():
     add_params = {}
     parent_and_id = module.params["name"].split(":")
     if len(parent_and_id) == 2:
-        add_params = {"parent": parent_and_id[0] }
+        add_params = {"parent": parent_and_id[0]}
 
     res = chkp_api_call(module, api_call_object, True, ignore=ignore, show_params=show_params, add_params=add_params)
     module.exit_json(**res)

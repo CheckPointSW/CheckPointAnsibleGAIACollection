@@ -52,7 +52,8 @@ options:
     choices: [v1, v2, v3]
   community_string:
     description:
-      - Receiver community - Required only in case of v1/v2 versions, Trap Community String used by the trap receiver to determine which traps are accepted from a device.
+      - Receiver community - Required only in case of v1/v2 versions
+      Trap Community String used by the trap receiver to determine which traps are accepted from a device.
     type: str
 """
 

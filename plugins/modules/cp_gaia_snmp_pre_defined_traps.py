@@ -252,7 +252,7 @@ def main():
         vrrpv3ProtoError=dict(type="dict", options=dict(enabled=dict(type="bool"))),
         coldStart=dict(type="dict", options=dict(enabled=dict(type="bool"), threshold=dict(type="int"), reboot_only=dict(type="bool"))),
         lowDiskSpaceAllPartitions=dict(type="dict", options=dict(enabled=dict(type="bool")))
-        
+
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

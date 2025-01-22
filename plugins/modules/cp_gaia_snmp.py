@@ -103,12 +103,16 @@ options:
                 type: bool
             vs_access:
                 description:
-                  - SNMP vs-access type direct/indirect queries on Virtual-Devices direct- SNMP direct queries on Virtual-Devices, indirect- SNMP direct queries via VS0
+                  - SNMP vs-access type direct/indirect queries on Virtual-Devices
+                  direct- SNMP direct queries on Virtual-Devices
+                  indirect- SNMP direct queries via VS0
                 type: str
                 choices: [direct, indirect]
             sysname:
                 description:
-                  - This command is relevant only for VSX with SNMP VS mode, Where False = the sysname OID for all Virtual Devices will return the same result VS0 hostname True = VS0 sysname OID returns the VSX hostname and Virtual Device sysname OID returns the Check Point object name of the Virtual Device
+                  - This command is relevant only for VSX with SNMP VS mode, Where
+                  False = the sysname OID for all Virtual Devices will return the same result VS0 hostname
+                  True = VS0 sysname OID returns the VSX hostname and Virtual Device sysname OID returns the Check Point object name of the Virtual Device
                 type: bool
 """
 
@@ -145,18 +149,24 @@ def main():
         read_write_community=dict(type="str", required=False),
         interfaces=dict(type="str", required=False),
         pre_defined_traps_settings=dict(
-            polling_frequency=dict(type="int")
+            type="dict",
+            options=dict(polling_frequency=dict(type="int"))
         ),
         custom_traps_settings=dict(
-            clear_trap_interval=dict(type="int"),
-            clear_trap_amount=dict(type="int")
+            type="dict",
+            options=dict(
+                clear_trap_interval=dict(type="int"),
+                clear_trap_amount=dict(type="int")
+            )
         ),
         vsx_settings=dict(
-            enabled=dict(type="bool"),
-            vs_access=dict(type="str", choices=["direct", "indirect"]),
-            sysname=dict(type="bool")
+            type="dict",
+            options=dict(
+                enabled=dict(type="bool"),
+                vs_access=dict(type="str", choices=["direct", "indirect"]),
+                sysname=dict(type="bool")
+            )
         )
-        
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
