@@ -50,23 +50,23 @@ options:
       - Collection of interfaces to be set, identified by the name. Replaces existing interfaces.
     type: list
   resources:
-    description:
+      description:
       - Virtual gateway resources configuration.
-    type: dict
-    suboptions:
-      firewall_ipv4_instances:
-        description:
+        type: dict
+        suboptions:
+          firewall_ipv4_instances:
+            description:
           - The number of IPv4 CoreXL instances to be assigned to the virtual gateway identified by name or ID.
-        type: int
-      firewall_ipv6_instances:
-        description:
+              type: int
+          firewall_ipv6_instances:
+            description:
           - The number of IPv6 CoreXL instances to be assigned to the virtual gateway identified by name or ID.
-        type: int
+              type: int
   virtual_switches:
-    description:
+      description:
       - Connect virtual gateway identified by name or ID to pre-existing virtual switches identified by their IDs.
       - Collection of virtual switches to be set, identified by their IDs. Replaces existing interfaces.
-    type: list
+        type: list
   mgmt_connection:
     description:
       - Management connection configuration.
@@ -126,18 +126,18 @@ EXAMPLES = """
       - name: eth1-02.2
       - name: eth1-02.3
     virtual_switches:
-      - id: 1
-      - id: 500
+        - id: 1
+        - id: 500
     resources:
       firewall_ipv4_instances: 2
       firewall_ipv6_instances: 0
     mgmt_connection:
-      mgmt_connection_identifier: 500
-      mgmt_connection_type: virtual-switch-id
-      mgmt_ipv4_configuration:
-        ipv4_address: 172.72.72.1
-        ipv4_mask: 24
-        ipv4_default_gateway: 172.72.72.4
+          mgmt_connection_identifier: 500
+          mgmt_connection_type: virtual-switch-id
+          mgmt_ipv4_configuration:
+            ipv4_address: 172.72.72.1
+            ipv4_mask: 24
+            ipv4_default_gateway: 172.72.72.4
 """
 RETURN = """
 cp_gaia_virtual_system:
@@ -148,6 +148,7 @@ cp_gaia_virtual_system:
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
+
 def run_module():
     # arguments for the module:
     fields = dict(
@@ -156,19 +157,37 @@ def run_module():
         one_time_password=dict(type='str'),
         interfaces=dict(type='list'),
         virtual_switches=dict(type='list'),
-        resources=dict(type='dict',
-                       firewall_ipv4_instances=dict(type='int'),
-                       firewall_ipv6_instances=dict(type='int')),
-        mgmt_connection=dict(type='dict', mgmt_connection_identifier=dict(type='str', required=True),
-                             mgmt_connection_type=dict(type='str', required=True, choices=['interface', 'virtual-switch-id', 'virtual-switch-name']),
-                             mgmt_ipv4_configuration=dict(type='dict', required=False, ipv4_address=dict(type='str', required=True),
-                                                          ipv4_mask=dict(type='int', required=True),
-                                                          ipv4_default_gateway=dict(type='str', required=False)),
-                             mgmt_ipv6_configuration=dict(type='dict', required=False, ipv6_address=dict(type='str', required=True),
-                                                          ipv6_mask=dict(type='int', required=True),
-                                                          ipv6_default_gateway=dict(type='str', required=False))
-                            )
-                            )
+        resources=dict(
+            type='dict',
+            firewall_ipv4_instances=dict(type='int'),
+            firewall_ipv6_instances=dict(type='int')
+        ),
+        mgmt_connection=dict(
+            type='dict',
+            options=dict(
+                mgmt_connection_identifier=dict(type='str', required=True),
+                mgmt_connection_type=dict(type='str', required=True, choices=['interface', 'virtual-switch-id', 'virtual-switch-name']),
+                mgmt_ipv4_configuration=dict(
+                    type='dict',
+                    required=False,
+                    options=dict(
+                        ipv4_address=dict(type='str', required=True),
+                        ipv4_mask=dict(type='int', required=True),
+                        ipv4_default_gateway=dict(type='str', required=False)
+                    )
+                ),
+                mgmt_ipv6_configuration=dict(
+                    type='dict',
+                    required=False,
+                    options=dict(
+                        ipv6_address=dict(type='str', required=True),
+                        ipv6_mask=dict(type='int', required=True),
+                        ipv6_default_gateway=dict(type='str', required=False)
+                    )
+                )
+            )
+        )
+    )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     ignore = ['status']
@@ -177,8 +196,11 @@ def run_module():
     api_call_object = "virtual-gateway"
     res = chkp_api_call(module, api_call_object, True, ignore=ignore, show_params=show_params, add_params=add_params)
     module.exit_json(**res)
+
+
 def main():
     run_module()
+
+
 if __name__ == '__main__':
     main()
-

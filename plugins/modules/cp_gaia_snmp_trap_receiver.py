@@ -22,12 +22,12 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-module: cp_gaia_alias_interface
-author: Duane Toler (@duanetoler)
+module: cp_gaia_snmp_trap_receiver
+author: Ameer Asli (@chkp-ameera)
 description:
-- Modify alias interface.
-short_description: Modify alias interface.
-version_added: '8.0.0'
+- Change the SNMP trap receiver configuration.
+short_description: Change the SNMP trap receiver configuration.
+version_added: '6.0.0'
 notes:
 - Supports C(check_mode).
 options:
@@ -41,30 +41,33 @@ options:
     type: str
     default: present
     choices: [present, absent]
-  name:
-    description: Interface name with format "<parent interface>:<id>", for example  eth0:1, eth0:2 .. etc.
-    required: true
+  address:
+    description: Receiver address.
+    required: True
     type: str
-  ipv4_address:
-      description: Interface IPv4 address.
-      required: false
-      type: str
-  ipv4_mask_length:
-      description: Interface IPv4 address mask length.
-      required: false
-      type: int
+  ver:
+    description:
+      - Receiver version.
+    type: str
+    choices: [v1, v2, v3]
+  community_string:
+    description:
+      - Receiver community - Required only in case of v1/v2 versions
+      Trap Community String used by the trap receiver to determine which traps are accepted from a device.
+    type: str
 """
 
 EXAMPLES = """
-- name: Set comment field of a alias interface
-  check_point.gaia.cp_gaia_alias_interface:
-    comments: "eth0:1 interface"
-    name: eth0:1
+- name: Set community string for SNMP trap receiver
+  check_point.gaia.cp_gaia_snmp_trap_receiver:
+    community_string: some_string
+    address: trap_receiver_address
+
 """
 
 RETURN = """
-alias_interface:
-  description: The updated interface details.
+snmp_trap_receiver:
+  description: The updated trap receiver details.
   returned: always.
   type: dict
 """
@@ -77,21 +80,17 @@ def main():
     # arguments for the module:
     fields = dict(
         state=dict(type='str', default='present', choices=['present', 'absent']),
-        name=dict(required=True, type='str'),
-        ipv4_address=dict(required=True, type='str'),
-        ipv4_mask_length=dict(required=True, type='int')
+        address=dict(type='str', required=True),
+        ver=dict(type='str', choices=['v1', 'v2', 'v3']),
+        community_string=dict(type='str')
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'alias-interface'
-    ignore = ['parent']
-    show_params = ['name']
-    add_params = {}
-    parent_and_id = module.params["name"].split(":")
-    if len(parent_and_id) == 2:
-        add_params = {"parent": parent_and_id[0]}
+    api_call_object = 'snmp-trap-receiver'
+    ignore = []
+    show_params = ["address"]
 
-    res = chkp_api_call(module, api_call_object, True, ignore=ignore, show_params=show_params, add_params=add_params)
+    res = chkp_api_call(module, api_call_object, True, show_params=show_params)
     module.exit_json(**res)
 
 

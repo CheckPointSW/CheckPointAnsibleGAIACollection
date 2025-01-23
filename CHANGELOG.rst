@@ -11,7 +11,7 @@ v6.0.0
 Release Summary
 ---------------
 
-this release 6.0.0 of ``check_point.gaia``, released on 2025-1-6.
+this release 6.0.0 of ``check_point.gaia``, released on 2025-1-22.
 
 New Modules
 -----------
@@ -30,6 +30,18 @@ New Modules
 - check_point.gaia.cp_gaia_virtual_gateway – manages virtual-gateway objects on Check Point machine over Web Services API.
 - check_point.gaia.cp_gaia_virtual_gateway_facts – get virtual-gateway objects facts on Check Point machine over Web Services API.
 - check_point.gaia.cp_gaia_virtual_vsnext_state_facts – get the VSNext state on Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_grub_password – manage grub password of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_grub_password_facts – get grub hash password of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp –  manage SNMP configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_facts –  get SNMP configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_custom_trap –  manage SNMP custom trap configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_custom_trap_facts –  get SNMP custom trap configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_pre_defined_traps –  manage SNMP pre defined traps configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_pre_defined_traps_facts –  get SNMP pre defined traps configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_trap_receiver –  manage SNMP trap receiver configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_trap_receiver_facts –  get SNMP trap receiver configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_user –  manage SNMP USM user configuration of a Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_snmp_user_facts –  get SNMP USM user configuration of a Check Point machine over Web Services API.
 
 Major Changes
 ---------------

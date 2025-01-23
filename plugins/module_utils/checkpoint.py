@@ -110,11 +110,15 @@ def replace_chkp_params(params, request_type):
         # as 'message' is used internally in Ansible Core engine
         if "msg" in params:
             params["message"] = params.pop("msg")
+        if "ver" in params:
+            params["version"] = params.pop("ver")
     elif request_type == AFTER_REQUEST:
         old = "-"
         new = "_"
         if "message" in params:
             params["msg"] = params.pop("message")
+        if "version" in params:
+            params["ver"] = params.pop("version")
 
     for parameter in params:
         parameter_value = params[parameter]

@@ -40,9 +40,9 @@ options:
       - This parameter is used to change an existing virtual switch or create a new one if it does not exist.
     type: str
   interfaces:
-    description:
+      description:
       - Collection of interfaces to be set, identified by their names. Replaces existing interfaces.
-    type: list
+      type: list
 """
 EXAMPLES = """
 - name: set virtual switch
@@ -63,6 +63,7 @@ cp_gaia_virtual_switch:
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
+
 def run_module():
     # arguments for the module:
     fields = dict(
@@ -79,7 +80,11 @@ def run_module():
     api_call_object = 'virtual-switch'
     res = chkp_api_call(module, api_call_object, True, ignore=ignore, show_params=show_params, add_params=add_params)
     module.exit_json(**res)
+
+
 def main():
     run_module()
+
+
 if __name__ == '__main__':
     main()

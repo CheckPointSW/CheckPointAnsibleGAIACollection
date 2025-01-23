@@ -22,12 +22,12 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-module: cp_gaia_alias_interface_facts
-author: Duane Toler (@duanetoler)
+module: cp_gaia_snmp_user_facts
+author: Ameer Asli (@chkp-ameera)
 description:
-- Show alias interface.
-short_description: Show alias interface/s.
-version_added: '8.0.0'
+- Show the SNMPv3 USM users currently configured.
+short_description: Show SNMPv3 USM user/s.
+version_added: '6.0.0'
 notes:
 - Supports C(check_mode).
 options:
@@ -36,47 +36,75 @@ options:
     required: False
     type: str
   name:
-    description: Interface name to show. If not specified, all alias interfaces information is returned.
+    description: SNMPv3 USM user name to show. If not specified, all users information is returned.
     required: false
     type: str
+
 """
 
 EXAMPLES = """
-- name: Show alias interface
-  check_point.gaia.cp_gaia_alias_interface_facts:
-- name: Show alias interface by specifying it's name
-  check_point.gaia.cp_gaia_alias_interface_facts:
-    name: eth0:1
+- name: Show SNMP users
+  check_point.gaia.cp_gaia_snmp_user_facts:
+
+- name: Show SNMPv3 USM user by specifying it's name
+  check_point.gaia.cp_gaia_snmp_user_facts:
+    name: snmpuser
+
 """
 
 RETURN = """
 ansible_facts:
-    description: The interface/s facts.
+    description: The SNMPv3 USM user/s facts.
     returned: always.
     type: dict
     contains:
         objects:
             description:
-              - List of interfaces.
+              - List of SNMP users.
             returned: always
             type: list
             elements: dict
             contains:
                 name:
                     description:
-                      - Interface name.
+                      - SNMPv3 USM User name.
                     returned: always
                     type: str
-                ipv4_address:
-                    description: Interface IPv4 address.
+                permission:
+                    description:
+                      - User permission.
                     returned: always
                     type: str
-                ipv4_mask_length:
-                    description: Interface IPv4 address mask length.
+                allowed_virtual_systems:
+                    description:
+                      - Configured Virtual Devices allowed for the USM user - vsid range 0-512.
                     returned: always
-                    type: int
-                enabled:
-                    description: Interface State.
+                    type: str
+                authentication:
+                    description:
+                      - Authentication details.
+                    returned: always
+                    type: dict
+                    contains:
+                        protocol:
+                            description:
+                              - Authentication protocol, MD5 and SHA1 are not supported starting from R81.
+                            returned: always
+                            type: str
+                privacy:
+                    description:
+                      - Privacy details.
+                    returned: always
+                    type: dict
+                    contains:
+                        protocol:
+                            description:
+                              - Privacy protocol.
+                            returned: always
+                            type: str
+                data_privacy:
+                    description:
+                      - Related to AutoPriv/AutnNoPriv in SecurityLevel in the RFC. True- AutoPriv ,False- AuthNoPriv.
                     returned: always
                     type: bool
 """
@@ -88,11 +116,11 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 def main():
     # arguments for the module:
     fields = dict(
-        name=dict(required=False, type='str')
+        name=dict(type="str", required=False)
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = "alias-interface"
+    api_call_object = "snmp-user"
 
     res = chkp_facts_api_call(module, api_call_object, True)
     module.exit_json(ansible_facts=res["ansible_facts"])

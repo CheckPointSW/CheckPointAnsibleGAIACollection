@@ -22,12 +22,12 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = """
-module: cp_gaia_alias_interface
-author: Duane Toler (@duanetoler)
+module: cp_gaia_snmp_custom_trap
+author: Ameer Asli (@chkp-ameera)
 description:
-- Modify alias interface.
-short_description: Modify alias interface.
-version_added: '8.0.0'
+- Change the SNMP custom_trap configuration.
+short_description: Change the SNMP custom_trap configuration.
+version_added: '6.0.0'
 notes:
 - Supports C(check_mode).
 options:
@@ -42,29 +42,43 @@ options:
     default: present
     choices: [present, absent]
   name:
-    description: Interface name with format "<parent interface>:<id>", for example  eth0:1, eth0:2 .. etc.
-    required: true
+    description: Custom trap name.
+    required: True
     type: str
-  ipv4_address:
-      description: Interface IPv4 address.
-      required: false
-      type: str
-  ipv4_mask_length:
-      description: Interface IPv4 address mask length.
-      required: false
-      type: int
+  oid:
+    description:
+      - OID (object identifier).
+    type: str
+  operator:
+    description:
+      - Comparison operator.
+    type: str
+    choices: [equal, not-equal, less-than, greater-than, changed]
+  threshold:
+    description:
+      - The value you want to compare to.
+    type: raw
+  frequency:
+    description:
+      - Polling interval in seconds.
+    type: int
+  msg:
+    description:
+      - Custom trap message.
+    type: str
 """
 
 EXAMPLES = """
-- name: Set comment field of a alias interface
-  check_point.gaia.cp_gaia_alias_interface:
-    comments: "eth0:1 interface"
-    name: eth0:1
+- name: Set threshold for custom trap
+  check_point.gaia.cp_gaia_snmp_custom_trap:
+    threshold: 12
+    name: custom_trap_name
+
 """
 
 RETURN = """
-alias_interface:
-  description: The updated interface details.
+snmp_custom_trap:
+  description: The updated custom trap details.
   returned: always.
   type: dict
 """
@@ -77,21 +91,20 @@ def main():
     # arguments for the module:
     fields = dict(
         state=dict(type='str', default='present', choices=['present', 'absent']),
-        name=dict(required=True, type='str'),
-        ipv4_address=dict(required=True, type='str'),
-        ipv4_mask_length=dict(required=True, type='int')
+        name=dict(type='str', required=True),
+        oid=dict(type='str'),
+        operator=dict(type='str', choices=['equal', 'not-equal', 'less-than', 'greater-than', 'changed']),
+        threshold=dict(type='raw'),
+        frequency=dict(type='int'),
+        msg=dict(type='str')
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'alias-interface'
-    ignore = ['parent']
-    show_params = ['name']
-    add_params = {}
-    parent_and_id = module.params["name"].split(":")
-    if len(parent_and_id) == 2:
-        add_params = {"parent": parent_and_id[0]}
+    api_call_object = 'snmp-custom-trap'
+    ignore = []
+    show_params = ["name"]
 
-    res = chkp_api_call(module, api_call_object, True, ignore=ignore, show_params=show_params, add_params=add_params)
+    res = chkp_api_call(module, api_call_object, True, show_params=show_params)
     module.exit_json(**res)
 
 

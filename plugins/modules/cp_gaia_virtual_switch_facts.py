@@ -55,11 +55,12 @@ ansible_facts:
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
+
 def run_module():
     fields = dict(
         id=dict(type="int"),
         member_id=dict(type="int")
-        )
+    )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     if module.params["id"]:
@@ -68,7 +69,11 @@ def run_module():
         api_call_object = 'virtual-switches'
     res = chkp_facts_api_call(module, api_call_object, False)
     module.exit_json(**res)
+
+
 def main():
     run_module()
+
+
 if __name__ == '__main__':
     main()

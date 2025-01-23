@@ -50,7 +50,7 @@ class HttpApi(HttpApiBase):
         super(HttpApi, self).__init__(connection)
         self.connection = connection
         self.mgmt_proxy_enabled = False
-        
+
         loader = DataLoader()
         # Initialize InventoryManager
         inventory = InventoryManager(loader=loader, sources=['/etc/ansible/hosts'])
@@ -59,11 +59,10 @@ class HttpApi(HttpApiBase):
         # Get variable
         try:
             proxy_enabled = host.vars['enabled']
-            if proxy_enabled == True:
+            if proxy_enabled is True:
                 self.mgmt_proxy_enabled = True
         except Exception as e:
             pass
-
 
     def login(self, username, password):
         payload = {}
@@ -72,7 +71,7 @@ class HttpApi(HttpApiBase):
             payload = {'user': username, 'password': password}
         else:
             raise AnsibleConnectionFailure('Username and password are required for login')
-        if self.mgmt_proxy_enabled == True:
+        if self.mgmt_proxy_enabled is True:
             url = '/web_api/login'
         response, response_data = self.send_request(url, payload)
 
@@ -84,7 +83,7 @@ class HttpApi(HttpApiBase):
 
     def logout(self):
         url = '/gaia_api/logout'
-        if self.mgmt_proxy_enabled == True:
+        if self.mgmt_proxy_enabled is True:
             url = '/web_api/logout'
         response, dummy = self.send_request(url, None)
 
@@ -94,9 +93,9 @@ class HttpApi(HttpApiBase):
     def send_request(self, path, body_params):
         # we only replace gaia_ip/ with web_api/gaia-api/ if target is set and path contains for gaia_ip/
         cp_api_target = self.get_option('cptarget')
-        if 'gaia_api/' in path: # Avoid login/logut requests in case of web_api
-            if self.mgmt_proxy_enabled == True:
-                if cp_api_target != None:
+        if 'gaia_api/' in path:  # Avoid login/logut requests in case of web_api
+            if self.mgmt_proxy_enabled is True:
+                if cp_api_target is not None:
                     body_params['target'] = cp_api_target
                 path = path.replace("gaia_api/", "web_api/gaia-api/")
         data = json.dumps(body_params) if body_params else '{}'

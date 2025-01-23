@@ -23,65 +23,54 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
+author: Ameer Asli (@chkp-ameera)
 description:
-- Show the VSNext state.
-module: cp_gaia_vsnext_state_facts
-options:
-  version:
-    description: Gaia API version for example 1.8.
-    required: False
-    type: str
-short_description: Show the VSNext state.
+- Show pre-defined traps.
+module: cp_gaia_snmp_pre_defined_traps_facts
+short_description: Show pre-defined traps.
 version_added: '6.0.0'
-author: Omer Hadad (@chkp-omerhad)
-
 notes:
 - Supports C(check_mode).
 requirements:
-- supported starting from gaia_api >= 1.8
-"""
-EXAMPLES = """
-- name: Show VSNext state
-  check_point.gaia.cp_gaia_vsnext_state_facts:
+- supported starting from gaia_api >= 1.6
+options:
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
+    type: str
 
 """
+
+
+EXAMPLES = """
+- name: Show SNMP pre-defined traps status
+  check_point.gaia.cp_gaia_snmp_pre_defined_traps_facts:
+
+"""
+
+
 RETURN = """
 ansible_facts:
-    description: The VSNext state facts.
+    description: The checkpoint object facts.
     returned: always.
     type: dict
-    contains:
-        enabled:
-            description: The VSNext state.
-            returned: always
-            type: bool
-        session-virtual-system-id:
-            description: The Virtual System ID of the current Gaia API session.
-            returned: always
-            type: int
-        member-id:
-            description: The member on which the command was executed.
-            returned: On Scalable and Elastic XL platforms only.
-            type: sp-member-id
 """
+
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_facts_api_call, checkpoint_argument_spec_for_all
 
 
-def run_module():
+def main():
+    # arguments for the module:
     fields = dict()
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'vsnext-state'
+    api_call_object = 'snmp-pre-defined-traps'
 
     res = chkp_facts_api_call(module, api_call_object, False)
     module.exit_json(ansible_facts=res["ansible_facts"])
 
 
-def main():
-    run_module()
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
