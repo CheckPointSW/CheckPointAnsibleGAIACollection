@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   state (False, str, present)
     Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
 

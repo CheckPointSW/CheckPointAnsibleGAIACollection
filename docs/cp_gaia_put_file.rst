@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   file_name (True, str, None)
     Filename include the desired path. The file will be created in the user home directory if the full path wasn't provided.
 

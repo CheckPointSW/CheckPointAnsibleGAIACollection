@@ -24,6 +24,22 @@ All operations are performed over Web Services API.
 Parameters
 ----------
 
+  state (False, str, present)
+    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+
+
+  version (False, str, None)
+    Gaia API version for example 1.6.
+
+
+  wait_for_task (False, bool, True)
+    Wait for task or return immediately.
+
+
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   id (optional, str, None)
     Virtual gateway ID.
 
@@ -48,6 +64,11 @@ Parameters
     Collection of interfaces to be set, identified by the name. Replaces existing interfaces.
 
 
+    name (optional, str, None)
+      Interface name.
+
+
+
   resources (optional, dict, None)
     Virtual gateway resources configuration.
 
@@ -67,17 +88,22 @@ Parameters
     Collection of virtual switches to be set, identified by their IDs. Replaces existing interfaces.
 
 
+    id (optional, int, None)
+      Virtual switch ID.
+
+
+
   mgmt_connection (optional, dict, None)
     Management connection configuration.
 
 
-    mgmt_connection_identifier (optional, str, None)
+    mgmt_connection_identifier (True, str, None)
       Management connection identifier.
 
       This parameter is used to change an existing virtual gateway by name.
 
 
-    mgmt_connection_type (optional, str, None)
+    mgmt_connection_type (True, str, None)
       Management connection type.
 
       This parameter is used to change an existing virtual gateway by name.
@@ -87,11 +113,11 @@ Parameters
       Management connection IPv4 configuration.
 
 
-      ipv4_address (optional, str, None)
+      ipv4_address (True, str, None)
         Management connection IPv4 address.
 
 
-      ipv4_mask_length (optional, int, None)
+      ipv4_mask (True, int, None)
         Management connection IPv4 mask length.
 
 
@@ -104,11 +130,11 @@ Parameters
       Management connection IPv6 configuration.
 
 
-      ipv6_address (optional, str, None)
+      ipv6_address (True, str, None)
         Management connection IPv6 address.
 
 
-      ipv6_mask_length (optional, int, None)
+      ipv6_mask (True, int, None)
         Management connection IPv6 mask length.
 
 
@@ -139,18 +165,18 @@ Examples
           - name: eth1-02.2
           - name: eth1-02.3
         virtual_switches:
-          - id: 1
-          - id: 500
+            - id: 1
+            - id: 500
         resources:
           firewall_ipv4_instances: 2
           firewall_ipv6_instances: 0
         mgmt_connection:
-          mgmt_connection_identifier: 500
-          mgmt_connection_type: virtual-switch-id
-          mgmt_ipv4_configuration:
-            ipv4_address: 172.72.72.1
-            ipv4_mask: 24
-            ipv4_default_gateway: 172.72.72.4
+              mgmt_connection_identifier: 500
+              mgmt_connection_type: virtual-switch-id
+              mgmt_ipv4_configuration:
+                ipv4_address: 172.72.72.1
+                ipv4_mask: 24
+                ipv4_default_gateway: 172.72.72.4
 
 
 

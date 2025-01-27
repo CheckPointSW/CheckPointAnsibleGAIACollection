@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   limit (False, int, 50)
     The maximum number of returned results. relevant in case facts for all routes.
 

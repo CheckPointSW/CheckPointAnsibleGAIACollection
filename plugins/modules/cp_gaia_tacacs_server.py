@@ -36,6 +36,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   super_user_uid:
         description: The UID that will be given to a TACACS+ user.
         required: False

@@ -30,6 +30,10 @@ Parameters
     Interface name to show. If not specified, all alias interfaces information is returned.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
 
 
 

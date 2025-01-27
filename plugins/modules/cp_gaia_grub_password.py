@@ -38,6 +38,10 @@ options:
       description: Gaia API version for example 1.7.
       required: False
       type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
     password:
         description: GRUB new password.
         required: False

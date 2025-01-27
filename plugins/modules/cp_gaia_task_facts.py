@@ -37,6 +37,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
     task_id:
         description: List of task ids to show.
         required: True

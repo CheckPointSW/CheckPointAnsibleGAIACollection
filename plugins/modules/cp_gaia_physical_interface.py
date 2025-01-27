@@ -35,6 +35,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   auto_negotiation:
     description: Activating Auto-Negotiation will skip the speed and duplex configuration.
     required: false
@@ -97,10 +101,6 @@ options:
     type: str
   tx_ringsize:
     description: Set transmit buffer size for interfaces.
-    required: false
-    type: int
-  virtual_system_id:
-    description: Virtual System ID.
     required: false
     type: int
   dhcp:

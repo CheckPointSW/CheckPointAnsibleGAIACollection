@@ -35,15 +35,14 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   name:
     description: Interface name to show. If not specified, all physical interfaces information is returned.
     required: false
     type: str
-  virtual_system_id:
-    description: Virtual System ID.
-    required: false
-    type: int
-
 """
 
 EXAMPLES = """

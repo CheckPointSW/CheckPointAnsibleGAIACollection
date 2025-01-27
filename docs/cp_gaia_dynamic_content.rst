@@ -26,6 +26,10 @@ Parameters
     GAIA api version for ex 1.8
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   policy_path (True, str, None)
     path for the policy json
 

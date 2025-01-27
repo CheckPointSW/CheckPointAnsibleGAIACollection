@@ -35,6 +35,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   state:
     description: Ansible state which can be C(present) or C(absent).
     required: False
@@ -93,7 +97,6 @@ options:
     type: list
     elements: str
     choices: ['CLI', 'Web-UI', 'Gaia-API']
-    default: ['CLI', 'Web-UI']
   roles:
     description: Roles spesified to the user.
     required: False
@@ -103,7 +106,6 @@ options:
     description: GID. Numeric ID which is used in identifying the primary group to which this user belongs.
     required: False
     type: int
-    default: 100
   password:
     description: Specifies new password on command line.
                  Check Point recommends that a password be at least eight characters long.

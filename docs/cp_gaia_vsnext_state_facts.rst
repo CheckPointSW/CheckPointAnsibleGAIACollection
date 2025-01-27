@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.8.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
 
 
 
@@ -70,7 +74,7 @@ ansible_facts (always., dict, )
     The Virtual System ID of the current Gaia API session.
 
 
-  member-id (On Scalable and Elastic XL platforms only., sp-member-id, )
+  member-id (On Scalable and Elastic XL platforms only., int, )
     The member on which the command was executed.
 
 

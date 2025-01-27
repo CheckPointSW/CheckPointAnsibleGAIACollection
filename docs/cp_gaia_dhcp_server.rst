@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   enabled (False, bool, None)
     DHCP server status.
 
@@ -77,10 +81,6 @@ Parameters
 
     default_gateway (False, str, None)
       The IPv4 address of the default gateway for the DHCP clients.
-
-
-    virtual_system_id (False, int, None)
-      Virtual System ID.
 
 
     dns (False, dict, None)

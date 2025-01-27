@@ -31,6 +31,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   name:
     description: New hostname to change. Hostname can be a combination of letters and numbers, it cannot
       be in IP format or start/end with characters such as ''.'' And ''-''.

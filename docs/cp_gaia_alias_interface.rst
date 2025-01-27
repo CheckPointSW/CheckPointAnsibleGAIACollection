@@ -34,12 +34,16 @@ Parameters
     Interface name with format "\<parent interface\>:\<id\>", for example  eth0:1, eth0:2 .. etc.
 
 
-  ipv4_address (False, str, None)
+  ipv4_address (True, str, None)
     Interface IPv4 address.
 
 
-  ipv4_mask_length (False, int, None)
+  ipv4_mask_length (True, int, None)
     Interface IPv4 address mask length.
+
+
+  virtual_system_id (False, int, None)
+    Virtual System ID.
 
 
 

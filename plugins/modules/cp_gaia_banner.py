@@ -41,6 +41,10 @@ options:
     description: Banner message enabled.
     required: false
     type: bool
+  virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
 short_description: Setting the banner message.
 version_added: '3.0.0'
 notes:

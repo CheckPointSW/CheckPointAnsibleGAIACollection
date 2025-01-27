@@ -52,6 +52,10 @@ Parameters
     Allowed all hosts.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
 
 
 

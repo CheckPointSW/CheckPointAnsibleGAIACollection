@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   state (False, str, present)
     Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
 
@@ -39,7 +43,9 @@ Parameters
 
 
   community_string (optional, str, None)
-    Receiver community - Required only in case of v1/v2 versions, Trap Community String used by the trap receiver to determine which traps are accepted from a device.
+    Receiver community - Required only in case of v1/v2 versions
+
+    Trap Community String used by the trap receiver to determine which traps are accepted from a device.
 
 
 

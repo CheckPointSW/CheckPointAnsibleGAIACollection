@@ -35,6 +35,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   state:
     description: Ansible state which can be C(present) or C(absent).
     required: False
@@ -53,7 +57,7 @@ options:
   community_string:
     description:
       - Receiver community - Required only in case of v1/v2 versions
-      Trap Community String used by the trap receiver to determine which traps are accepted from a device.
+      - Trap Community String used by the trap receiver to determine which traps are accepted from a device.
     type: str
 """
 

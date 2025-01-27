@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   name (False, str, None)
     SNMPv3 USM user name to show. If not specified, all users information is returned.
 

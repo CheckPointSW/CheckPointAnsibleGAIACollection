@@ -38,6 +38,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
     limit:
         description: The maximum number of returned results. relevant in case facts for all routes.
         required: False

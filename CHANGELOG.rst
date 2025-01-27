@@ -5,6 +5,25 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
     
 
+v6.0.1
+======
+
+Release Summary
+---------------
+
+this release 6.0.1 of ``check_point.gaia``, released on 2025-1-27.
+
+Minor Changes
+---------------
+
+Added wait_for_task for the VSNext modules cp_gaia_virtual_switch and cp_gaia_virtual_gateway.
+
+Bugfixes
+---------------
+
+Fix the documentation that wasn't loaded in the previous version.
+
+
 v6.0.0
 ======
 
@@ -24,12 +43,12 @@ New Modules
 - check_point.gaia.cp_gaia_dynamic_content_layer_facts – get the details of the installed policy on a given dynamic layer on a Check Point machine over Web Services API.
 - check_point.gaia.cp_gaia_dynamic_content_layers_facts – get the details of all dynamic layers on a Check Point machine over Web Services API.
 - check_point.gaia.cp_gaia_simulate_packet – simulate packet rulebase execution on a Check Point machine over Web Services API.
-- check_point.gaia.cp_gaia_virtual_systems_facts – get virtual-system objects facts on Check Point machine over Web Services API.
-- check_point.gaia.cp_gaia_virtual_switch – manages virtual switch on Check Point machine over Web Services API.
-- check_point.gaia.cp_gaia_virtual_switch_facts – get virtual-switch objects facts on Check Point machine over Web Services API.
-- check_point.gaia.cp_gaia_virtual_gateway – manages virtual-gateway objects on Check Point machine over Web Services API.
-- check_point.gaia.cp_gaia_virtual_gateway_facts – get virtual-gateway objects facts on Check Point machine over Web Services API.
-- check_point.gaia.cp_gaia_virtual_vsnext_state_facts – get the VSNext state on Check Point machine over Web Services API.
+- check_point.gaia.cp_gaia_virtual_systems_facts – get virtual-system objects facts on Check Point VSNext machine over Web Services API.
+- check_point.gaia.cp_gaia_virtual_switch – manages virtual switch on Check Point VSNext machine over Web Services API.
+- check_point.gaia.cp_gaia_virtual_switch_facts – get virtual-switch objects facts on Check Point VSNext machine over Web Services API.
+- check_point.gaia.cp_gaia_virtual_gateway – manages virtual-gateway objects on Check Point VSNext machine over Web Services API.
+- check_point.gaia.cp_gaia_virtual_gateway_facts – get virtual-gateway objects facts on Check Point VSNext machine over Web Services API.
+- check_point.gaia.cp_gaia_virtual_vsnext_state_facts – get the VSNext state on Check Point VSNext machine over Web Services API.
 - check_point.gaia.cp_gaia_grub_password – manage grub password of a Check Point machine over Web Services API.
 - check_point.gaia.cp_gaia_grub_password_facts – get grub hash password of a Check Point machine over Web Services API.
 - check_point.gaia.cp_gaia_snmp –  manage SNMP configuration of a Check Point machine over Web Services API.

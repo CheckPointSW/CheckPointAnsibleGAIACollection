@@ -32,12 +32,22 @@ description:
 version_added: "6.0.0"
 author: Omer Hadad (@chkp-omerhad)
 options:
+  version:
+    description: Gaia API version for example 1.8.
+    required: False
+    type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   id:
     description:
       - Virtual Switch ID.
         This parameter is relevant only for getting a specific Virtual Switch object.
-    type: str
-
+    type: int
+  member_id:
+    description: The member on which the command is executed.
+    type: int
 """
 EXAMPLES = """
 - name: show-virtual-switch

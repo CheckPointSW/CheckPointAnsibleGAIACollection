@@ -29,6 +29,25 @@ description:
 version_added: "6.0.0"
 author: Omer Hadad (@chkp-omerhad)
 options:
+  state:
+    description: Ansible state which can be C(present) or C(absent).
+    required: False
+    type: str
+    default: present
+    choices: [present, absent]
+  version:
+    description: Gaia API version for example 1.8.
+    required: False
+    type: str
+  wait_for_task:
+    description: Wait for task or return immediately.
+    required: False
+    default: True
+    type: bool
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   id:
     description:
       - Virtual Switch ID.
@@ -43,6 +62,11 @@ options:
       description:
       - Collection of interfaces to be set, identified by their names. Replaces existing interfaces.
       type: list
+      elements: dict
+      suboptions:
+        name:
+          description: Interface name.
+          type: str
 """
 EXAMPLES = """
 - name: set virtual switch
@@ -61,17 +85,22 @@ cp_gaia_virtual_switch:
   type: dict
 """
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import (
+    chkp_api_call,
+    checkpoint_argument_spec_for_all,
+    checkpoint_argument_spec_for_async,
+)
 
 
 def run_module():
     # arguments for the module:
     fields = dict(
         state=dict(type='str', default='present', choices=['present', 'absent']),
-        id=dict(type='int'),
+        id=dict(type='str'),
         name=dict(type='str'),
-        interfaces=dict(type='list'),
+        interfaces=dict(type='list', elements='dict', options=dict(name=dict(type='str')))
     )
+    fields.update(checkpoint_argument_spec_for_async)
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     ignore = ['status']
