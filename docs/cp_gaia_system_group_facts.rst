@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   name (False, str, None)
     System group name to show. If not specified, all system groups information is returned.
 

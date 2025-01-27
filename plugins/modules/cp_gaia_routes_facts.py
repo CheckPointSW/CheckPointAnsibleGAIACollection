@@ -39,9 +39,9 @@ options:
       required: False
       type: str
     virtual_system_id:
-        description: Virtual System ID.
-        required: False
-        type: int
+      description: Virtual System ID.
+      required: False
+      type: int
     limit:
         description: The maximum number of returned results.
         required: False

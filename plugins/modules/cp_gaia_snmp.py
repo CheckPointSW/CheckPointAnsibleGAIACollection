@@ -37,6 +37,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
     enabled:
         description: Enables/Disables the SNMP Agent.
         required: False
@@ -74,7 +78,7 @@ options:
         description:
           - Pre-defined traps settings.
         type: dict
-        contains:
+        suboptions:
             polling_frequency:
                 description:
                   - Polling interval in seconds
@@ -83,7 +87,7 @@ options:
         description:
           - Custom traps settings.
         type: dict
-        contains:
+        suboptions:
             clear_trap_interval:
                 description:
                   - Interval in second between clear traps
@@ -96,7 +100,7 @@ options:
         description:
           - VSX settings.
         type: dict
-        contains:
+        suboptions:
             enabled:
                 description:
                   - True if SNMP is in vsx mode
@@ -104,15 +108,15 @@ options:
             vs_access:
                 description:
                   - SNMP vs-access type direct/indirect queries on Virtual-Devices
-                  direct- SNMP direct queries on Virtual-Devices
-                  indirect- SNMP direct queries via VS0
+                  - direct- SNMP direct queries on Virtual-Devices
+                  - indirect- SNMP direct queries via VS0
                 type: str
                 choices: [direct, indirect]
             sysname:
                 description:
                   - This command is relevant only for VSX with SNMP VS mode, Where
-                  False = the sysname OID for all Virtual Devices will return the same result VS0 hostname
-                  True = VS0 sysname OID returns the VSX hostname and Virtual Device sysname OID returns the Check Point object name of the Virtual Device
+                  - False = the sysname OID for all Virtual Devices will return the same result VS0 hostname
+                  - True = VS0 sysname OID returns the VSX hostname and Virtual Device sysname OID returns the Check Point object name of the Virtual Device
                 type: bool
 """
 

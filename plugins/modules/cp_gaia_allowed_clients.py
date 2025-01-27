@@ -59,6 +59,10 @@ options:
     description: Allowed all hosts.
     required: False
     type: bool
+  virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
 notes:
 - Supports C(check_mode).
 '''

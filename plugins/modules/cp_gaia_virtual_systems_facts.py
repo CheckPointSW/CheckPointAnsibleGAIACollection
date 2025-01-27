@@ -31,6 +31,10 @@ options:
     description: Gaia API version for example 1.8.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 short_description: Show Virtual Systems.
 version_added: '6.0.0'
 author: Omer Hadad (@chkp-omerhad)
@@ -61,7 +65,7 @@ ansible_facts:
         member-id:
             description: The member on which the command was executed.
             returned: On Scalable and Elastic XL platforms only.
-            type: sp-member-id
+            type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule

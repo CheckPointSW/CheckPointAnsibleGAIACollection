@@ -34,6 +34,10 @@ Parameters
     Banner message enabled.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
 
 
 

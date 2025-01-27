@@ -32,6 +32,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   file_name:
     description: Filename include the desired path. The file will be created in the user home directory if the full path wasn't provided.
     required: true

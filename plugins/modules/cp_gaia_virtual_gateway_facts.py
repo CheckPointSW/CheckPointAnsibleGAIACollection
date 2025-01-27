@@ -35,7 +35,19 @@ options:
     description:
       - Virtual system ID.
         This parameter is relevant only for getting a specific Virtual system object.
+    type: int
+  member_id:
+    description: Member ID.
+    required: False
+    type: int
+  version:
+    description: Gaia API version for example 1.6.
+    required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 EXAMPLES = """
 - name: show-virtual-system

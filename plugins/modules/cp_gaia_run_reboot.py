@@ -32,6 +32,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   wait_for_task:
     description: Wait for task or return immediately.
     required: False

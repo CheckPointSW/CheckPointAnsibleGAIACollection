@@ -39,6 +39,10 @@ options:
     description: Interface name to show. If not specified, all alias interfaces information is returned.
     required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 
 EXAMPLES = """

@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   super_user_uid (False, str, None)
     The UID that will be given to a super user.
 

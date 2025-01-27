@@ -31,6 +31,10 @@ options:
         description: GAIA api version for ex 1.8
         required: False
         type: str
+    virtual_system_id:
+        description: Virtual System ID.
+        required: False
+        type: int
     policy_path:
         description: path for the policy json
         required: True

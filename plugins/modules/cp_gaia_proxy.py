@@ -36,6 +36,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
     state:
         description: Ansible state which can be C(present) or C(absent).
         required: False

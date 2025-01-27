@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   limit (False, int, 50)
     The maximum number of returned results.
 
@@ -41,10 +45,6 @@ Parameters
 
   order (False, str, ASC)
     Sorts the routes by either ascending or descending order. Valid values are \ :literal:`ASC`\  \ :literal:`DESC`\ .
-
-
-  virtual_system_id (False, int, None)
-    Virtual System ID.
 
 
 

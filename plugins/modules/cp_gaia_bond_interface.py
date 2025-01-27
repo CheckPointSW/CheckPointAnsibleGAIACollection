@@ -155,10 +155,6 @@ options:
     description: Media monitoring interval, Valid values are C(1-5000).
     required: false
     type: int
-  virtual_system_id:
-    description: Virtual System ID.
-    required: false
-    type: int
 """
 
 EXAMPLES = """

@@ -26,8 +26,20 @@ This module handles both operations, get a specific object and get several objec
 Parameters
 ----------
 
-  id (optional, str, None)
+  version (False, str, None)
+    Gaia API version for example 1.8.
+
+
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
+  id (optional, int, None)
     Virtual Switch ID. This parameter is relevant only for getting a specific Virtual Switch object.
+
+
+  member_id (optional, int, None)
+    The member on which the command is executed.
 
 
 

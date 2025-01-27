@@ -37,6 +37,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   enabled_ciphers:
     description: Enabled ssh ciphers.
     required: False

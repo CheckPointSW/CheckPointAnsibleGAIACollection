@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   description (False, str, None)
     Description of the scheduled snapshot.
 

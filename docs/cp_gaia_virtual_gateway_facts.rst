@@ -26,8 +26,20 @@ This module handles both operations, get a specific object and get several objec
 Parameters
 ----------
 
-  id (optional, str, None)
+  id (optional, int, None)
     Virtual system ID. This parameter is relevant only for getting a specific Virtual system object.
+
+
+  member_id (False, int, None)
+    Member ID.
+
+
+  version (False, str, None)
+    Gaia API version for example 1.6.
+
+
+  virtual_system_id (False, int, None)
+    Virtual System ID.
 
 
 

@@ -24,6 +24,22 @@ All operations are performed over the Web Services API.
 Parameters
 ----------
 
+  state (False, str, present)
+    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+
+
+  version (False, str, None)
+    Gaia API version for example 1.8.
+
+
+  wait_for_task (False, bool, True)
+    Wait for task or return immediately.
+
+
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   id (optional, str, None)
     Virtual Switch ID.
 
@@ -38,6 +54,11 @@ Parameters
 
   interfaces (optional, list, None)
     Collection of interfaces to be set, identified by their names. Replaces existing interfaces.
+
+
+    name (optional, str, None)
+      Interface name.
+
 
 
 

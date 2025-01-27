@@ -35,6 +35,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   state:
     description: Ansible state which can be C(present) or C(absent).
     required: False
@@ -52,13 +56,13 @@ options:
     choices: [read-only, read-write]
   allowed_virtual_systems:
     description:
-      - Configured Virtual Devices allowed for the USM user - vsid range: 0-512.
+      - Configured Virtual Devices allowed for the USM user - vsid range 0-512.
     type: str
   authentication:
     description:
       - Authentication details.
     type: dict
-    contains:
+    suboptions:
         protocol:
             description:
               - Authentication protocol, MD5 and SHA1 are not supported starting from R81.
@@ -67,18 +71,18 @@ options:
         password:
             description:
               - Authentication Password - (8 or more printable characters, Limited by 128 characters)
-              Each SNMPv3 USM user must have an authentication pass phrase.
+              - Each SNMPv3 USM user must have an authentication pass phrase.
             type: str
         password_hash:
             description:
               - Authentication Hashed Password - (8 or more printable characters, Limited by 128 characters)
-              Each SNMPv3 USM user must have an authentication pass phrase.
+              - Each SNMPv3 USM user must have an authentication pass phrase.
             type: str
   privacy:
     description:
       - Privacy details.
     type: dict
-    contains:
+    suboptions:
         protocol:
             description:
               - Privacy protocol.
@@ -87,12 +91,12 @@ options:
         password:
             description:
               - Privacy Password - (8 or more printable characters, Limited by 128 characters)
-              An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
+              - An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
             type: str
         password_hash:
             description:
               - Privacy Hashed Password - (8 or more printable characters, Limited by 128 characters)
-              An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
+              - An SNMPv3 USM user with a privacy security level must have a privacy pass phrase.
             type: str
 """
 

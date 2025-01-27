@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.7.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   time (False, str, None)
     Time to set, in HH:MM[:SS] format.
 

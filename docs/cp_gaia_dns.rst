@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   suffix (False, str, None)
     Use empty-string in order to remove the setting.
 

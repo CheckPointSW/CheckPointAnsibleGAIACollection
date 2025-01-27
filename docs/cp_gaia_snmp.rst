@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   enabled (False, bool, None)
     Enables/Disables the SNMP Agent.
 
@@ -67,12 +71,47 @@ Parameters
     Pre-defined traps settings.
 
 
+    polling_frequency (optional, int, None)
+      Polling interval in seconds
+
+
+
   custom_traps_settings (optional, dict, None)
     Custom traps settings.
 
 
+    clear_trap_interval (optional, int, None)
+      Interval in second between clear traps
+
+
+    clear_trap_amount (optional, int, None)
+      Number of clear traps that is sent after custom trap termination
+
+
+
   vsx_settings (optional, dict, None)
     VSX settings.
+
+
+    enabled (optional, bool, None)
+      True if SNMP is in vsx mode
+
+
+    vs_access (optional, str, None)
+      SNMP vs-access type direct/indirect queries on Virtual-Devices
+
+      direct- SNMP direct queries on Virtual-Devices
+
+      indirect- SNMP direct queries via VS0
+
+
+    sysname (optional, bool, None)
+      This command is relevant only for VSX with SNMP VS mode, Where
+
+      False = the sysname OID for all Virtual Devices will return the same result VS0 hostname
+
+      True = VS0 sysname OID returns the VSX hostname and Virtual Device sysname OID returns the Check Point object name of the Virtual Device
+
 
 
 

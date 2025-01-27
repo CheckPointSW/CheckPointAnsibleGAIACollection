@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   name (True, str, None)
     New hostname to change. Hostname can be a combination of letters and numbers, it cannot be in IP format or start/end with characters such as ''.'' And ''-''.
 

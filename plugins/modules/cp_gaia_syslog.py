@@ -25,36 +25,39 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Majd Sharkia (@chkp-majds)
 description:
-- Setting system logging configuration.
+  - Setting system logging configuration.
 module: cp_gaia_syslog
 short_description: Setting system logging configuration.
-version_added: '2.0.0'
+version_added: 2.0.0
 notes:
-- Supports C(check_mode).
+  - Supports C(check_mode).
 requirements:
-- supported starting from gaia_api >= 1.6
+  - supported starting from gaia_api >= 1.6
 options:
-    version:
-        description: Gaia API version for example 1.6.
-        required: False
-        type: str
-    send_to_mgmt:
-        description: Sending logs to Management server.
-        required: False
-        type: bool
-    cp_logs:
-        description: Syslog auditlog permanent.
-        required: False
-        type: bool
-    audit_log:
-        description: Syslog auditlog permanent.
-        required: False
-        type: bool
-    filename:
-        description: Syslog output filename.
-        required: False
-        type: str
-
+  version:
+    description: Gaia API version for example 1.6.
+    required: false
+    type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
+  send_to_mgmt:
+    description: Sending logs to Management server.
+    required: false
+    type: bool
+  cp_logs:
+    description: Syslog auditlog permanent.
+    required: false
+    type: bool
+  audit_log:
+    description: Syslog auditlog permanent.
+    required: false
+    type: bool
+  filename:
+    description: Syslog output filename.
+    required: false
+    type: str
 """
 
 

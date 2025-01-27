@@ -26,6 +26,10 @@ Parameters
     GAIA api version for ex 1.8
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   ip_version (False, str, 4)
     ip version of the packet.
 

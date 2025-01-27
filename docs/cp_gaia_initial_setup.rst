@@ -30,6 +30,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   password (False, str, None)
     Password of user admin. Required in case default initial password has not been changed before.
 

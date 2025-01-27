@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   state (False, str, present)
     Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
 
@@ -62,7 +66,7 @@ Parameters
     If the user has been locked out, cancel that. True cancel lock-out. False  do nothing.
 
 
-  allow_access_using (False, list, ['CLI', 'Web-UI'])
+  allow_access_using (False, list, None)
     Modify the access-mechanisms available for a user. Valid values are \ :literal:`CLI`\  \ :literal:`Web-UI`\  \ :literal:`Gaia-API`\  (supported from R81.10).
 
 
@@ -70,7 +74,7 @@ Parameters
     Roles spesified to the user.
 
 
-  primary_system_group_id (False, int, 100)
+  primary_system_group_id (False, int, None)
     GID. Numeric ID which is used in identifying the primary group to which this user belongs.
 
 

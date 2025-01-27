@@ -24,21 +24,24 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 description:
-- Show the VSNext state.
+  - Show the VSNext state.
 module: cp_gaia_vsnext_state_facts
 options:
   version:
     description: Gaia API version for example 1.8.
-    required: False
+    required: false
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: false
+    type: int
 short_description: Show the VSNext state.
-version_added: '6.0.0'
+version_added: 6.0.0
 author: Omer Hadad (@chkp-omerhad)
-
 notes:
-- Supports C(check_mode).
+  - Supports C(check_mode).
 requirements:
-- supported starting from gaia_api >= 1.8
+  - supported starting from gaia_api >= 1.8
 """
 EXAMPLES = """
 - name: Show VSNext state
@@ -62,7 +65,7 @@ ansible_facts:
         member-id:
             description: The member on which the command was executed.
             returned: On Scalable and Elastic XL platforms only.
-            type: sp-member-id
+            type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule

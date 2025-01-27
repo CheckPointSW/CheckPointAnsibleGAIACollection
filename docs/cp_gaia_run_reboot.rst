@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   wait_for_task (False, bool, True)
     Wait for task or return immediately.
 

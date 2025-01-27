@@ -31,6 +31,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   msg:
     description: New message of the day for web, ssh and serial login.
     required: false

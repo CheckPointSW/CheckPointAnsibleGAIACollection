@@ -25,7 +25,7 @@ __metaclass__ = type
 DOCUMENTATION = """
 author: Ameer Asli (@chkp-ameera)
 description:
-- Modify the configuration of static route.
+  - Modify the configuration of static route.
 module: cp_gaia_static_route
 short_description: Modify the configuration of static route.
 version_added: '3.0.0'
@@ -38,6 +38,10 @@ options:
       description: Gaia API version for example 1.6.
       required: False
       type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
     address:
         description: IPv4 address.
         required: True
@@ -71,8 +75,8 @@ options:
             priority:
                 description:
                   - Priority defines which gateway to select as the next-hop.
-                    The lower the priority, the higher the preference.
-                    Possible values are 1-8.
+                  - The lower the priority, the higher the preference.
+                  - Possible values are 1-8.
                 required: False
                 type: int
     comment:
@@ -82,7 +86,7 @@ options:
     rank:
         description:
           - Selects a route when there are many routes to a destination that use different routing protocols.
-            The route with the lowest rank value is selected. Possible values are 0-255.
+          - The route with the lowest rank value is selected. Possible values are 0-255.
         required: False
         type: int
     ping:

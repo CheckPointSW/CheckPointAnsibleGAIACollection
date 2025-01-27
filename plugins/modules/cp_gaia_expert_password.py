@@ -46,6 +46,10 @@ options:
         description: An encrypted representation of the password.
         required: False
         type: str
+    virtual_system_id:
+      description: Virtual System ID.
+      required: False
+      type: int
 """
 
 

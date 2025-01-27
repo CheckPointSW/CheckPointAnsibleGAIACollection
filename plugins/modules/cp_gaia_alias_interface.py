@@ -43,15 +43,19 @@ options:
     choices: [present, absent]
   name:
     description: Interface name with format "<parent interface>:<id>", for example  eth0:1, eth0:2 .. etc.
-    required: true
+    required: True
     type: str
   ipv4_address:
       description: Interface IPv4 address.
-      required: false
+      required: True
       type: str
   ipv4_mask_length:
       description: Interface IPv4 address mask length.
-      required: false
+      required: True
+      type: int
+  virtual_system_id:
+      description: Virtual System ID.
+      required: False
       type: int
 """
 

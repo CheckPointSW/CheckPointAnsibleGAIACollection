@@ -26,6 +26,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   auto_negotiation (False, bool, None)
     Activating Auto-Negotiation will skip the speed and duplex configuration.
 
@@ -88,10 +92,6 @@ Parameters
 
   tx_ringsize (False, int, None)
     Set transmit buffer size for interfaces.
-
-
-  virtual_system_id (False, int, None)
-    Virtual System ID.
 
 
   dhcp (False, dict, None)

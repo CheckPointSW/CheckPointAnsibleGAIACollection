@@ -43,7 +43,6 @@ options:
     description: Virtual System ID.
     required: false
     type: int
-
 """
 
 EXAMPLES = """

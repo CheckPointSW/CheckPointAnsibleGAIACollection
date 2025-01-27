@@ -31,6 +31,10 @@ Parameters
     Gaia API version for example 1.6.
 
 
+  virtual_system_id (False, int, None)
+    Virtual System ID.
+
+
   address (True, str, None)
     IPv4 address.
 
@@ -56,7 +60,11 @@ Parameters
 
 
     priority (False, int, None)
-      Priority defines which gateway to select as the next-hop. The lower the priority, the higher the preference. Possible values are 1-8.
+      Priority defines which gateway to select as the next-hop.
+
+      The lower the priority, the higher the preference.
+
+      Possible values are 1-8.
 
 
 
@@ -65,7 +73,9 @@ Parameters
 
 
   rank (False, int, None)
-    Selects a route when there are many routes to a destination that use different routing protocols. The route with the lowest rank value is selected. Possible values are 0-255.
+    Selects a route when there are many routes to a destination that use different routing protocols.
+
+    The route with the lowest rank value is selected. Possible values are 0-255.
 
 
   ping (False, bool, False)

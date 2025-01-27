@@ -27,7 +27,7 @@ author: Duane Toler (@duanetoler)
 description:
 - Show loopback interface.
 short_description: Show loopback interface/s.
-version_added: '5.0.x'
+version_added: '5.0.0'
 notes:
 - Supports C(check_mode).
 options:
@@ -35,6 +35,10 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
   name:
     description: Interface name to show. If not specified, all loopback interfaces information is returned.
     required: false
