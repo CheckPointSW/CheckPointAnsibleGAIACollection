@@ -269,8 +269,11 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
                 code, res = api_call(module, target_version, api_call_object="add-{0}".format(api_call_object))
             else:  # some requests like static-route don't have add, try set instead
                 code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
-
-    if code != 200:
+    if code == 200:
+        if 'wait_for_task' in module.params and module.params['wait_for_task'] is True:
+            if 'task_id' in res:
+                res = wait_for_task(module, target_version, res['task_id'])
+    else:
         module.fail_json(msg=parse_fail_message(code, res))
 
     after = res.copy()

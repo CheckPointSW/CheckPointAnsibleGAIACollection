@@ -146,14 +146,14 @@ cp_gaia_virtual_system:
   type: dict
 """
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all, checkpoint_argument_spec_for_async
 
 
 def run_module():
     # arguments for the module:
     fields = dict(
         state=dict(type='str', default='present', choices=['present', 'absent']),
-        id=dict(type='int'),
+        id=dict(type='str'),
         one_time_password=dict(type='str'),
         interfaces=dict(type='list'),
         virtual_switches=dict(type='list'),
@@ -188,6 +188,7 @@ def run_module():
             )
         )
     )
+    fields.update(checkpoint_argument_spec_for_async)
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     ignore = ['status']
