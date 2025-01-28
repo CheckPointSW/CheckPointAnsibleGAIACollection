@@ -4,6 +4,32 @@ Check_Point.gaia Release Notes
 
 .. contents:: Topics
     
+v7.0.0
+======
+
+Release Summary
+---------------
+
+This is release 6.0.0 of ``check_point.gaia``, released on 2025-01-28.
+
+New Modules
+-----------
+
+- check_point.gaia.cp_gaia_maestro_changes – apply or discard pending Maestro changes over Web Services API.
+- check_point.gaia.cp_gaia_maestro_gateways – manage Maestro Gateways over Web Services API.
+- check_point.gaia.cp_gaia_maestro_gateways_facts – get information about Maestro Gateways over Web Services API.
+- check_point.gaia.cp_gaia_maestro_ports – configure Maestro Orchestrator ports over Web Services API.
+- check_point.gaia.cp_gaia_maestro_ports_facts - get information about Maestro Orchestrator ports over Web Services API.
+- check_point.gaia.cp_gaia_maestro_security_groups - manage Maestro Security Groups over Web Services API.
+- check_point.gaia.cp_gaia_maestro_security_groups_facts - get information about Maestro Security Groups over Web Services API.
+- check_point.gaia.cp_gaia_maestro_sites - add description to Maestro Sites over Web Services API.
+- check_point.gaia.cp_gaia_maestro_sites_facts - get information about Maestro Sites over Web Services API.
+
+Minor Changes
+---------------
+
+modify infrastructure to support special Maestro APIs.
+
 
 v6.0.1
 ======
