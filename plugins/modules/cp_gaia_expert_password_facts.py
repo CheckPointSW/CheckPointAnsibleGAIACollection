@@ -50,8 +50,6 @@ requirements:
 EXAMPLES = """
 - name: Show expert hash password
   check_point.gaia.cp_gaia_expert_password_facts:
-
-
 """
 
 

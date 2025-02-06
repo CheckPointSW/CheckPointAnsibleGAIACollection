@@ -105,7 +105,6 @@ EXAMPLES = """
   check_point.gaia.cp_snmp_gaia_user:
     permission: read-only
     name: snmpuser
-
 """
 
 RETURN = """

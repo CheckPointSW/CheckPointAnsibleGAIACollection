@@ -125,7 +125,6 @@ EXAMPLES = """
 - name: Set SNMP status
   check_point.gaia.cp_gaia_snmp:
     enabled: true
-
 """
 
 

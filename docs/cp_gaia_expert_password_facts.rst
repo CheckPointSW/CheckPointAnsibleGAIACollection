@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,8 +55,6 @@ Examples
     
     - name: Show expert hash password
       check_point.gaia.cp_gaia_expert_password_facts:
-
-
 
 
 

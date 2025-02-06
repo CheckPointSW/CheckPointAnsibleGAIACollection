@@ -31,11 +31,11 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (False, str, None)
-    Interface name with format \ :literal:`loop\<id\>`\ , for example "loop00", "loop01"
+    Interface name with format :literal:`loop\<id\>`\ , for example "loop00", "loop01"
 
     Not required when adding new loopback interface
 
@@ -77,7 +77,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -92,7 +92,6 @@ Examples
       check_point.gaia.cp_gaia_loopback_interface:
         comments: "loop01 interface"
         name: loop01
-
 
 
 

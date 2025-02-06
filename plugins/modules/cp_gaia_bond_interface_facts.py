@@ -52,7 +52,6 @@ EXAMPLES = """
 - name: Show bond interface by specifying it's name
   cp_gaia_bond_interface_facts:
     name: bond1
-
 """
 
 RETURN = """

@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,7 +55,6 @@ Examples
     
     - name: Show Virtual Systems
       check_point.gaia.cp_gaia_virtual_systems_facts:
-
 
 
 

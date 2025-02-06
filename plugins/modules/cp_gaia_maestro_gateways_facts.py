@@ -27,7 +27,7 @@ author: Roi Tal (@chkp-roital)
 description:
 - Show information regarding Maestro Gateways, either assigned to Security Groups or unassigned.
 short_description: Show Gateway/s.
-version_added: '7.0.0'
+version_added: "7.0.0"
 notes:
 - Supports C(check_mode).
 options:
@@ -42,8 +42,11 @@ options:
   include_pending_changes:
     description: If true, show pending topology. If false, show deployed topology
     required: False
-    default: True
     type: bool
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 
 EXAMPLES = """
@@ -111,7 +114,7 @@ ansible_facts:
                     type: list
                     elements: dict
                     contains:
-                        orchestrator_id: 
+                        orchestrator_id:
                             description:
                               - ID of the Orchestrator to which this port belongs
                             returned: always

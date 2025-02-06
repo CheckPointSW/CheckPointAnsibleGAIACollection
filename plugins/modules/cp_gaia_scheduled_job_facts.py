@@ -45,7 +45,6 @@ options:
     description: Scheduled job name to show. If not specified, all scheduled jobs information is returned.
     required: false
     type: str
-
 """
 
 EXAMPLES = """
@@ -55,7 +54,6 @@ EXAMPLES = """
 - name: Show scheduled job by specifying it's name
   check_point.gaia.cp_gaia_scheduled_job_facts):
     name: test_job
-
 """
 
 RETURN = """

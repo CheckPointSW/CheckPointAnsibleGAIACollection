@@ -27,7 +27,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   virtual_system_id (False, int, None)
@@ -35,7 +35,7 @@ Parameters
 
 
   name (True, str, None)
-    Interface name with format \ :literal:`bond\<id\>`\ , valid values are bond1, bond2, bond3 .. etc.
+    Interface name with format :literal:`bond\<id\>`\ , valid values are bond1, bond2, bond3 .. etc.
 
 
   ipv4_address (False, str, None)
@@ -124,7 +124,7 @@ Parameters
 
 
   mii_interval (False, int, None)
-    Media monitoring interval, Valid values are \ :literal:`1-5000`\ .
+    Media monitoring interval, Valid values are :literal:`1-5000`.
 
 
 
@@ -134,7 +134,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -150,7 +150,6 @@ Examples
         comments: bond5 interface
         name: bond5
         mode: xor
-
 
 
 

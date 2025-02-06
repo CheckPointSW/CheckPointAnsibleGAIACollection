@@ -27,7 +27,7 @@ author: Roi Tal (@chkp-roital)
 description:
 - Show information regarding sites.
 short_description: Show site/s.
-version_added: '7.0.0'
+version_added: "7.0.0"
 notes:
 - Supports C(check_mode).
 options:
@@ -37,13 +37,16 @@ options:
     type: str
   site_id:
     description: ID of site to show. If not specified, all sites information is returned.
-    required: True
+    required: false
     type: int
   include_pending_changes:
     description: If true, show pending topology. If false, show deployed topology
     required: False
-    default: True
     type: bool
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 
 EXAMPLES = """
@@ -138,7 +141,7 @@ ansible_facts:
                             type: list
                             elements: dict
                             contains:
-                                orchestrator_id: 
+                                orchestrator_id:
                                     description:
                                       - ID of the Orchestrator to which this port belongs
                                     returned: always

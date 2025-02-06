@@ -50,8 +50,6 @@ requirements:
 EXAMPLES = """
 - name: Show IPv6 status
   check_point.gaia.cp_gaia_ipv6_facts:
-
-
 """
 
 

@@ -43,7 +43,6 @@ options:
     description: User name to show. If not specified, all users information is returned.
     required: false
     type: str
-
 """
 
 EXAMPLES = """
@@ -53,7 +52,6 @@ EXAMPLES = """
 - name: Show user by specifying it's name
   check_point.gaia.cp_gaia_user_facts:
     name: admin
-
 """
 
 RETURN = """

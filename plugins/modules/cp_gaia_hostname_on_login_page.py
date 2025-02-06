@@ -50,8 +50,7 @@ notes:
 EXAMPLES = """
 - hostname_on_login_page: Changing the banner message
   check_point.gaia.cp_gaia_hostname_on_login_page:
-    enabled: True
-
+    enabled: true
 """
 
 RETURN = """

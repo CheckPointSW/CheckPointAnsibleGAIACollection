@@ -31,7 +31,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (True, str, None)
@@ -53,7 +53,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 

@@ -54,7 +54,6 @@ EXAMPLES = """
 - name: Set IPv6 status
   check_point.gaia.cp_gaia_ipv6:
     enabled: true
-
 """
 
 

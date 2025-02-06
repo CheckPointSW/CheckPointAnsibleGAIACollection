@@ -46,7 +46,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -60,7 +60,6 @@ Examples
     - name: Set scheduled job mail
       check_point.gaia.cp_gaia_scheduled_job_mail:
         email_address: "sysadmins@company.com"
-
 
 
 

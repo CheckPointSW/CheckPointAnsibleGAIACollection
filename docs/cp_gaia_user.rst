@@ -31,7 +31,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (True, str, None)
@@ -67,7 +67,7 @@ Parameters
 
 
   allow_access_using (False, list, None)
-    Modify the access-mechanisms available for a user. Valid values are \ :literal:`CLI`\  \ :literal:`Web-UI`\  \ :literal:`Gaia-API`\  (supported from R81.10).
+    Modify the access-mechanisms available for a user. Valid values are :literal:`CLI` :literal:`Web-UI` :literal:`Gaia-API` (supported from R81.10).
 
 
   roles (False, list, None)
@@ -93,7 +93,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -108,7 +108,6 @@ Examples
       check_point.gaia.cp_gaia_user:
         shell: bash
         name: admin
-
 
 
 

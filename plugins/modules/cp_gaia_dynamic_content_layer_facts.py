@@ -63,7 +63,7 @@ layer_summary:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_all
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_operation
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_async
 

@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -58,7 +58,6 @@ Examples
     - name: Show physical interface by specifying it name
       check_point.gaia.cp_gaia_physical_interfaces_facts:
         name: eth0
-
 
 
 

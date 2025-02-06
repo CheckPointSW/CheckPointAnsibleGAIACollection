@@ -21,13 +21,13 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 author: Roi Tal (@chkp-roital)
 description: Set Port configuration. Note that at least one of 'id' or 'interface-name' must be provided.
-module: cp_gaia_maestro_gateways
+module: cp_gaia_maestro_ports
 short_description: Set Port configuration.
-version_added: '7.0.0'
+version_added: "7.0.0"
 requirements: ['supported starting from gaia_api >= 1.8']
 options:
   version:
@@ -55,36 +55,41 @@ options:
     required: False
     type: bool
   qsfp_mode:
-    description: Port QSFP mode. 
+    description: Port QSFP mode.
     required: False
     choices: ['4x10G', '4x25G', '25G', '40G', '100G']
     type: str
   type:
     description: Port type.
-    reuired: False
+    required: False
     choices: ['downlink', 'uplink', 'site_sync', 'ssm_sync', 'mgmt']
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 
 notes:
 - Supports C(check_mode).
-'''
+"""
 
 EXAMPLES = """
 - name: Change port QSFP mode
   check_point.gaia.cp_gaia_ports:
     id: 1/1/1
-    qsfp_mode : 4x25G
+    qsfp_mode: 4x25G
 """
 
 RETURN = """
 maestro_port:
   description: The updated Port details.
   returned: always.
-  type: dict  
+  type: dict
 """
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+
 
 def main():
     # arguments for the module:
@@ -103,6 +108,7 @@ def main():
     show_params = ["id", "interface_name"]
     res = chkp_api_call(module, api_call_object, False, show_params=show_params)
     module.exit_json(**res)
+
 
 if __name__ == "__main__":
     main()

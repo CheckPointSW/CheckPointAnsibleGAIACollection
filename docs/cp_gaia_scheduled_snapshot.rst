@@ -130,7 +130,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -143,10 +143,10 @@ Examples
     
     - name: Set scheduled snapshot
       check_point.gaia.cp_gaia_scheduled_snapshot:
-        recurrence: {"pattern": "weekly", "weekdays": ["Mon","Wed"], time: {"minute": 30,"hour": 13}}
+        recurrence: {"pattern": "weekly", "weekdays": ["Mon", "Wed"], time: {"minute": 30, "hour": 13}}
         name_prefix: "weeklySnap"
-        host: {"username": "username","upload_path": "/home/admin/", "password": "secret", "target": "lvm"}
-        enabled: True
+        host: {"username": "username", "upload_path": "/home/admin/", "password": "secret", "target": "lvm"}
+        enabled: true
         description: "weekly"
 
 

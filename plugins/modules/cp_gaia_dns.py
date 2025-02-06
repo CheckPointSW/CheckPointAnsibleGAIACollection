@@ -69,7 +69,6 @@ EXAMPLES = """
     primary: "1.2.3.4"
     tertiary: "3.4.5.6"
     secondary: "2.3.4.5"
-
 """
 
 

@@ -46,7 +46,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -63,7 +63,6 @@ Examples
     - name: Show scheduled job by specifying it's name
       check_point.gaia.cp_gaia_scheduled_job_facts):
         name: test_job
-
 
 
 

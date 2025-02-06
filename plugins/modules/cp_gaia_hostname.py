@@ -51,7 +51,6 @@ EXAMPLES = """
 - name: Changing a hostname
   check_point.gaia.cp_gaia_hostname:
     name: new-hostname
-
 """
 
 RETURN = """

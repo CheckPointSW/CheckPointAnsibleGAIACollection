@@ -125,16 +125,16 @@ notes:
 """
 
 EXAMPLES = """
-        - name: simulate packet
-          check_point.gaia.cp_gaia_simulate_packet:
-                    ip_version: "4"
-                    source_ip: "1.2.3.4"
-                    destination_ip: "2.3.4.5"
-                    ip_protocol: "1"
-                    protocol_options: {icmp: {type: "8"}}
-                    incoming_interface: "eth0"
-                    application: "Facebook"
-                    protocol: "HTTP"
+- name: simulate packet
+  check_point.gaia.cp_gaia_simulate_packet:
+    ip_version: "4"
+    source_ip: "1.2.3.4"
+    destination_ip: "2.3.4.5"
+    ip_protocol: "1"
+    protocol_options: {icmp: {type: "8"}}
+    incoming_interface: "eth0"
+    application: "Facebook"
+    protocol: "HTTP"
 """
 
 RETURN = """

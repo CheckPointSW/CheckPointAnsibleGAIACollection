@@ -50,8 +50,6 @@ requirements:
 EXAMPLES = """
 - name: Show current dns configuration
   check_point.gaia.cp_gaia_dns_facts:
-
-
 """
 
 

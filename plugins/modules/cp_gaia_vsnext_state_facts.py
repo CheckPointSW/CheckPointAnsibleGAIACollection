@@ -46,7 +46,6 @@ requirements:
 EXAMPLES = """
 - name: Show VSNext state
   check_point.gaia.cp_gaia_vsnext_state_facts:
-
 """
 RETURN = """
 ansible_facts:

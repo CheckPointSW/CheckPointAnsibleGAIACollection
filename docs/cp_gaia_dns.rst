@@ -58,7 +58,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -75,7 +75,6 @@ Examples
         primary: "1.2.3.4"
         tertiary: "3.4.5.6"
         secondary: "2.3.4.5"
-
 
 
 

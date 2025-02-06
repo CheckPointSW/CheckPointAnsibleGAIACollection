@@ -146,7 +146,6 @@ EXAMPLES = """
     comments: eth0 interface
     enabled: true
     name: eth0
-
 """
 
 RETURN = """

@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -58,7 +58,6 @@ Examples
     - name: Show user by specifying it's name
       check_point.gaia.cp_gaia_user_facts:
         name: admin
-
 
 
 

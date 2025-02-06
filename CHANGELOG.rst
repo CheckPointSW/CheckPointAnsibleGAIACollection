@@ -3,14 +3,15 @@ Check_Point.gaia Release Notes
 ==============================
 
 .. contents:: Topics
-    
+
+
 v7.0.0
 ======
 
 Release Summary
 ---------------
 
-This is release 6.0.0 of ``check_point.gaia``, released on 2025-01-28.
+This is release 7.0.0 of ``check_point.gaia``, released on 2025-02-07.
 
 New Modules
 -----------
@@ -29,6 +30,34 @@ Minor Changes
 ---------------
 
 modify infrastructure to support special Maestro APIs.
+
+
+v6.0.3
+======
+
+Release Summary
+---------------
+
+this release 6.0.3 of ``check_point.gaia``, released on 2025-02-06.
+
+Bugfixes
+---------------
+
+Fix shebang files, modules should not be executable.
+
+
+v6.0.2
+======
+
+Release Summary
+---------------
+
+this release 6.0.2 of ``check_point.gaia``, released on 2025-02-06.
+
+Bugfixes
+---------------
+
+Fix test lint and issues in uploading the package.
 
 
 v6.0.1

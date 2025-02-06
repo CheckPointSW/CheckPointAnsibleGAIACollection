@@ -68,7 +68,6 @@ EXAMPLES = """
     filename: "/var/log/messages"
     cp_logs: false
     audit_log: true
-
 """
 
 

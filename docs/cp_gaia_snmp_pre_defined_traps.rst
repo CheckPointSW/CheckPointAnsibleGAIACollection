@@ -212,7 +212,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -226,7 +226,6 @@ Examples
     - name: Set SNMP pre_defined traps
       check_point.gaia.cp_gaia_snmp_pre_defined_traps:
         biosFailure: {enabled: true}
-
 
 
 

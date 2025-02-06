@@ -53,7 +53,6 @@ EXAMPLES = """
 - name: Show loopback interface by specifying it's name
   check_point.gaia.cp_gaia_loopback_interface_facts:
     name: loop01
-
 """
 
 RETURN = """

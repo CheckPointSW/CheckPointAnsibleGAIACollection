@@ -46,7 +46,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -66,7 +66,6 @@ Examples
 
 
 
-
 Return Values
 -------------
 
@@ -75,7 +74,7 @@ ansible_facts (always., dict, )
 
 
   state (always, str, )
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (always, str, )
@@ -87,11 +86,11 @@ ansible_facts (always., dict, )
 
 
     name (always, str, )
-      Feature name. Valid values are feature name as shown in cp\_gaia\_features\_facts or \ :literal:`all`\  to specify all features.
+      Feature name. Valid values are feature name as shown in cp\_gaia\_features\_facts or :literal:`all` to specify all features.
 
 
     permission (always, str, )
-      Feature permission. Valid values are \ :literal:`read-write`\  \ :literal:`read-only`\ .
+      Feature permission. Valid values are :literal:`read-write` :literal:`read-only`.
 
 
 

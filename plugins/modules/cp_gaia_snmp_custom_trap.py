@@ -77,7 +77,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_snmp_custom_trap:
     threshold: 12
     name: custom_trap_name
-
 """
 
 RETURN = """

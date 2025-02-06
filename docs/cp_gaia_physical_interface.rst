@@ -126,7 +126,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -142,7 +142,6 @@ Examples
         comments: eth0 interface
         enabled: true
         name: eth0
-
 
 
 

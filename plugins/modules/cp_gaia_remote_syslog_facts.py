@@ -46,7 +46,6 @@ options:
         description: No Documentation available.
         required: False
         type: str
-
 """
 
 
@@ -54,7 +53,6 @@ EXAMPLES = """
 - name: Show remote syslog log server by specifying it IP
   check_point.gaia.cp_gaia_remote_syslog_facts:
     server_ip: "10.11.2.130"
-
 """
 
 

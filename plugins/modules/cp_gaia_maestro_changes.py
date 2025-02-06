@@ -21,13 +21,13 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 author: Roi Tal (@chkp-roital)
 description: Handle pending changes, either apply or delete them.
-module: cp_gaia_maestro_changes 
+module: cp_gaia_maestro_changes
 short_description: Handle pending changes, either apply or delete them.
-version_added: '7.0.0'
+version_added: "7.0.0"
 requirements: ['supported starting from gaia_api >= 1.8']
 options:
   version:
@@ -40,15 +40,18 @@ options:
     type: str
     default: present
     choices: [present, absent]
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 notes:
 - Supports C(check_mode).
-'''
+"""
 
 EXAMPLES = """
 - name: Delete pending changes
   check_point.gaia.cp_gaia_user:
     state: absent
-
 """
 
 RETURN = """

@@ -36,7 +36,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (True, str, None)
@@ -48,11 +48,11 @@ Parameters
 
 
     name (False, str, None)
-      Feature name. Valid values are feature name as shown in cp\_gaia\_features\_facts or \ :literal:`all`\  to specify all features.
+      Feature name. Valid values are feature name as shown in cp\_gaia\_features\_facts or :literal:`all` to specify all features.
 
 
     permission (False, str, None)
-      Feature permission. Valid values are \ :literal:`read-write`\  \ :literal:`read-only`\ .
+      Feature permission. Valid values are :literal:`read-write` :literal:`read-only`.
 
 
 
@@ -67,7 +67,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -86,7 +86,6 @@ Examples
                    {"name": "ntp", "permission": "read-write"},
                    {"name": "syslog", "permission": "read-write"},
                    {"name": "backup", "permission": "read-only"}]
-
 
 
 

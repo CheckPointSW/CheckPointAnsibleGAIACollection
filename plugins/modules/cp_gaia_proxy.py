@@ -63,7 +63,6 @@ EXAMPLES = """
     state: present
     address: 1.2.125.0
     port: 89
-
 """
 
 

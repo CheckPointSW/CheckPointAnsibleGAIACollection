@@ -44,7 +44,7 @@ Parameters
 
 
   order (False, str, ASC)
-    Sorts the routes by either ascending or descending order. Valid values are \ :literal:`ASC`\  \ :literal:`DESC`\ .
+    Sorts the routes by either ascending or descending order. Valid values are :literal:`ASC` :literal:`DESC`.
 
 
 
@@ -54,7 +54,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 

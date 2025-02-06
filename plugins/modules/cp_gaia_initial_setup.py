@@ -148,8 +148,8 @@ notes:
 EXAMPLES = """
 - name: Initial setup
   check_point.gaia.cp_gaia_initial_setup:
-    wait_for_task: True
-    security_gateway: {cluster_member: False, activation_key: bbbb, dynamically_assigned_ip: False}
+    wait_for_task: true
+    security_gateway: {cluster_member: false, activation_key: bbbb, dynamically_assigned_ip: false}
 """
 
 RETURN = """

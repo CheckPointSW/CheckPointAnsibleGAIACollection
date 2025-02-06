@@ -27,11 +27,11 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (True, str, None)
-    Interface name with format \ :literal:`br\<id\>`\ , valid values are br1, br2, br3 .. etc.
+    Interface name with format :literal:`br\<id\>`\ , valid values are br1, br2, br3 .. etc.
 
 
   ipv4_address (False, str, None)
@@ -79,7 +79,7 @@ Parameters
 
 
     leasetime (False, int, None)
-      Specifies the lease time, in seconds, when requesting for an IP address. Default value is \ :literal:`default`\  - according to the server.
+      Specifies the lease time, in seconds, when requesting for an IP address. Default value is :literal:`default` - according to the server.
 
 
     reacquire_timeout (False, int, 10)
@@ -106,7 +106,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -122,7 +122,6 @@ Examples
         comments: bridge5 interface
         name: br5
         members: ['eth3', 'eth4']
-
 
 
 
