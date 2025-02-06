@@ -21,13 +21,13 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 author: Roi Tal (@chkp-roital)
 description: Assign, re-assign or un-assign Gateways to Security Groups, and change GW descriptions.
 module: cp_gaia_maestro_gateways
 short_description: Modify Security Group Members.
-version_added: '7.0.0'
+version_added: "7.0.0"
 requirements: ['supported starting from gaia_api >= 1.8']
 options:
   version:
@@ -46,10 +46,14 @@ options:
     description: Description of this Gateway
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 
 notes:
 - Supports C(check_mode).
-'''
+"""
 
 EXAMPLES = """
 - name: Assign GW to SG and add description
@@ -57,19 +61,19 @@ EXAMPLES = """
     id: 1007RT1992
     security_group: 1
     description: "1007RT1992 GW Description"
-
 """
 
 RETURN = """
 maestro_gateway:
   description: The updated Maestro Gateway details.
   returned: always.
-  type: dict  
+  type: dict
 """
 
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+
 
 def main():
     # arguments for the module:
@@ -84,6 +88,7 @@ def main():
     show_params = ["id"]
     res = chkp_api_call(module, api_call_object, False, show_params=show_params)
     module.exit_json(**res)
+
 
 if __name__ == "__main__":
     main()

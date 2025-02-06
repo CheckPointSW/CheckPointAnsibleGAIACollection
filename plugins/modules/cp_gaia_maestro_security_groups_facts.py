@@ -30,7 +30,6 @@ options:
   include_pending_changes:
     description: If true, show pending topology, as opposed to the one actually deployed
     required: False
-    default: False
     type: bool
   id:
     description: ID of Security Group to show. If not specified, all Security Groups information is returned
@@ -40,11 +39,14 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
-short_description:Show Maestro Security Groups topology.
-version_added: '7.0.0'
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
+short_description: Show Maestro Security Groups topology.
+version_added: "7.0.0"
 notes:
 - Supports C(check_mode).
-
 """
 
 EXAMPLES = """
@@ -52,7 +54,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_maestro_security_groups_facts:
       id: 1
       include_pending_changes: false
-
 """
 
 RETURN = """
@@ -151,7 +152,7 @@ ansible_facts:
                             type: list
                             elements: dict
                             contains:
-                                orchestrator_id: 
+                                orchestrator_id:
                                     description:
                                       - ID of the Orchestrator to which this port belongs
                                     returned: always
@@ -216,10 +217,10 @@ ansible_facts:
                             returned: always
                             type: str
                 mgmt_connectivity:
-                    description: 
+                    description:
                       - The IP addresses that will be used to manage this Security Group
                     returned: always
-                    type: dict 
+                    type: dict
                     contains:
                         ipv4_address:
                             description: IPv4 address of this Security Group
@@ -238,7 +239,6 @@ ansible_facts:
                       - Description of this Security Group.
                     returned: always
                     type: str
-
 """
 
 from ansible.module_utils.basic import AnsibleModule

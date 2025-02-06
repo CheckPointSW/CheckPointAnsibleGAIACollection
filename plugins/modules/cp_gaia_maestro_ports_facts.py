@@ -27,7 +27,7 @@ author: Roi Tal (@chkp-roital)
 description:
 - Show information regarding Maestro Orchestrator ports.
 short_description: Show port/s.
-version_added: '7.0.0'
+version_added: "7.0.0"
 notes:
 - Supports C(check_mode).
 options:
@@ -40,9 +40,15 @@ options:
     required: False
     type: str
   interface_name:
-    description: Interface name in case this port is an Uplink or MGMT interface (e.g. 'eth1-25'). If both id and interface_name are not specified, all ports information is returned.
+    description:
+      - Interface name in case this port is an Uplink or MGMT interface (e.g. 'eth1-25').
+      - If both id and interface_name are not specified, all ports information is returned.
     required: False
     type: str
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
 """
 
 EXAMPLES = """
@@ -61,7 +67,7 @@ ansible_facts:
     type: dict
     contains:
         ports:
-            id:
+            description:
               - List of Maestro ports.
             returned: always
             type: list
@@ -108,8 +114,7 @@ ansible_facts:
                     returned: always
                     type: bool
                 transceiver_state:
-                    description:
-                      - 'PLUGGED' or 'UNPLUGGED'.
+                    description: can be one of PLUGGED/UNPLUGGED.
                     returned: always
                     type: str
                 operating_speed:

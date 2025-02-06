@@ -21,7 +21,7 @@ from __future__ import (absolute_import, division, print_function)
 
 __metaclass__ = type
 
-DOCUMENTATION = '''
+DOCUMENTATION = """
 ---
 author: Roi Tal (@chkp-roital)
 description: Set site description.
@@ -34,7 +34,7 @@ options:
     description: Gaia API version for example 1.6.
     required: False
     type: str
-  site-id:
+  site_id:
     description: ID of site.
     required: True
     type: int
@@ -43,36 +43,40 @@ options:
     required: False
     type: list
     elements: dict
-    contains:
-      security-group:
+    suboptions:
+      security_group:
         description: The Site Security Group
         type: int
       description:
         description: Site description
         type: str
-        
+  virtual_system_id:
+    description: Virtual System ID.
+    required: False
+    type: int
+
 notes:
 - Supports C(check_mode).
-'''
+"""
 
 EXAMPLES = """
 - name: Set site 1 description
   check_point.gaia.cp_gaia_sites:
     site_id: 1
-    descriptions: {security_group: 1, description: "New Description"}
-
+    descriptions: [{security_group: 1, description: "New Description"}]
 """
 
 RETURN = """
 maestro_site:
   description: The updated site details.
   returned: always.
-  type: dict  
+  type: dict
 """
 
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+
 
 def main():
     # arguments for the module:
@@ -92,6 +96,7 @@ def main():
     show_params = ["site_id"]
     res = chkp_api_call(module, api_call_object, False, show_params=show_params)
     module.exit_json(**res)
+
 
 if __name__ == "__main__":
     main()

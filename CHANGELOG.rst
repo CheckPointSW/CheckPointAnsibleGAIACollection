@@ -3,14 +3,15 @@ Check_Point.gaia Release Notes
 ==============================
 
 .. contents:: Topics
-    
+
+
 v7.0.0
 ======
 
 Release Summary
 ---------------
 
-This is release 6.0.0 of ``check_point.gaia``, released on 2025-01-28.
+This is release 7.0.0 of ``check_point.gaia``, released on 2025-02-07.
 
 New Modules
 -----------
