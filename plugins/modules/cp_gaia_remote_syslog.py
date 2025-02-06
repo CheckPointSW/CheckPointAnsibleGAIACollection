@@ -64,7 +64,6 @@ options:
         description: No Documentation available.
         required: False
         type: str
-
 """
 
 
@@ -73,7 +72,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_remote_syslog:
     server_ip: "10.11.2.130"
     level: "debug"
-
 """
 
 

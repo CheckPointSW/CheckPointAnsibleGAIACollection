@@ -66,7 +66,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_snmp_trap_receiver:
     community_string: some_string
     address: trap_receiver_address
-
 """
 
 RETURN = """

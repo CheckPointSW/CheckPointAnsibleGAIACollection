@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,8 +55,6 @@ Examples
     
     - name: Show current dns configuration
       check_point.gaia.cp_gaia_dns_facts:
-
-
 
 
 

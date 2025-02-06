@@ -112,7 +112,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -125,16 +125,16 @@ Examples
     
     - name: Change DHCP server settings
       check_point.gaia.cp_gaia_dhcp_server:
-        enabled: False
+        enabled: false
         subnets: [
-            {"subnet": "4.5.6.0",
-            "netmask": 24,
-            "max_lease": 86400,
-            "default_lease": 43200,
-            "default_gateway": "4.5.6.1",
-            "ip_pools": [{"start": "4.5.6.5", "end": "4.5.6.7", "enabled": True, "include": "include"}],
-            "dns": {"domain_name": "my_domain_name", "primary": "8.8.8.8", "secondary": "8.8.8.8", "tertiary": "8.8.4.4"},
-            "enabled": True, virtual_system_id: 0}
+          {"subnet": "4.5.6.0",
+           "netmask": 24,
+           "max_lease": 86400,
+           "default_lease": 43200,
+           "default_gateway": "4.5.6.1",
+           "ip_pools": [{"start": "4.5.6.5", "end": "4.5.6.7", "enabled": true, "include": "include"}],
+           "dns": {"domain_name": "my_domain_name", "primary": "8.8.8.8", "secondary": "8.8.8.8", "tertiary": "8.8.4.4"},
+           "enabled": true, virtual_system_id: 0}
         ]
 
 

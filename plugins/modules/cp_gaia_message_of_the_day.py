@@ -54,7 +54,6 @@ EXAMPLES = """
 - message_of_the_day: Changing the message of the day
   check_point.gaia.cp_gaia_message_of_the_day:
     msg: "Hello today"
-
 """
 
 RETURN = """

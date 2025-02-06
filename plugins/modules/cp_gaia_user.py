@@ -124,7 +124,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_user:
     shell: bash
     name: admin
-
 """
 
 RETURN = """

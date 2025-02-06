@@ -43,7 +43,6 @@ options:
     description: Receiver address.
     required: false
     type: str
-
 """
 
 EXAMPLES = """
@@ -53,7 +52,6 @@ EXAMPLES = """
 - name: Show SNMP trap receiver by specifying it's address
   check_point.gaia.cp_gaia_snmp_trap_receiver_facts:
     address: receiver_address
-
 """
 
 RETURN = """

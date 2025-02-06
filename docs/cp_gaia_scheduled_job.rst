@@ -36,7 +36,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (True, str, None)
@@ -105,7 +105,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -121,7 +121,6 @@ Examples
         name: "startup_job"
         command: "/home/admin/job.sh"
         recurrence: {"type": "system-startup"}
-
 
 
 

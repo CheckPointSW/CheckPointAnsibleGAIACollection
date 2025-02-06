@@ -219,7 +219,6 @@ EXAMPLES = """
 - name: Set SNMP pre_defined traps
   check_point.gaia.cp_gaia_snmp_pre_defined_traps:
     biosFailure: {enabled: true}
-
 """
 
 

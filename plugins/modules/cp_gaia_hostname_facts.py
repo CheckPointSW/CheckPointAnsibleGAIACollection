@@ -45,7 +45,6 @@ notes:
 EXAMPLES = """
 - name: Show current hostname
   check_point.gaia.cp_gaia_hostname_facts:
-
 """
 
 RETURN = """

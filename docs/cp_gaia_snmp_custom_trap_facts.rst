@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -58,7 +58,6 @@ Examples
     - name: Show SNMP custom trap by specifying it's name
       check_point.gaia.cp_gaia_snmp_custom_trap_facts:
         name: custom_trap_name
-
 
 
 

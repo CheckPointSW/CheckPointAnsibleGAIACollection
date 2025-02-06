@@ -46,7 +46,6 @@ requirements:
 EXAMPLES = """
 - name: Show banner message
   check_point.gaia.cp_gaia_banner_facts:
-
 """
 
 RETURN = """

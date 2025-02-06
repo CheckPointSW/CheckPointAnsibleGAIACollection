@@ -134,7 +134,6 @@ EXAMPLES = """
     comments: bridge5 interface
     name: br5
     members: ['eth3', 'eth4']
-
 """
 
 RETURN = """

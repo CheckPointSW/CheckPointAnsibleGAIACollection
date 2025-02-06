@@ -71,7 +71,6 @@ short_description: Run script Check Point machine.
 version_added: '3.0.0'
 notes:
 - Supports C(check_mode).
-
 """
 
 

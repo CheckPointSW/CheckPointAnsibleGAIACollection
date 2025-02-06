@@ -49,7 +49,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -65,7 +65,6 @@ Examples
         file_name: "ansible_file.txt"
         text_content: "It's an ansible file."
         override: true
-
 
 
 

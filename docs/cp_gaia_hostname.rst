@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,7 +55,6 @@ Examples
     - name: Changing a hostname
       check_point.gaia.cp_gaia_hostname:
         name: new-hostname
-
 
 
 

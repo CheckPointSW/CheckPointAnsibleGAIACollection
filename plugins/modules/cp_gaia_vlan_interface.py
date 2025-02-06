@@ -122,7 +122,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_vlan_interface:
     comments: "vlan5 interface"
     name: eth1.5
-
 """
 
 RETURN = """

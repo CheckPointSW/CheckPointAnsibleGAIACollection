@@ -42,16 +42,12 @@ notes:
 - Supports C(check_mode).
 requirements:
 - supported starting from gaia_api >= 1.6
-
-
 """
 
 
 EXAMPLES = """
 - name: Show system logging configuration
   check_point.gaia.cp_gaia_syslog_facts:
-
-
 """
 
 

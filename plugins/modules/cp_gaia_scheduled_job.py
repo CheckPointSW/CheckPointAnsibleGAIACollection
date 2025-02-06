@@ -119,7 +119,6 @@ EXAMPLES = """
     name: "startup_job"
     command: "/home/admin/job.sh"
     recurrence: {"type": "system-startup"}
-
 """
 
 RETURN = """

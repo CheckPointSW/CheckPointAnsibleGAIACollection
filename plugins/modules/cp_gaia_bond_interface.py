@@ -163,7 +163,6 @@ EXAMPLES = """
     comments: bond5 interface
     name: bond5
     mode: xor
-
 """
 
 RETURN = """

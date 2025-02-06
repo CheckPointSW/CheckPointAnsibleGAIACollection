@@ -43,11 +43,12 @@ notes:
 requirements:
 - supported starting from gaia_api >= 1.8
 """
+
 EXAMPLES = """
 - name: Show Virtual Systems
   check_point.gaia.cp_gaia_virtual_systems_facts:
-
 """
+
 RETURN = """
 ansible_facts:
     description: The VSNext state facts.

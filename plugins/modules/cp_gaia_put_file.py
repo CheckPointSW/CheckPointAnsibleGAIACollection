@@ -66,7 +66,6 @@ EXAMPLES = """
     file_name: "ansible_file.txt"
     text_content: "It's an ansible file."
     override: true
-
 """
 
 RETURN = """

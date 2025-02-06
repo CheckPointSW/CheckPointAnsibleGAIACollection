@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,8 +55,6 @@ Examples
     
     - name: Show IPv6 status
       check_point.gaia.cp_gaia_ipv6_facts:
-
-
 
 
 

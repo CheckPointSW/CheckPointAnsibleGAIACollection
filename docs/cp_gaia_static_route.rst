@@ -48,7 +48,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   next_hop (False, list, None)
@@ -93,7 +93,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -111,7 +111,6 @@ Examples
         mask_length: 24
         type: gateway
         next_hop: [{"gateway": "1.1.1.1", "priority": 2}]
-
 
 
 

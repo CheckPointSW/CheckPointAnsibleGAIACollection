@@ -110,7 +110,6 @@ EXAMPLES = """
     mask_length: 24
     type: gateway
     next_hop: [{"gateway": "1.1.1.1", "priority": 2}]
-
 """
 
 

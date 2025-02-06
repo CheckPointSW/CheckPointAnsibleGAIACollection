@@ -50,8 +50,6 @@ requirements:
 EXAMPLES = """
 - name: Show current NTP configuration
   check_point.gaia.cp_gaia_ntp_facts:
-
-
 """
 
 

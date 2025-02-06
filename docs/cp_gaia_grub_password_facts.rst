@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,8 +55,6 @@ Examples
     
     - name: Show GRUB hash password
       check_point.gaia.cp_gaia_grub_password_facts:
-
-
 
 
 

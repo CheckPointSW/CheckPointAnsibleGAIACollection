@@ -52,7 +52,6 @@ EXAMPLES = """
 - name: Show bridge interface by specifying it's name
   check_point.gaia.cp_gaia_bridge_interface_facts:
     name: br1
-
 """
 
 RETURN = """

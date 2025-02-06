@@ -56,7 +56,6 @@ EXAMPLES = """
 - banner: Changing the banner message
   check_point.gaia.cp_gaia_banner:
     msg: new_message
-
 """
 
 RETURN = """

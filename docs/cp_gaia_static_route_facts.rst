@@ -44,7 +44,7 @@ Parameters
 
 
   order (False, str, ASC)
-    Sorts the routes by either ascending or descending order. Valid values are \ :literal:`ASC`\  \ :literal:`DESC`\ . relevant in case facts for all routes.
+    Sorts the routes by either ascending or descending order. Valid values are :literal:`ASC` :literal:`DESC`. relevant in case facts for all routes.
 
 
   address (False, str, None)
@@ -62,7 +62,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 

@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,7 +55,6 @@ Examples
     
     - name: Show message of the day
       check_point.gaia.cp_gaia_message_of_the_day_facts:
-
 
 
 

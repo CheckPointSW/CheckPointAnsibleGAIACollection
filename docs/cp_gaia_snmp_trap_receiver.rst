@@ -31,7 +31,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   address (True, str, None)
@@ -55,7 +55,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -70,7 +70,6 @@ Examples
       check_point.gaia.cp_gaia_snmp_trap_receiver:
         community_string: some_string
         address: trap_receiver_address
-
 
 
 

@@ -87,7 +87,6 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_loopback_interface:
     comments: "loop01 interface"
     name: loop01
-
 """
 
 RETURN = """

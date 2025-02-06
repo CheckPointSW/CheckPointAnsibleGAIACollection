@@ -66,7 +66,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -79,7 +79,7 @@ Examples
     
     - name: Change TACACS server settings
       check_point.gaia.cp_gaia_tacacs_server:
-        enabled: False
+        enabled: false
         servers: [{"priority": 3, "address": "1.2.1.2", "port": 56, "timeout": 1, "secret": "12345"}]
 
 

@@ -31,7 +31,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   name (True, str, None)
@@ -65,7 +65,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -80,7 +80,6 @@ Examples
       check_point.gaia.cp_gaia_snmp_custom_trap:
         threshold: 12
         name: custom_trap_name
-
 
 
 

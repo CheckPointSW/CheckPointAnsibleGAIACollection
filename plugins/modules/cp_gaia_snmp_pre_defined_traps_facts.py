@@ -48,7 +48,6 @@ options:
 EXAMPLES = """
 - name: Show SNMP pre-defined traps status
   check_point.gaia.cp_gaia_snmp_pre_defined_traps_facts:
-
 """
 
 

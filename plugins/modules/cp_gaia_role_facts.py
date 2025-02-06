@@ -45,7 +45,6 @@ options:
     description: Role name to show. If not specified, all roles information is returned.
     required: false
     type: str
-
 """
 
 EXAMPLES = """
@@ -55,7 +54,6 @@ EXAMPLES = """
 - name: Show role by specifying it's name
   check_point.gaia.cp_gaia_role_facts:
     name: test_role
-
 """
 
 RETURN = """

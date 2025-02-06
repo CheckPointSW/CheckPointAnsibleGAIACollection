@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -54,8 +54,7 @@ Examples
     
     - hostname_on_login_page: Changing the banner message
       check_point.gaia.cp_gaia_hostname_on_login_page:
-        enabled: True
-
+        enabled: true
 
 
 

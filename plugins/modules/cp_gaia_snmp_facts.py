@@ -48,7 +48,6 @@ options:
 EXAMPLES = """
 - name: Show SNMP status
   check_point.gaia.cp_gaia_snmp_facts:
-
 """
 
 

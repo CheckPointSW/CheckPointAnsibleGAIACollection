@@ -46,7 +46,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -59,7 +59,6 @@ Examples
     
     - name: Show SSH server settings
       check_point.gaia.cp_gaia_ssh_server_settings_facts:
-
 
 
 

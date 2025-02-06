@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -58,7 +58,6 @@ Examples
     - name: Show SNMP trap receiver by specifying it's address
       check_point.gaia.cp_gaia_snmp_trap_receiver_facts:
         address: receiver_address
-
 
 
 

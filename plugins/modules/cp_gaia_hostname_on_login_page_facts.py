@@ -46,7 +46,6 @@ requirements:
 EXAMPLES = """
 - name: Show hostname_on_login_page message settings
   check_point.gaia.cp_gaia_hostname_on_login_page_facts:
-
 """
 
 RETURN = """

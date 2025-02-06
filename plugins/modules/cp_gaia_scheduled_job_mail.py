@@ -51,7 +51,6 @@ EXAMPLES = """
 - name: Set scheduled job mail
   check_point.gaia.cp_gaia_scheduled_job_mail:
     email_address: "sysadmins@company.com"
-
 """
 
 RETURN = """

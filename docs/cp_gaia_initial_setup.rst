@@ -43,7 +43,7 @@ Parameters
 
 
     multi_domain (False, bool, False)
-      Install Security Multi domain server, it can be \ :literal:`primary`\  or \ :literal:`secondary`\  or \ :literal:`log-server`\  according to type parameter.
+      Install Security Multi domain server, it can be :literal:`primary` or :literal:`secondary` or :literal:`log-server` according to type parameter.
 
 
     type (False, str, primary)
@@ -59,7 +59,7 @@ Parameters
 
 
     gui_clients (False, dict, None)
-      Choose which GUI clients can log into the Security Management. fill one of the parameters \ :literal:`range`\  \ :literal:`network`\  \ :literal:`single-ip`\ , for multi-domain it can be only single-ip or can keep the default value.
+      Choose which GUI clients can log into the Security Management. fill one of the parameters :literal:`range` :literal:`network` :literal:`single-ip`\ , for multi-domain it can be only single-ip or can keep the default value.
 
 
       range (False, dict, None)
@@ -126,7 +126,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -139,8 +139,8 @@ Examples
     
     - name: Initial setup
       check_point.gaia.cp_gaia_initial_setup:
-        wait_for_task: True
-        security_gateway: {cluster_member: False, activation_key: bbbb, dynamically_assigned_ip: False}
+        wait_for_task: true
+        security_gateway: {cluster_member: false, activation_key: bbbb, dynamically_assigned_ip: false}
 
 
 

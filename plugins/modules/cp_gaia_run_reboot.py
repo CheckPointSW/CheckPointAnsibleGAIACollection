@@ -45,7 +45,6 @@ short_description: Run reboot on Check Point machine.
 version_added: '3.0.0'
 notes:
 - Supports C(check_mode).
-
 """
 
 

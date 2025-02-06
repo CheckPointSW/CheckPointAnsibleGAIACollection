@@ -84,7 +84,6 @@ EXAMPLES = """
                {"name": "ntp", "permission": "read-write"},
                {"name": "syslog", "permission": "read-write"},
                {"name": "backup", "permission": "read-only"}]
-
 """
 
 RETURN = """

@@ -150,15 +150,15 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_password_policy:
         lock_settings: {'failed_attempts_settings': {'failed_attempts_allowed': 10,
                                                      'failed_lock_duration_seconds': 1200,
-                                                     'failed_lock_enabled': False,
-                                                     'failed_lock_enforced_on_admin': False},
-                        'inactivity_settings': {'inactivity_threshold_days': 365, 'lock_unused_accounts_enabled': False},
-                        'must_one_time_password_enabled': False,
+                                                     'failed_lock_enabled': false,
+                                                     'failed_lock_enforced_on_admin': false},
+                        'inactivity_settings': {'inactivity_threshold_days': 365, 'lock_unused_accounts_enabled': false},
+                        'must_one_time_password_enabled': false,
                         'password_expiration_days': 60,
                         'password_expiration_maximum_days_before_lock': 1000,
                         'password_expiration_warning_days': 7}
-        password_history: {'check_history_enabled': True, 'repeated_history_length': 10}
-        password_strength: {'complexity': 2, 'minimum_length': 6, 'palindrome_check_enabled': True}
+        password_history: {'check_history_enabled': true, 'repeated_history_length': 10}
+        password_strength: {'complexity': 2, 'minimum_length': 6, 'palindrome_check_enabled': true}
 """
 
 

@@ -40,7 +40,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   protocol (False, str, None)
@@ -62,7 +62,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -77,7 +77,6 @@ Examples
       check_point.gaia.cp_gaia_remote_syslog:
         server_ip: "10.11.2.130"
         level: "debug"
-
 
 
 

@@ -52,7 +52,6 @@ EXAMPLES = """
 - name: Show vlan interface by specifying it's name
   check_point.gaia.cp_gaia_vlan_interface_facts:
     name: eth1.2
-
 """
 
 RETURN = """

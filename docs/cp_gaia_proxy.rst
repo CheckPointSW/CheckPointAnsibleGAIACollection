@@ -31,7 +31,7 @@ Parameters
 
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   address (False, str, None)
@@ -49,7 +49,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -65,7 +65,6 @@ Examples
         state: present
         address: 1.2.125.0
         port: 89
-
 
 
 

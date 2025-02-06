@@ -42,7 +42,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -55,7 +55,6 @@ Examples
     
     - name: Show VSNext state
       check_point.gaia.cp_gaia_vsnext_state_facts:
-
 
 
 

@@ -41,7 +41,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -58,7 +58,6 @@ Examples
     - name: Show bond interface by specifying it's name
       cp_gaia_bond_interface_facts:
         name: bond1
-
 
 
 
@@ -204,7 +203,7 @@ ansible_facts (always., dict, )
 
 
     mii_interval (always, int, )
-      Media monitoring interval, Valid values are \ :literal:`1-5000`\ .
+      Media monitoring interval, Valid values are :literal:`1-5000`.
 
 
 

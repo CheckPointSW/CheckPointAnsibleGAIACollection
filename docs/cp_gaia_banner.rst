@@ -45,7 +45,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -59,7 +59,6 @@ Examples
     - banner: Changing the banner message
       check_point.gaia.cp_gaia_banner:
         msg: new_message
-
 
 
 

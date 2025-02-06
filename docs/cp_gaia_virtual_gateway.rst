@@ -25,7 +25,7 @@ Parameters
 ----------
 
   state (False, str, present)
-    Ansible state which can be \ :literal:`present`\  or \ :literal:`absent`\ .
+    Ansible state which can be :literal:`present` or :literal:`absent`.
 
 
   version (False, str, None)
@@ -165,18 +165,18 @@ Examples
           - name: eth1-02.2
           - name: eth1-02.3
         virtual_switches:
-            - id: 1
-            - id: 500
+          - id: 1
+          - id: 500
         resources:
           firewall_ipv4_instances: 2
           firewall_ipv6_instances: 0
         mgmt_connection:
-              mgmt_connection_identifier: 500
-              mgmt_connection_type: virtual-switch-id
-              mgmt_ipv4_configuration:
-                ipv4_address: 172.72.72.1
-                ipv4_mask: 24
-                ipv4_default_gateway: 172.72.72.4
+          mgmt_connection_identifier: 500
+          mgmt_connection_type: virtual-switch-id
+          mgmt_ipv4_configuration:
+            ipv4_address: 172.72.72.1
+            ipv4_mask: 24
+            ipv4_default_gateway: 172.72.72.4
 
 
 

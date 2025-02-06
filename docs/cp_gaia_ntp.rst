@@ -63,7 +63,7 @@ Notes
 -----
 
 .. note::
-   - Supports \ :literal:`check\_mode`\ .
+   - Supports :literal:`check\_mode`.
 
 
 
@@ -76,7 +76,7 @@ Examples
     
     - name: Setting ntp servers for the system
       check_point.gaia.cp_gaia_ntp:
-        enabled: False
+        enabled: false
         servers: [{"version": 1, "type": "primary", "address": "1.1.1.1"}]
 
 

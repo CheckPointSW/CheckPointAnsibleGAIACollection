@@ -46,13 +46,11 @@ options:
     required: False
     type: bool
     default: False
-
 """
 
 EXAMPLES = """
 - name: Show SSH server settings
   check_point.gaia.cp_gaia_ssh_server_settings_facts:
-
 """
 
 RETURN = """
