@@ -5,6 +5,20 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
     
 
+v6.0.2
+======
+
+Release Summary
+---------------
+
+this release 6.0.2 of ``check_point.gaia``, released on 2025-02-06.
+
+Bugfixes
+---------------
+
+Fix test lint and issues in uploading the package.
+
+
 v6.0.1
 ======
 
