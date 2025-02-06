@@ -5,6 +5,20 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
     
 
+v6.0.3
+======
+
+Release Summary
+---------------
+
+this release 6.0.3 of ``check_point.gaia``, released on 2025-02-06.
+
+Bugfixes
+---------------
+
+Fix shebang files, modules should not be executable.
+
+
 v6.0.2
 ======
 
