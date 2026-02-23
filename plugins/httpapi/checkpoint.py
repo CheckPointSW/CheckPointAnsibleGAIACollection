@@ -29,6 +29,7 @@ options:
       - name: ansible_checkpoint_domain
 """
 
+import os
 import json
 
 from ansible.module_utils.basic import to_text
@@ -46,23 +47,21 @@ BASE_HEADERS = {
 
 
 class HttpApi(HttpApiBase):
-    def __init__(self, connection):
-        super(HttpApi, self).__init__(connection)
+    def __init__(self, connection, inventory_path=None):
+        super().__init__(connection)
         self.connection = connection
         self.mgmt_proxy_enabled = False
 
         loader = DataLoader()
-        # Initialize InventoryManager
-        inventory = InventoryManager(loader=loader, sources=['/etc/ansible/hosts'])
-        # Get host
-        host = inventory.get_host('mgmt_proxy')
-        # Get variable
-        try:
-            proxy_enabled = host.vars['enabled']
-            if proxy_enabled is True:
-                self.mgmt_proxy_enabled = True
-        except Exception as e:
-            pass
+
+        if inventory_path is None:
+            inventory_path = '/etc/ansible/hosts'
+
+        if os.path.exists(inventory_path):
+            inventory = InventoryManager(loader=loader, sources=[inventory_path])
+            host = inventory.get_host('mgmt_proxy')
+            if host:
+                self.mgmt_proxy_enabled = host.vars.get('enabled', False)
 
     def login(self, username, password):
         payload = {}
