@@ -52,7 +52,36 @@ checkpoint_argument_spec_for_all = dict(
 
 # parse failure message with code and response
 def parse_fail_message(code, response):
-    return 'Checkpoint device returned error {0} with message {1}'.format(code, response)
+    if isinstance(response, dict):
+        msg = response.get('message', str(response))
+    else:
+        msg = str(response)
+    if code == 404:
+        msg += ' (verify the API endpoint is supported on your Gaia API version)'
+    return 'Checkpoint device returned error {0} with message {1}'.format(code, msg)
+
+
+def _task_error_detail(task):
+    details = task.get('task-details') or []
+    detail = details[0] if details else {}
+    return detail.get('error') or detail.get('output') or ''
+
+
+def _fail_task(module, task, reason='failed', detail=''):
+    if not detail:
+        detail = _task_error_detail(task) or 'Look at the logs for more details'
+    module.fail_json(msg='Task {0} with task id {1} {2}: {3}'.format(
+        task.get('task-name', ''), task.get('task-id', ''), reason, detail)
+    )
+
+
+def _check_task_success(module, task):
+    details = task.get('task-details') or []
+    rc = details[0].get('return-value') if details else None
+    if rc is not None and rc != 0:
+        error_msg = _task_error_detail(task)
+        if error_msg:
+            _fail_task(module, task, 'completed with error', error_msg)
 
 
 def idempotency_check(old_val, new_val):
@@ -162,14 +191,14 @@ def wait_for_task(module, version, task_id):
         # Count the number of tasks that are not in-progress
         completed_tasks = 0
         for task in response['tasks']:
-            if task['status'] == 'failed':
-                try:
-                    module.fail_json(msg='Task {0} with task id {1} failed: {2}'.format(task['task-name'], task['task-id'], task['task-details'][0]['errors']))
-                except KeyError:
-                    module.fail_json(msg='Task {0} with task id {1} failed. Look at the logs for more details'.format(task['task-name'], task['task-id']))
-            if task['status'] == 'in progress':
+            status = task.get('status')
+            if status == 'failed':
+                _fail_task(module, task)
+            if status == 'in progress':
                 break
             completed_tasks += 1
+            if status == 'succeeded':
+                _check_task_success(module, task)
 
         # Are we done? check if all tasks are completed
         if completed_tasks == len(response["tasks"]):

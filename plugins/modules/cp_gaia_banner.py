@@ -33,7 +33,9 @@ options:
     required: False
     type: str
   msg:
-    description: Banner message for the web, ssh and serial login. Empty string returns to default.
+    description:
+      - Banner message for the web, ssh and serial login. Empty string returns to default.
+      - Each line must not exceed 80 characters. Maximum 20 lines allowed.
     required: false
     type: str
     default: "This system is for authorized use only."
