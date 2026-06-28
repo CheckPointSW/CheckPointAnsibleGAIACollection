@@ -38,12 +38,12 @@ jobs:
       # .../ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}/
 
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@3542bca2639a428e1796aaa6a2ffef0c0f575566 # v3
         with:
           # it is just required to run that once as "ansible-test sanity" in the docker image
           # will run on all python versions it supports.
@@ -66,6 +66,6 @@ jobs:
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       # See the reports at https://codecov.io/gh/GITHUBORG/REPONAME
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
         with:
           fail_ci_if_error: false
