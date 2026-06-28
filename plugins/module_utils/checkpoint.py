@@ -346,6 +346,26 @@ def chkp_api_operation(module, api_call_object):
             if 'task_id' in response:
                 response = wait_for_task(module, target_version, response['task_id'])
 
+        # Check if run-script failed by examining return-value
+        if api_call_object == 'run-script' and 'tasks' in response:
+            for task in response.get('tasks', []):
+                task_details = task.get('task-details', [])
+                if task_details:
+                    return_value = task_details[0].get('return-value', 0)
+                    if return_value != 0:
+                        error_msg = task_details[0].get('error', '')
+                        if error_msg:
+                            try:
+                                import base64
+                                error_msg = base64.b64decode(error_msg).decode('utf-8')
+                            except Exception:
+                                pass
+                        module.fail_json(
+                            msg='Script execution failed with return code {0}: {1}'.format(return_value, error_msg or 'Script execution failed'),
+                            run_script=response,
+                            changed=False
+                        )
+
         result[api_call_object.replace('-', '_')] = response
     else:
         module.fail_json(msg=parse_fail_message(code, response))
