@@ -45,6 +45,10 @@ options:
     description: Password of user admin. Required in case default initial password has not been changed before.
     required: False
     type: str
+  grub_password:
+    description: GRUB maintenance password. Required in case default initial GRUB password has not been changed before.
+    required: False
+    type: str
   security_management:
     description: Install Security Management or Multi domain server.
     required: False
@@ -150,6 +154,7 @@ EXAMPLES = """
   check_point.gaia.cp_gaia_initial_setup:
     wait_for_task: true
     security_gateway: {cluster_member: false, activation_key: bbbb, dynamically_assigned_ip: false}
+    grub_password: NewGrubPassword
 """
 
 RETURN = """
@@ -207,7 +212,8 @@ def main():
                 vsnext=dict(type='bool', required=False, default=False),
                 elastic_xl=dict(type='bool', required=False, default=False)
             )
-        )
+        ),
+        grub_password=dict(type="str", required=False, no_log=True)
     )
     fields.update(checkpoint_argument_spec_for_async)
     fields.update(checkpoint_argument_spec_for_all)
