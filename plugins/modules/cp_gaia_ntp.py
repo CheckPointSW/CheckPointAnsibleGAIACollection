@@ -88,7 +88,19 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
 
 
-def _normalize_server_for_compare(server):
+API_VERSION_SERVER_POOL_TYPES = (1, 8)
+
+
+def _parse_api_version(version):
+    if version is None:
+        return None
+    try:
+        return tuple(int(part) for part in str(version).split('.'))
+    except ValueError:
+        return None
+
+
+def _normalize_server_for_compare(server, api_version):
     normalized = {}
     if server.get('address') is not None:
         normalized['address'] = server['address']
@@ -96,10 +108,13 @@ def _normalize_server_for_compare(server):
     if version is not None:
         normalized['ver'] = str(version)
     server_type = server.get('type')
-    if server_type in ('primary', 'secondary'):
-        normalized['type'] = 'server'
-    elif server_type is not None:
-        normalized['type'] = server_type
+    if server_type is not None:
+        if api_version is not None and api_version < API_VERSION_SERVER_POOL_TYPES:
+            normalized['type'] = server_type
+        elif server_type in ('primary', 'secondary'):
+            normalized['type'] = 'server'
+        else:
+            normalized['type'] = server_type
     return normalized
 
 
@@ -123,8 +138,9 @@ def main():
     if module.params.get('enabled') is not None:
         compare_params['enabled'] = module.params['enabled']
     if module.params.get('servers') is not None:
+        api_version = _parse_api_version(module.params.get('version'))
         compare_params['servers'] = [
-            _normalize_server_for_compare(s)
+            _normalize_server_for_compare(s, api_version)
             for s in module.params['servers']
             if s is not None
         ]
