@@ -137,7 +137,16 @@ snmp:
 
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import chkp_api_call, checkpoint_argument_spec_for_all
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import (
+    chkp_api_call, checkpoint_argument_spec_for_all, is_checkpoint_param, _clean_params
+)
+
+
+def _escape_snmp_string(value):
+    """Escape special characters the way the Gaia API stores them."""
+    if value is None:
+        return None
+    return value.replace('\\', '\\\\').replace(':', '\\:')
 
 
 def main():
@@ -175,7 +184,21 @@ def main():
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'snmp'
 
-    res = chkp_api_call(module, api_call_object, False)
+    # Bugfix: The CheckPoint Gaia API returns `contact` with the `:` characters escaped -> `\:`
+    #         This causes the module parameters to _never_ match, thus `compare_params` must be
+    #          utilized to escape to match the API output for `idempotency_check`
+
+    # Get clean checkpoint params
+    compare_params = {k: _clean_params(v) for k, v in module.params.items() if is_checkpoint_param(k) and v is not None}
+    # escape contact/location strings
+    contact = module.params.get('contact')
+    location = module.params.get('location')
+    if contact is not None:
+        compare_params['contact'] = _escape_snmp_string(contact)
+    if location is not None:
+        compare_params['location'] = _escape_snmp_string(location)
+
+    res = chkp_api_call(module, api_call_object, False, compare_params=compare_params)
     module.exit_json(**res)
 
 
