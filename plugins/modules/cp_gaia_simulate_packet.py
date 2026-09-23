@@ -193,7 +193,7 @@ def main():
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
     api_call_object = "simulate-packet"
-    res = chkp_api_operation(module, api_call_object)
+    res = chkp_api_operation(module, api_call_object, read_only=True)
 
     # this action does not change system configuration
     res['changed'] = False

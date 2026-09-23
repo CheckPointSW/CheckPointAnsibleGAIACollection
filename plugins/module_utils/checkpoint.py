@@ -260,6 +260,47 @@ def _strip_ignore(d, ignore):
     return _filter(d)
 
 
+# drop the suboptions the user did not set, at every level, so they don't show up as a change
+def _strip_unset(val):
+    if isinstance(val, dict):
+        return {k: _strip_unset(v) for k, v in val.items() if v is not None}
+    elif isinstance(val, list):
+        return [_strip_unset(v) for v in val]
+    return val
+
+
+# the parameters the user asked for, without the ones that are not part of the object itself
+def _desired_params(module, ignore):
+    desired = dict((k, v) for k, v in module.params.items()
+                   if is_checkpoint_param(k) and v is not None and k not in checkpoint_argument_spec_for_all)
+    return _strip_ignore(_strip_unset(desired), ignore)
+
+
+# merge the desired parameters onto the current state, to preview what a set/add call would produce
+def _preview_after(before, desired):
+    after = dict(before)
+    for key, value in desired.items():
+        if isinstance(value, dict) and isinstance(after.get(key), dict):
+            after[key] = _preview_after(after[key], value)
+        elif key in after and idempotency_check(after[key], value) is True:
+            # already at the requested value, keep the current one so the diff stays clean
+            continue
+        else:
+            after[key] = value
+    return after
+
+
+# build the result of a change that check mode stopped us from making
+def _check_mode_result(api_call_object, before, after, with_diff=True):
+    result = {
+        api_call_object.replace('-', '_'): after,
+        "changed": True
+    }
+    if with_diff:
+        result['diff'] = {'before': before, 'after': after}
+    return result
+
+
 def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params=None, add_params=None, is_maestro_special=False, compare_params=None):
     target_version = get_version(module)
     changed = False
@@ -283,19 +324,29 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
     module.params = modules_params_original
     if 'state' in module.params and module.params['state'] == 'absent':  # handle delete
         if is_maestro_special:
+            # pending changes would be discarded, the resulting state can not be previewed
+            if module.check_mode:
+                return _check_mode_result(api_call_object, before, before, with_diff=False)
             code, res = api_call(module, target_version, api_call_object="discard-{0}".format(api_call_object))
         else:
             if code == 200:
+                # the object exists, so it would be deleted
+                if module.check_mode:
+                    return _check_mode_result(api_call_object, before, {})
                 # delete/show require same params
                 module.params = module_params_show
                 code, res = api_call(module, target_version, api_call_object="delete-{0}".format(api_call_object))
             else:
                 return {
                     api_call_object.replace('-', '_'): {},
+                    'diff': {'before': {}, 'after': {}},
                     "changed": False
                 }
     else:  # handle set/add
         if is_maestro_special:
+            # pending changes would be applied, the resulting state can not be previewed
+            if module.check_mode:
+                return _check_mode_result(api_call_object, before, before, with_diff=False)
             code, res = api_call(module, target_version, api_call_object="apply-{0}".format(api_call_object))
         else:
             params_dict = dict((k, v) for k, v in module.params.items() if is_checkpoint_param(k) and v is not None)
@@ -305,10 +356,17 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
                 if idempotency_check(res, params_for_idempotency) is True:
                     return {
                         api_call_object.replace('-', '_'): res,
+                        'diff': {'before': res, 'after': res},
                         "changed": False
                     }
+                # the object exists but differs from the requested state, so it would be modified
+                if module.check_mode:
+                    return _check_mode_result(api_call_object, before, _preview_after(before, _desired_params(module, ignore)))
                 code, res = api_call(module, target_version, api_call_object="set-{0}".format(api_call_object))
             else:
+                # the object does not exist yet, so it would be created
+                if module.check_mode:
+                    return _check_mode_result(api_call_object, {}, _desired_params(module, ignore))
                 if has_add_api is True:
                     if add_params:
                         [module.params.pop(key) for key in show_params if key not in add_params]
@@ -332,13 +390,20 @@ def chkp_api_call(module, api_call_object, has_add_api, ignore=None, show_params
 
     return {
         api_call_object.replace('-', '_'): res,
+        'diff': {'before': before, 'after': after},
         "changed": changed
     }
 
 
 # for operation and async tasks
-def chkp_api_operation(module, api_call_object):
+def chkp_api_operation(module, api_call_object, read_only=False):
     target_version = get_version(module)
+    # 'show-...' operations don't modify the device, so they must still run under check mode
+    read_only = read_only or api_call_object.startswith('show-')
+    # these operations are imperative, there is no state to diff, so we can only report that
+    # the module would have run
+    if module.check_mode and not read_only:
+        return {'changed': True}
     code, response = api_call(module, target_version, api_call_object)
     result = {'changed': True}
     if code == 200:
