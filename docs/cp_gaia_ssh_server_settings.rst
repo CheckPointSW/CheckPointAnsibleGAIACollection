@@ -47,6 +47,30 @@ Parameters
     Enabled ssh kex algorithms.
 
 
+  enabled_public_key_algorithms (False, list, None)
+    Enabled ssh public key algorithms. Supported from Gaia API v1.9 and Gaia R82.
+
+
+  password_authentication (False, bool, None)
+    Enables or disables password authentication. Supported from Gaia API v1.9.
+
+
+  permit_root_login (False, bool, None)
+    Enables or disables root login. Supported from Gaia API v1.9.
+
+
+  use_dns (False, bool, None)
+    Enables or disables reverse DNS lookup of the client. Supported from Gaia API v1.9.
+
+
+  client_alive_interval (False, int, None)
+    Interval in seconds for sending alive messages to the client, valid values 0-65535. Supported from Gaia API v1.9.
+
+
+  login_grace_time (False, int, None)
+    Time in seconds allowed for a user to log in, valid values 0-240. Supported from Gaia API v1.9 and Gaia R82.
+
+
 
 
 
@@ -79,6 +103,15 @@ Examples
                                  'hmac-sha2-512', 'hmac-sha2-512-etm@openssh.com',
                                  'umac-64-etm@openssh.com', 'umac-64@openssh.com',
                                  'umac-128-etm@openssh.com', 'umac-128@openssh.com']
+
+    - name: Set ssh server access settings
+      check_point.gaia.cp_gaia_ssh_server_settings:
+        version: '1.9'
+        password_authentication: true
+        permit_root_login: false
+        use_dns: false
+        client_alive_interval: 0
+        login_grace_time: 120
 
 
 
