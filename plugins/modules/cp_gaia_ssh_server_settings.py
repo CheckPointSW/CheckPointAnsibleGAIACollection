@@ -127,7 +127,7 @@ def main():
         enabled_mac_algorithms=dict(type='list', elements='str'),
         enabled_kex_algorithms=dict(type='list', elements='str'),
         enabled_public_key_algorithms=dict(type='list', elements='str'),
-        password_authentication=dict(type='bool'),
+        password_authentication=dict(type='bool', no_log=False),
         permit_root_login=dict(type='bool'),
         use_dns=dict(type='bool'),
         client_alive_interval=dict(type='int'),
