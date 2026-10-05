@@ -32,7 +32,13 @@ EXPECTED_RESULT = {
     'enabled_mac_algorithms': [
         'hmac-sha1', 'hmac-sha1-etm@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512',
         'hmac-sha2-512-etm@openssh.com', 'umac-64-etm@openssh.com', 'umac-64@openssh.com', 'umac-128-etm@openssh.com', 'umac-128@openssh.com'
-    ]
+    ],
+    'enabled_public_key_algorithms': ['ecdsa-sha2-nistp256', 'rsa-sha2-256', 'rsa-sha2-512', 'ssh-ed25519'],
+    'password_authentication': True,
+    'permit_root_login': False,
+    'use_dns': False,
+    'client_alive_interval': 0,
+    'login_grace_time': 120
 }
 
 PAYLOAD = {
@@ -53,7 +59,13 @@ PAYLOAD = {
         'hmac-sha2-512', 'hmac-sha2-512-etm@openssh.com',
         'umac-64-etm@openssh.com', 'umac-64@openssh.com',
         'umac-128-etm@openssh.com', 'umac-128@openssh.com'
-    ]
+    ],
+    'enabled_public_key_algorithms': ['ecdsa-sha2-nistp256', 'rsa-sha2-256', 'rsa-sha2-512', 'ssh-ed25519'],
+    'password_authentication': True,
+    'permit_root_login': False,
+    'use_dns': False,
+    'client_alive_interval': 0,
+    'login_grace_time': 120
 }
 
 function_path = 'ansible_collections.check_point.gaia.plugins.modules.cp_gaia_ssh_server_settings.chkp_api_call'

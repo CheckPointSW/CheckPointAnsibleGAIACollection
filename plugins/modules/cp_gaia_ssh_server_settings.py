@@ -56,6 +56,31 @@ options:
     required: False
     type: list
     elements: str
+  enabled_public_key_algorithms:
+    description: Enabled ssh public key algorithms. Supported from Gaia API v1.9 and Gaia R82.
+    required: False
+    type: list
+    elements: str
+  password_authentication:
+    description: Enables or disables password authentication. Supported from Gaia API v1.9.
+    required: False
+    type: bool
+  permit_root_login:
+    description: Enables or disables root login. Supported from Gaia API v1.9.
+    required: False
+    type: bool
+  use_dns:
+    description: Enables or disables reverse DNS lookup of the client. Supported from Gaia API v1.9.
+    required: False
+    type: bool
+  client_alive_interval:
+    description: Interval in seconds for sending alive messages to the client, valid values 0-65535. Supported from Gaia API v1.9.
+    required: False
+    type: int
+  login_grace_time:
+    description: Time in seconds allowed for a user to log in, valid values 0-240. Supported from Gaia API v1.9 and Gaia R82.
+    required: False
+    type: int
 """
 
 EXAMPLES = """
@@ -73,6 +98,15 @@ EXAMPLES = """
                              'hmac-sha2-512', 'hmac-sha2-512-etm@openssh.com',
                              'umac-64-etm@openssh.com', 'umac-64@openssh.com',
                              'umac-128-etm@openssh.com', 'umac-128@openssh.com']
+
+- name: Set ssh server access settings
+  check_point.gaia.cp_gaia_ssh_server_settings:
+    version: '1.9'
+    password_authentication: true
+    permit_root_login: false
+    use_dns: false
+    client_alive_interval: 0
+    login_grace_time: 120
 """
 
 RETURN = """
@@ -91,7 +125,13 @@ def main():
     fields = dict(
         enabled_ciphers=dict(type='list', elements='str'),
         enabled_mac_algorithms=dict(type='list', elements='str'),
-        enabled_kex_algorithms=dict(type='list', elements='str')
+        enabled_kex_algorithms=dict(type='list', elements='str'),
+        enabled_public_key_algorithms=dict(type='list', elements='str'),
+        password_authentication=dict(type='bool', no_log=False),
+        permit_root_login=dict(type='bool'),
+        use_dns=dict(type='bool'),
+        client_alive_interval=dict(type='int'),
+        login_grace_time=dict(type='int')
     )
     fields.update(checkpoint_argument_spec_for_all)
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)

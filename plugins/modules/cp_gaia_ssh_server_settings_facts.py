@@ -74,6 +74,31 @@ ansible_facts:
             returned: always.
             type: list
             elements: str
+        enabled_public_key_algorithms:
+            description: Enabled ssh public key algorithms.
+            returned: Gaia API v1.9 and Gaia R82 and above.
+            type: list
+            elements: str
+        password_authentication:
+            description: Password authentication status.
+            returned: Gaia API v1.9 and above.
+            type: bool
+        permit_root_login:
+            description: Permit root login status.
+            returned: Gaia API v1.9 and above.
+            type: bool
+        use_dns:
+            description: Use DNS status.
+            returned: Gaia API v1.9 and above.
+            type: bool
+        client_alive_interval:
+            description: Client alive interval in seconds.
+            returned: Gaia API v1.9 and above.
+            type: int
+        login_grace_time:
+            description: Login grace time in seconds.
+            returned: Gaia API v1.9 and Gaia R82 and above.
+            type: int
 """
 
 from ansible.module_utils.basic import AnsibleModule

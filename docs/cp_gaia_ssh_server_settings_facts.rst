@@ -81,6 +81,30 @@ ansible_facts (always., dict, )
     Enabled ssh kex algorithms.
 
 
+  enabled_public_key_algorithms (Gaia API v1.9 and Gaia R82 and above., list, )
+    Enabled ssh public key algorithms.
+
+
+  password_authentication (Gaia API v1.9 and above., bool, )
+    Password authentication status.
+
+
+  permit_root_login (Gaia API v1.9 and above., bool, )
+    Permit root login status.
+
+
+  use_dns (Gaia API v1.9 and above., bool, )
+    Use DNS status.
+
+
+  client_alive_interval (Gaia API v1.9 and above., int, )
+    Client alive interval in seconds.
+
+
+  login_grace_time (Gaia API v1.9 and Gaia R82 and above., int, )
+    Login grace time in seconds.
+
+
 
 
 
