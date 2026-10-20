@@ -1,0 +1,12 @@
+# Global owner for everything
+*                           @chkp-majds
+# Code owner
+cp_gaia_dynamic*.py         @chkp-ophirk
+cp_gaia_simulate_packet*.py @chkp-ophirk
+cp_gaia_maestro*.py         @chkp-roital
+cp_gaia_static_route*.py    @kokspudding
+cp_gaia_virtual*.py         @chkp-omerhad
+cp_gaia_vsnext*.py          @chkp-omerhad
+other modules               @chkp-ameera
+# LICENSE owner
+LICENSE                     @chkp-liavt
