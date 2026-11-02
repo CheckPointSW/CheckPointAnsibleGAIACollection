@@ -156,6 +156,8 @@ Modules
 * `cp_gaia_maestro_security_groups_facts` - get information about Maestro Security Groups over Web Services API.
 * `cp_gaia_maestro_sites` - add description to Maestro Sites over Web Services API.
 * `cp_gaia_maestro_sites_facts` - get information about Maestro Sites over Web Services API.
+* `cp_gaia_param` – set Config Point parameters of a Check Point machine over Web Services API.
+* `cp_gaia_param_facts` – get Config Point parameters of a Check Point machine over Web Services API.
 
 ### Code of Conduct
 This collection follows the Ansible project's
