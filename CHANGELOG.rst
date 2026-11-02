@@ -5,6 +5,53 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
 
 
+v7.1.0
+======
+
+Release Summary
+---------------
+
+This is release 7.1.0 of ``check_point.gaia``, released on 2026-11-02.
+
+Major Changes
+-------------
+
+- Check mode (``--check``) is now supported by all modules. Before this release, running a playbook with ``--check`` applied real changes on the machine. Modules now report the change that would be made without making it; read-only operations (``show-`` APIs and ``cp_gaia_simulate_packet``) still run. A diff is also reported outside check mode, so ``--diff`` works on real runs.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- httpapi - Management Proxy mode is no longer detected by loading ``/etc/ansible/hosts`` (``mgmt_proxy`` host with ``enabled: true``). Set the new inventory variable ``ansible_checkpoint_mgmt_proxy_enabled: true`` instead.
+
+Minor Changes
+-------------
+
+- cp_gaia_initial_setup - add the ``grub_password`` parameter.
+- cp_gaia_ntp - add the ``preferred`` parameter and the ``server`` and ``pool`` server types (Gaia API v1.8 and above).
+- cp_gaia_snmp_pre_defined_traps - add the missing ``lowDiskSpace`` trap parameter.
+- cp_gaia_ssh_server_settings - add the ``enabled_public_key_algorithms``, ``password_authentication``, ``permit_root_login``, ``use_dns``, ``client_alive_interval`` and ``login_grace_time`` parameters (Gaia API v1.9 and above).
+- cp_gaia_banner - document the API limits of the banner message (80 characters per line, 20 lines).
+- galaxy.yml - add ``ansible.netcommon`` as a dependency of the collection.
+- Add the GPL-3.0 ``LICENSE`` file, matching the module headers and ``galaxy.yml``.
+
+New Modules
+-----------
+
+- check_point.gaia.cp_gaia_param – set Config Point parameters over Web Services API.
+- check_point.gaia.cp_gaia_param_facts – get Config Point parameters over Web Services API.
+
+Bugfixes
+--------
+
+- httpapi - fix the connection failing on Python 3.12 and newer ansible-core, and in AAP/AWX, because the plugin loaded the local inventory file.
+- module_utils - fix task error reporting: read the correct ``error`` field of a failed task, fail when a succeeded task returns a non-zero ``return-value``, and show a readable message instead of a raw response (with a version hint for 404 errors).
+- module_utils - show the error message returned in the ``errors`` field of a failed task instead of a generic message.
+- module_utils - fix the idempotency check of lists (order-independent) and of values returned with a different type (for example ``4`` and ``"4"``).
+- cp_gaia_run_script - fail and report the script's error when the script returns a non-zero exit code, instead of reporting success.
+- cp_gaia_ntp - fix idempotency always reporting ``changed=true``, including on Gaia API versions below v1.8.
+- cp_gaia_snmp - fix idempotency of ``contact`` and ``location`` when they contain characters the API returns escaped (``:`` and ``\``).
+
+
 v7.0.0
 ======
 

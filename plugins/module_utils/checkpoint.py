@@ -64,7 +64,7 @@ def parse_fail_message(code, response):
 def _task_error_detail(task):
     details = task.get('task-details') or []
     detail = details[0] if details else {}
-    return detail.get('error') or detail.get('output') or ''
+    return detail.get('error') or detail.get('errors') or detail.get('output') or ''
 
 
 def _fail_task(module, task, reason='failed', detail=''):
