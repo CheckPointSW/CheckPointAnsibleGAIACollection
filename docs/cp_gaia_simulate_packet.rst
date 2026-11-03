@@ -140,7 +140,7 @@ Examples
 Return Values
 -------------
 
-packet rulebase execution result (always., dict, )
+simulate_packet (always., dict, )
   the NAT and Access rulebase execution result.
 
 
