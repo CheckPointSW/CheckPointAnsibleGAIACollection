@@ -50,6 +50,7 @@ Bugfixes
 - cp_gaia_run_script - fail and report the script's error when the script returns a non-zero exit code, instead of reporting success.
 - cp_gaia_ntp - fix idempotency always reporting ``changed=true``, including on Gaia API versions below v1.8.
 - cp_gaia_snmp - fix idempotency of ``contact`` and ``location`` when they contain characters the API returns escaped (``:`` and ``\``).
+- cp_gaia_simulate_packet, cp_gaia_virtual_systems_facts, cp_gaia_vsnext_state_facts - fix the documented return values to match what the modules return.
 
 
 v7.0.0
