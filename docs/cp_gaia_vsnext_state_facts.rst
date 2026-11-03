@@ -69,11 +69,11 @@ ansible_facts (always., dict, )
     The VSNext state.
 
 
-  session-virtual-system-id (always, int, )
+  session_virtual_system_id (always, int, )
     The Virtual System ID of the current Gaia API session.
 
 
-  member-id (On Scalable and Elastic XL platforms only., int, )
+  member_id (On Scalable and Elastic XL platforms only., int, )
     The member on which the command was executed.
 
 

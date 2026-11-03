@@ -138,7 +138,7 @@ EXAMPLES = """
 """
 
 RETURN = """
-packet rulebase execution result:
+simulate_packet:
   description: the NAT and Access rulebase execution result.
   returned: always.
   type: dict

@@ -62,19 +62,40 @@ Return Values
 -------------
 
 ansible_facts (always., dict, )
-  The VSNext state facts.
+  The Virtual Systems facts.
 
 
-  enabled (always, bool, )
-    The VSNext state.
+  objects (always, list, )
+    List of configured Virtual Systems.
 
 
-  session-virtual-system-id (always, int, )
-    The Virtual System ID of the current Gaia API session.
+    id (always, int, )
+      Virtual System ID.
 
 
-  member-id (On Scalable and Elastic XL platforms only., int, )
-    The member on which the command was executed.
+    name (always, str, )
+      Virtual System name.
+
+
+    virtual_system_type (always, str, )
+      Virtual System type, Gateway or Switch.
+
+
+    interfaces (always, list, )
+      Network interfaces attached to the Virtual System.
+
+
+
+  from (always, int, )
+    From which element number the query was done.
+
+
+  to (always, int, )
+    To which element number the query was done.
+
+
+  total (always, int, )
+    Total number of elements returned by the query.
 
 
 

@@ -51,21 +51,44 @@ EXAMPLES = """
 
 RETURN = """
 ansible_facts:
-    description: The VSNext state facts.
+    description: The Virtual Systems facts.
     returned: always.
     type: dict
     contains:
-        enabled:
-            description: The VSNext state.
+        objects:
+            description: List of configured Virtual Systems.
             returned: always
-            type: bool
-        session-virtual-system-id:
-            description: The Virtual System ID of the current Gaia API session.
+            type: list
+            elements: dict
+            contains:
+                id:
+                    description: Virtual System ID.
+                    returned: always
+                    type: int
+                name:
+                    description: Virtual System name.
+                    returned: always
+                    type: str
+                virtual_system_type:
+                    description: Virtual System type, Gateway or Switch.
+                    returned: always
+                    type: str
+                interfaces:
+                    description: Network interfaces attached to the Virtual System.
+                    returned: always
+                    type: list
+                    elements: str
+        from:
+            description: From which element number the query was done.
             returned: always
             type: int
-        member-id:
-            description: The member on which the command was executed.
-            returned: On Scalable and Elastic XL platforms only.
+        to:
+            description: To which element number the query was done.
+            returned: always
+            type: int
+        total:
+            description: Total number of elements returned by the query.
+            returned: always
             type: int
 """
 

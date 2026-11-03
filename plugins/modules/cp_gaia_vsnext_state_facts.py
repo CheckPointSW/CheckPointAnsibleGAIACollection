@@ -57,11 +57,11 @@ ansible_facts:
             description: The VSNext state.
             returned: always
             type: bool
-        session-virtual-system-id:
+        session_virtual_system_id:
             description: The Virtual System ID of the current Gaia API session.
             returned: always
             type: int
-        member-id:
+        member_id:
             description: The member on which the command was executed.
             returned: On Scalable and Elastic XL platforms only.
             type: int
