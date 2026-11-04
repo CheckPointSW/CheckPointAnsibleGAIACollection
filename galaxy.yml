@@ -9,7 +9,6 @@ authors:
 description: Check Point collection for managing a Check Point machine configurations.
 license:
   - GPL-3.0-or-later
-license_file: LICENSE
 tags:
   - security
 dependencies:
