@@ -1,7 +1,7 @@
 ---
 namespace: check_point
 name: gaia
-version: 7.1.0
+version: 7.1.1
 readme: README.md
 authors:
   - Majd Sharkia <majds@checkpoint.com>

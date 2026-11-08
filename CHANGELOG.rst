@@ -5,6 +5,33 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
 
 
+v7.1.1
+======
+
+Release Summary
+---------------
+
+This is release 7.1.1 of ``check_point.gaia``, released on 2026-11-08. It updates the collection for Red Hat Ansible Automation Hub certification; the modules and plugins are unchanged.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- The collection now requires ansible-core 2.16 or newer (``requires_ansible: '>=2.16.0'``). ansible-core 2.15 is no longer supported by Red Hat Ansible Automation Platform. Users on ansible-core 2.15 must upgrade ansible-core, or keep using version 7.1.0 of the collection. Other users don't need to change anything.
+
+Minor Changes
+-------------
+
+- README - add a Support section, installation instructions for Red Hat Ansible Automation Hub, and the supported Python versions (3.10 and newer); remove the outdated "Ansible 2.9+" requirement.
+- README - host the Management Proxy diagram in the CheckPointSW repository.
+- tests/config.yml - declare the supported Python versions for modules (``python_requires: ">=3.10"``).
+- CI - stop running sanity tests on ansible-core 2.15.
+
+Bugfixes
+--------
+
+- README - update the Management Proxy instructions to use the ``ansible_checkpoint_mgmt_proxy_enabled`` inventory variable introduced in 7.1.0, instead of the removed ``mgmt_proxy enabled=True`` host.
+
+
 v7.1.0
 ======
 
@@ -21,7 +48,7 @@ Major Changes
 Breaking Changes / Porting Guide
 --------------------------------
 
-- httpapi - Management Proxy mode is no longer detected by loading ``/etc/ansible/hosts`` (``mgmt_proxy`` host with ``enabled: true``). Set the new inventory variable ``ansible_checkpoint_mgmt_proxy_enabled: true`` instead.
+- httpapi - Management Proxy users only: the plugin no longer reads ``/etc/ansible/hosts`` to detect Management Proxy mode, which caused the connection failures in #72 and #76. Replace the ``mgmt_proxy`` host with ``enabled=True`` in ``/etc/ansible/hosts`` with the inventory variable ``ansible_checkpoint_mgmt_proxy_enabled=true``; otherwise the requests are not forwarded to the target gateway and go to the Gaia API of the Management Server itself. Other users don't need to change anything.
 
 Minor Changes
 -------------

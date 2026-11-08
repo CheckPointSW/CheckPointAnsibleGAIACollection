@@ -32,8 +32,6 @@ jobs:
         # Testing against `devel` may fail as new tests are added.
         # python is the controller version used to install that ansible-core version
         include:
-          - ansible: stable-2.15
-            python: '3.11'
           - ansible: stable-2.16
             python: '3.12'
           - ansible: stable-2.17

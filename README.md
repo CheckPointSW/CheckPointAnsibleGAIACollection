@@ -6,11 +6,69 @@ This is the repository of the gaia collection which can be found here - https://
 
 Installation instructions
 -------------------------
-Run `ansible-galaxy collection install check_point.gaia`
+Red Hat customers should install this certified collection from
+[Red Hat Ansible Automation Hub](https://console.redhat.com/ansible/automation-hub/repo/published/check_point/gaia/).
+
+### Installing from Automation Hub
+
+Installing from Automation Hub requires an offline token, which you can get from
+https://console.redhat.com/ansible/automation-hub/token. Configure Automation Hub as a
+Galaxy server in your `ansible.cfg`:
+
+```ini
+[galaxy]
+server_list = automation_hub, release_galaxy
+
+[galaxy_server.automation_hub]
+url=https://console.redhat.com/api/automation-hub/content/published/
+auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+
+[galaxy_server.release_galaxy]
+url=https://galaxy.ansible.com/
+```
+
+Provide the token through an environment variable, so it isn't stored in `ansible.cfg`:
+
+```bash
+export ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_TOKEN=<your_offline_token>
+```
+
+See [Configuring Red Hat automation hub as the primary content source](https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/managing_automation_content/managing-cert-valid-content#proc-configure-automation-hub-server-cli)
+for more details.
+
+### Installing the collection
+
+Install this collection with the Ansible Galaxy command-line tool:
+
+```bash
+ansible-galaxy collection install check_point.gaia
+```
+
+You can also include it in a `requirements.yml` file and install it with
+`ansible-galaxy collection install -r requirements.yml`:
+
+```yaml
+collections:
+  - name: check_point.gaia
+```
+
+To install a specific version, for example 7.1.0:
+
+```bash
+ansible-galaxy collection install check_point.gaia:==7.1.0
+```
+
+To upgrade the collection to the latest available version:
+
+```bash
+ansible-galaxy collection install check_point.gaia --upgrade
+```
+
+See [using Ansible collections](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html) for more details.
 
 Requirements
 ------------
-* Ansible 2.9+ is required.
+* The `ansible.netcommon` collection (installed automatically as a dependency).
 * The Check Point server should have Gaia API engine installed on. More information can be found at [Gaia REST API SK](https://supportcenter.checkpoint.com/supportcenter/portal?action=portlets.SearchResultMainAction&eventSubmit_doGoviewsolutiondetails=&solutionid=sk143612).
 
 Usage
@@ -164,9 +222,21 @@ This collection follows the Ansible project's
 [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
 Please read and familiarize yourself with this document.
 
+## Support
+
+As Red Hat Ansible Certified Content, this collection is entitled to support through
+Ansible Automation Platform (AAP). Red Hat customers can open a support case using the
+**Create issue** button on the top right corner of the collection's page on
+[Automation Hub](https://console.redhat.com/ansible/automation-hub/repo/published/check_point/gaia/).
+
+If the collection was obtained from Galaxy or GitHub, you can open an issue at
+https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection/issues.
+
 ## Release notes
 
 Release notes are available [here](https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection/blob/master/CHANGELOG.rst).
+See the [Red Hat Ansible Automation Platform Life Cycle](https://access.redhat.com/support/policy/updates/ansible-automation-platform)
+for the supported ansible-core versions.
 
 ## Roadmap
 
@@ -189,7 +259,8 @@ See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
 
 ## Supported Python versions
 
-- Modules and plugins require Python 2.7 or newer
+- Modules and plugins require Python 3.10 or newer. They run on the Ansible controller, so use a
+  Python version supported by your ansible-core version.
 
 
 # Check Point Ansible Proxy Integration
@@ -199,7 +270,7 @@ See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
 This feature integrating the Proxy API for Check Point Security Gateways through the Management Server. The Proxy API enables the Management Server to forward API requests to designated gateways, eliminating the need to address each gateway individually.
 
 
- ![image](https://github.com/nilsujma-dev/Check-Point-Ansible-Proxy-Integration/assets/114651180/0a9dc69f-2a64-4511-bb95-01e28f0049af)
+ ![Management Proxy: the Ansible host sends API requests to the Management Server, which forwards them to the target gateways](https://raw.githubusercontent.com/CheckPointSW/CheckPointAnsibleGAIACollection/master/docs/images/mgmt_proxy.png)
 
 
 
@@ -213,17 +284,29 @@ The revised code introduces a significant enhancement – the 'target gateway' o
 
 ## How to Use
 
-1. Edit the `hosts` so that it will contain a new section similar to this one:
+1. In your inventory, point the hosts at the Management Server, use the management
+   credentials, and enable Management Proxy mode with `ansible_checkpoint_mgmt_proxy_enabled`:
 ```
-[check_point_mgmt]
-mgmt_proxy enabled=True
+[check_point]
+%CHECK_POINT_MANAGEMENT_SERVER_IP%
+[check_point:vars]
+ansible_httpapi_use_ssl=True
+ansible_httpapi_validate_certs=False
+ansible_user=%CHECK_POINT_MANAGEMENT_USER%
+ansible_password=%CHECK_POINT_MANAGEMENT_PASSWORD%
+ansible_network_os=check_point.gaia.checkpoint
+ansible_checkpoint_mgmt_proxy_enabled=true
 ```
-2. in the playbook add this var under each task:
+2. In the playbook, set the target gateway with `ansible_checkpoint_target`, for a play or under each task:
 ```
 vars:
-    ansible_checkpoint_target: <target_gatway>
+    ansible_checkpoint_target: <target_gateway>
 ```
-3. in `hosts` change ansible_user and ansible_password to management credintials
-3. Follow the standard Ansible playbook execution process with the enhanced Check Point Ansible Collection.
+3. Run the playbook as usual. The requests are sent to the Management Server, which forwards them to the target gateway.
+
+**Upgrading from versions before 7.1.0:** Management Proxy mode is no longer detected from a
+`mgmt_proxy enabled=True` host in `/etc/ansible/hosts`. Replace it with the inventory variable
+`ansible_checkpoint_mgmt_proxy_enabled=true`. Without it, the requests are not forwarded to the
+target gateway: they go to the Gaia API of the inventory host itself (the Management Server).
 
 
