@@ -52,10 +52,10 @@ collections:
   - name: check_point.gaia
 ```
 
-To install a specific version, for example 7.1.0:
+To install a specific version, for example 8.0.0:
 
 ```bash
-ansible-galaxy collection install check_point.gaia:==7.1.0
+ansible-galaxy collection install check_point.gaia:==8.0.0
 ```
 
 To upgrade the collection to the latest available version:
@@ -68,6 +68,7 @@ See [using Ansible collections](https://docs.ansible.com/ansible/devel/user_guid
 
 Requirements
 ------------
+* Python 3.10 or newer on the Ansible controller (see [Supported Python versions](https://github.com/CheckPointSW/CheckPointAnsibleGAIACollection#supported-python-versions)).
 * The `ansible.netcommon` collection (installed automatically as a dependency).
 * The Check Point server should have Gaia API engine installed on. More information can be found at [Gaia REST API SK](https://supportcenter.checkpoint.com/supportcenter/portal?action=portlets.SearchResultMainAction&eventSubmit_doGoviewsolutiondetails=&solutionid=sk143612).
 
