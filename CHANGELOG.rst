@@ -5,23 +5,23 @@ Check_Point.gaia Release Notes
 .. contents:: Topics
 
 
-v7.1.1
+v8.0.0
 ======
 
 Release Summary
 ---------------
 
-This is release 7.1.1 of ``check_point.gaia``, released on 2026-11-08. It updates the collection for Red Hat Ansible Automation Hub certification; the modules and plugins are unchanged.
+This is release 8.0.0 of ``check_point.gaia``, released on 2026-11-11. It updates the collection for Red Hat Ansible Automation Hub certification; the modules and plugins are unchanged. It is a major release because the minimum supported ansible-core version changed. It replaces 7.1.1, which was not published.
 
 Breaking Changes / Porting Guide
 --------------------------------
 
-- The collection now requires ansible-core 2.16 or newer (``requires_ansible: '>=2.16.0'``). ansible-core 2.15 is no longer supported by Red Hat Ansible Automation Platform. Users on ansible-core 2.15 must upgrade ansible-core, or keep using version 7.1.0 of the collection. Other users don't need to change anything.
+- The collection now requires ansible-core 2.16 or newer (``requires_ansible: '>=2.16.0'``). ansible-core 2.15 is no longer supported by Red Hat Ansible Automation Platform. Users on ansible-core 2.15 must upgrade ansible-core to 2.16 or newer, or keep using version 7.1.0 of the collection. Other users don't need to change anything.
 
 Minor Changes
 -------------
 
-- README - add a Support section, installation instructions for Red Hat Ansible Automation Hub, and the supported Python versions (3.10 and newer); remove the outdated "Ansible 2.9+" requirement.
+- README - add a Support section, installation instructions for Red Hat Ansible Automation Hub, and the supported Python versions (3.10 and newer, also listed under Requirements); remove the outdated "Ansible 2.9+" requirement.
 - README - host the Management Proxy diagram in the CheckPointSW repository.
 - tests/config.yml - declare the supported Python versions for modules (``python_requires: ">=3.10"``).
 - CI - stop running sanity tests on ansible-core 2.15.
